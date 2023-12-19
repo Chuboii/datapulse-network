@@ -1,5 +1,9 @@
 import styled from 'styled-components'  
 
+interface ActiveProp{
+  active: string
+}
+
 export const Container = styled.div`
    position: absolute;
    top:50%;
@@ -23,7 +27,7 @@ export const Icons = styled.div`
 export const Wrap = styled.div`
   width:100%;
   position: relative;
-  margin: .5rem 0;
+  margin: .3rem 0;
 `
 export const Input = styled.input`
   background:#1A202C;
@@ -38,14 +42,15 @@ export const Input = styled.input`
     color:#777E90
   }
 `
-export const Button = styled.button`
+export const Button = styled.button<ActiveProp>`
   width: 100%;
-  background-color: transparent;
+  background-color: ${({active}) => active};
   border:2px solid #0363A4;
-  color:#0363A4;
+  color:${({active}) => active === '#0363A4' ? "white" : "#0363A4"};
   padding: 1rem 0;
-  margin-top: .5rem;
-  filter: brightness(.6);
+  transition: all .3s;
+  margin-top: 1rem;
+  filter: brightness(${({active}) => active === '#0363A4' ? "1" : ".6"});
 `
 
 export const Form = styled.form`
@@ -78,4 +83,26 @@ export const See = styled.div`
   right: 1rem;
   top:50%;
   transform:translateY(-50%);
+`
+export const GButton = styled.button`
+  background:#1973E8;
+  color:white;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  width:100%;
+  margin-bottom: 2rem;
+  cursor:pointer;
+  font-family: 'Archivo Black';
+`
+export const Img = styled.img`
+background: white;
+padding: .3rem .6rem;
+border-radius: 10px;
+
+`
+export const Span = styled.div`
+  margin-left: 1rem;
 `

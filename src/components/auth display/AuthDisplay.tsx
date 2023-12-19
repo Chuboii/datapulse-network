@@ -1,13 +1,18 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { Container, Text, Follow, Trusted, H2, Wrap, Button, Img, Span, Icons } from './AuthDisplay.style'
 import googleImg from '../../assets/google.svg'
 import MailIcon from '@mui/icons-material/Mail';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 const AuthDisplay: FC = () => {
+    const navigate = useNavigate()
+
+    const navigateToSignup = useCallback(() => {
+        navigate("/auth/signup")
+    }, [navigate])
     
     return (
         <>
@@ -20,8 +25,8 @@ const AuthDisplay: FC = () => {
                         <Span>Sign up with Google</Span>
                     </Button>
 
-                    <Button>
-                        <MailIcon />
+                    <Button  onClick={navigateToSignup } >
+                        <MailIcon/>
                         <Span>I {"don't" } have a Gmail account</Span>
                     </Button>
         </Wrap>

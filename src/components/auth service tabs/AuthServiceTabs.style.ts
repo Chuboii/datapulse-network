@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: grid;
-max-width: 400px;
-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+width: 65%;
   grid-template-columns: 1fr 1fr 1fr ;
 `
 export const Grid = styled.div`

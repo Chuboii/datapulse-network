@@ -41,6 +41,9 @@ export const Input = styled.input`
     font-size: 17px;
     color:#777E90
   }
+    @media screen and (max-width:768px){
+     width:80%;
+    }
 `
 export const Button = styled.button<ActiveProp>`
   width: 100%;
@@ -65,6 +68,9 @@ export const H2 = styled.h2`
  font-family: 'Archivo Black';
  font-size: 35px;
  margin: 0;
+    @media screen and (max-width:768px){
+     font-size:25px;
+    }
 ` 
 export const Follow = styled.div`
  text-align: center;

@@ -1,11 +1,14 @@
 import styled from 'styled-components'  
 
+interface ActiveProp{
+  active: string
+}
+
 export const Container = styled.div`
    position: absolute;
    top:50%;
    left:50%;
    transform:translate(-50%, -50%);
-
    max-width: 600px;
    width:100%;
    box-sizing: border-box;
@@ -37,15 +40,19 @@ export const Input = styled.input`
     font-size: 17px;
     color:#777E90
   }
+    @media screen and (max-width:768px){
+     width:80%;
+    }
 `
 export const Button = styled.button`
   width: 100%;
-  background-color: transparent;
+  background-color: ${({active}) => active};
   border:2px solid #0363A4;
-  color:#0363A4;
+  color:${({active}) => active === '#0363A4' ?
+  "white" : "#0363A4"};
   padding: 1rem 0;
   margin-top: .5rem;
-  filter: brightness(.6);
+  filter: brightness(${({active}) => active === '#0363A4' ? "1" : ".6"});
 `
 
 export const Form = styled.form`
@@ -60,6 +67,9 @@ export const H2 = styled.h2`
  font-family: 'Archivo Black';
  font-size: 35px;
  margin: 0;
+    @media screen and (max-width:768px){
+     font-size:25px;
+    }
 ` 
 export const Follow = styled.div`
  text-align: center;

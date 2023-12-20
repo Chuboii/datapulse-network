@@ -4,7 +4,12 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
 width: 65%;
-  grid-template-columns: 1fr 1fr 1fr ;
+  
+  @media screen and (max-width:768px){
+    width:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `
 export const Grid = styled.div`
 background-color: #23262F;
@@ -22,12 +27,20 @@ justify-content:center;
 text-align: center;
 font-size: 14px;
 padding:1rem;
+
+    @media screen and (max-width:768px){
+     width:60px;
+     height:60px;
+    }
 `
 export const Icon = styled.div`
 
 `
 export const Text = styled.div`
 
+    @media screen and (max-width:768px){
+     font-size:10px;
+    }
 `
 export const Img = styled.img`
 

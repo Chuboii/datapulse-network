@@ -1,5 +1,5 @@
 import {
-    FC, useEffect, useRef
+    FC, useEffect, useState
 } from "react";
 import {Container, See, Icon, Text, Icons, Follow,GButton, H2, Form, Wrap, Input,Button, Img, Span} from './AuthSignin.style'
 import { useForm } from "react-hook-form";
@@ -17,7 +17,7 @@ import googleImg from '../../assets/google.svg'
 
 const AuthSignin: FC = () => {
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm({mode:'onChange'})
-    const inputRef = useRef()
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     const registerOptions = {
         email: {
@@ -33,9 +33,10 @@ const AuthSignin: FC = () => {
         console.log(data)
     }
 
-    const enablePasswordVisibility = () => {
-        inputRef.current.type = 'text'
-    }
+    const enablePasswordVisibility = () =>
+    setIsPasswordVisible(!isPasswordVisible)
+
+
     return (
         <>
             <Container>
@@ -56,9 +57,18 @@ const AuthSignin: FC = () => {
                     <Icon>
                     <LockRoundedIcon  sx={{color:"#777E90"}} />
                    </Icon>
-                        <Input ref={ inputRef} className='input' placeholder='.......' type='password'  {...register("password", registerOptions.password)}/>
+                        <Input placeholder='.......' type={isPasswordVisible ?
+                        "text" : "password"} {...register("password",
+                        registerOptions.password)}/>
                   <See>
-                            <VisibilityOffRoundedIcon onClick={enablePasswordVisibility } sx={{ color: "#777E90" }} />
+                            
+                            {
+                          isPasswordVisible ?
+                  <VisibilityRoundedIcon onClick={enablePasswordVisibility }
+                  sx={{ color: "#777E90" }}/> : <VisibilityOffRoundedIcon
+                  onClick={enablePasswordVisibility } sx={{ color: "#777E90" }}
+                  />
+                            }
                    </See>
                     </Wrap>
 

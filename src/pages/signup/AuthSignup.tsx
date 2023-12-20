@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState} from "react";
 import {Container, See, Icon, Text, Icons, Follow, H2, Form, Wrap, Input,Button } from './AuthSignup.style'
 import { useForm } from "react-hook-form";
 import PersonIcon from '@mui/icons-material/Person';
@@ -14,8 +14,10 @@ import { Link } from "react-router-dom";
 
 
 const AuthSignup: FC = () => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
-    
+    const { register, handleSubmit, formState: { errors, isValid}, reset } = useForm()
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false)
     const registerOptions = {
         username: {
             required: true
@@ -27,7 +29,7 @@ const AuthSignup: FC = () => {
             required:true
         },
         confirmPassword: {
-            required:TryRounded
+            required:true
         }
     }
 
@@ -39,6 +41,12 @@ const AuthSignup: FC = () => {
             
         }
     }
+    
+const enablePasswordVisibility = () =>
+    setIsPasswordVisible(!isPasswordVisible)
+
+const enableConfirmPasswordVisibility = () =>
+setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
 
     return (
         <>
@@ -49,21 +57,34 @@ const AuthSignup: FC = () => {
                     <Icon>
                     <PersonIcon  sx={{color:"#777E90"}} />
                    </Icon>
-                            <Input placeholder='username' />
+                            <Input placeholder='username' {...register("username",
+                        registerOptions.username)}/>
                     </Wrap>
                     <Wrap>
                    <Icon>
                         <MailIcon sx={{ color: "#777E90" }} />
                  </Icon>
-                            <Input placeholder='joedoe@gmail.com' />
+                            <Input
+                            placeholder='joedoe@gmail.com'{...register("email",
+                        registerOptions.email)}/>
                     </Wrap>
                     <Wrap>
                     <Icon>
                     <LockRoundedIcon  sx={{color:"#777E90"}} />
                    </Icon>
-                            <Input placeholder='.......' />
+                            <Input placeholder='.......'
+                      type={isPasswordVisible ? "text" : "password"}
+            {...register("password",
+                        registerOptions.password)}
+                      />
                   <See>
-                        <VisibilityOffRoundedIcon sx={{ color: "#777E90" }} />
+                       {
+                      isPasswordVisible ? <VisibilityRoundedIcon 
+                      sx={{ color: "#777E90"}}   onClick={enablePasswordVisibility}
+                      />
+                      : <VisibilityOffRoundedIcon sx={{ color: "#777E90" }}
+                        onClick={enablePasswordVisibility}/>
+                       }
                    </See>
                     </Wrap>
 
@@ -71,13 +92,23 @@ const AuthSignup: FC = () => {
                     <Icon>
                         <LockRoundedIcon sx={{ color: "#777E90" }} />
                     </Icon>
-                            <Input placeholder='.......' />
+                            <Input placeholder='.......' type={isConfirmPasswordVisible
+                            ? "text" : "password"}
+                            {...register("confirmPassword",
+                        registerOptions.confirmPassword)}
+                            
+                            />
                         <See>
-                            <VisibilityOffRoundedIcon sx={{ color: "#777E90" }} />
+                            {
+                    isConfirmPasswordVisible ? <VisibilityRoundedIcon
+                      sx={{ color: "#777E90" }}  onClick={enableConfirmPasswordVisibility}
+                      /> : <VisibilityOffRoundedIcon sx={{ color: "#777E90" }}
+                     onClick={enableConfirmPasswordVisibility}/>
+                            }
                     </See>
                     </Wrap>
 
-                    <Button>Sign up</Button>
+                    <Button active={isValid ? "#0363A4" : "transparent"}>Sign up</Button>
                 </Form>
 
                 <Text>Already have an account? <Link to={'/auth/signin'}>Log in</Link></Text>

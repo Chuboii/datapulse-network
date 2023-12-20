@@ -5,6 +5,10 @@ export const Container = styled.div`
      padding: 1rem;
      display: flex;
      flex-direction: column;
+
+  @media screen and (max-width:768px){
+    width:100%;
+  }
 `
 export const Wrap = styled.div`
   

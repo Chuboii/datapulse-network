@@ -44,7 +44,7 @@ export const Input = styled.input`
      width:80%;
     }
 `
-export const Button = styled.button`
+export const Button = styled.button<ActiveProp>`
   width: 100%;
   background-color: ${({active}) => active};
   border:2px solid #0363A4;

@@ -7,8 +7,11 @@ const DataPlans: FC = () => {
     const planContainerRef = useRef(null)
 
     useEffect(() => {
-      
-
+        const width = planContainerRef.current.clientWidth
+        
+        if (width < 100) {
+            
+        }
     })
 
     return (

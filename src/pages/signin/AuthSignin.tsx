@@ -45,7 +45,7 @@ const AuthSignin: FC = () => {
 
                     <GButton type='button'>
                    <Img src={googleImg} />
-                        <Span>Sign up with Google</Span>
+                        <Span>Continue with Google</Span>
                     </GButton>
                     <Wrap>
                    <Icon>

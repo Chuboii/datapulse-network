@@ -9,7 +9,8 @@ const DataServices: FC = () => {
     
     return (
         <>
-        <Container>
+            <Container>
+                
         <Header>Select Network</Header>
 
                 <Wrapper>
@@ -32,7 +33,9 @@ const DataServices: FC = () => {
                         <Text>9mobile</Text>
                         <Img src={etisalat}/>
                     </Tab>
-                </Wrapper>            
+                </Wrapper>  
+                
+              
       </Container>
         </>
     )

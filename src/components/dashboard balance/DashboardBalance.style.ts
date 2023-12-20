@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
  padding: 1rem;
+ margin-top: 6rem;
 `
 export const Text = styled.div`
   font-family: "Kanit";

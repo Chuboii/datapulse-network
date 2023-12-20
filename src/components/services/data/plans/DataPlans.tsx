@@ -1,34 +1,65 @@
-import { FC } from "react";
-import {Container, Header, Wrapper, Tab, Text } from './DataPlan.style'
+import { FC, useEffect, useState, useRef } from "react";
+import { Container, Header, Wrapper, Tab, Text, Data, Price, Img, Span} from './DataPlan.style'
+import img from '../../../../assets/nigeria-naira-currency-symbol-svgrepo-com.svg'
 
 const DataPlans: FC = () => {
-    
+    const [isWidthSmaller, setIsWidthSmaller] = useState<boolean>(false)
+    const planContainerRef = useRef(null)
+
+    useEffect(() => {
+      
+
+    })
 
     return (
         <>
-          <Container>
+            <Container ref={planContainerRef}>
         <Header>Choose Plan</Header>
 
                 <Wrapper>
                     <Tab>
                         <Text>30 days</Text>
+                        <Data>500MB</Data>
+                        <Price><Img src={img } /> <Span>180</Span></Price>
+                     
+                    </Tab>
+                    <Tab>
+                        <Text>30 days</Text>
+                        <Data>500MB</Data>
+                        <Price><Img src={img } /> <Span>180</Span></Price>
+                     
+                    </Tab>
+                    <Tab>
+                        <Text>30 days</Text>
+                        <Data>500MB</Data>
+                        <Price><Img src={img } /> <Span>180</Span></Price>
+                     
+                    </Tab>
+                    <Tab>
+                        <Text>30 days</Text>
+                        <Data>500MB</Data>
+                        <Price><Img src={img } /> <Span>180</Span></Price>
+                     
+                    </Tab>
+                    <Tab>
+                        <Text>30 days</Text>
+                        <Data>500MB</Data>
+                        <Price><Img src={img } /> <Span>180</Span></Price>
+                     
+                    </Tab>
+                    <Tab>
+                        <Text>30 days</Text>
+                        <Data>500MB</Data>
+                        <Price><Img src={img } /> <Span>180</Span></Price>
+                     
+                    </Tab>
+                    <Tab>
+                        <Text>30 days</Text>
+                        <Data>500MB</Data>
+                        <Price><Img src={img } /> <Span>180</Span></Price>
                      
                     </Tab>
 
-                    <Tab>
-                        <Text>airtel</Text>
-                   
-                    </Tab>
-
-                    <Tab>
-                        <Text>glo</Text>
-                        
-                    </Tab>
-
-                    <Tab>
-                        <Text>9mobile</Text>
-    
-                    </Tab>
                 </Wrapper>            
       </Container>
         </>

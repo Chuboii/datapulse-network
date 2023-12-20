@@ -7,11 +7,13 @@ import DashboardBalance from "../../components/dashboard balance/DashboardBalanc
 import DashboardTransferBtns from "../../components/dashboard buttons/DashboardTransferBtns"
 import DashboardQuickAccess from "../../components/dashboard quick access/DashboardQuickAccess"
 import { Outlet } from "react-router-dom"
+import DataPlans from "../../components/services/data/plans/DataPlans"
 const Dashboard: FC = () =>{
   
   return(
     <>
       <Container>
+        
         <Navbar />
         <Wrapper>
           <DashboardHeader />
@@ -21,6 +23,7 @@ const Dashboard: FC = () =>{
           <Outlet/>
         <MobileFooterNav/>
         </Wrapper>
+        <DataPlans/>
   </Container>
     </>
     )

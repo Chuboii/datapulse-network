@@ -9,14 +9,14 @@ import {Nav,Wrap,Span,Icon, Wrapper,WrapDiv, Text} from './Navbar.style'
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar: FC = () => {
-    const [isNavbarToggled, setIsNavbarToggled] = useState(false)
+    const [isNavbarToggled, setIsNavbarToggled] = useState<boolean>(false)
  
     const toggleNavbar = () => setIsNavbarToggled(!isNavbarToggled)
 
     
     return (
         <>
-            <Nav width={isNavbarToggled ? "320px" : '50px' }>
+            <Nav width={isNavbarToggled ? "150px" : '1150px' }>
             <Icon onClick={toggleNavbar}><MenuIcon/> </Icon>    
            <WrapDiv>
                 <Wrap>

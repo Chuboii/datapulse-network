@@ -11,6 +11,9 @@ export const Nav = styled.nav<WidthProps>`
   position: relative;
   overflow: hidden;
   transition:all .5s;
+  position: sticky;
+  left: 0;
+  top:0;
   width:${({ width }) => width};
   
   @media screen and (max-width: 768px){

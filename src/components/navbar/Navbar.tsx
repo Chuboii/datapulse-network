@@ -4,10 +4,8 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LockIcon from '@mui/icons-material/Lock';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import {Nav,Wrap,Span,Icon, Wrapper,WrapDiv, Text} from './Navbar.style'
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar: FC = () => {

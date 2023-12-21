@@ -6,8 +6,19 @@ import { Link, useNavigate } from "react-router-dom";
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
+interface Prop {
+    // Define the structure of your API response here
+    data: string;
+    status: number;
+    statusText: string;
+    headers: string[];
+    config: string;
+    // ... other properties
+}
+
+  
 const AuthDisplay: FC = () => {
     const navigate = useNavigate()
 
@@ -15,7 +26,7 @@ const AuthDisplay: FC = () => {
         navigate("/auth/signup")
     }, [navigate])
 
-    const testing = () => {
+    const testing = async () => {
         try {
             const apiUrl = 'https://n3tdata.com/api';
 
@@ -35,16 +46,14 @@ const AuthDisplay: FC = () => {
             };
         
     
-            axios.post(apiUrl, payload, { headers, withCredentials:true })
-              .then(response => {
-                console.log('API Response:', response.data);
-              })
-              .catch(error => {
-                console.error('API Error:', error.message);
-              });
+            const res: AxiosResponse<Prop> = axios.post(apiUrl, payload, { headers, withCredentials:true })
+    
+                console.log('API Response:', res.data);
+              
+              
         }
         catch (e) {
-            console.log(e)
+            console.error('API Error:', (e as Error).message);
         }
     }
     

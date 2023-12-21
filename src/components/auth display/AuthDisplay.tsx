@@ -28,7 +28,7 @@ const AuthDisplay: FC = () => {
 
     const testing = async () => {
         try {
-            const apiUrl = 'https://n3tdata.com/api';
+            const apiUrl = 'https://n3tdata.com/api/topup/';
 
             const payload = {
                 network: 1,

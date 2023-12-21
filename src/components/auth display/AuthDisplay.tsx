@@ -46,7 +46,8 @@ const AuthDisplay: FC = () => {
             };
         
     
-            const res: AxiosResponse<Prop> = axios.post(apiUrl, payload, { headers, withCredentials:true })
+            const res = await axios.post(apiUrl, payload, { headers, withCredentials: true }) as AxiosResponse<Prop>;
+
     
                 console.log('API Response:', res.data);
               

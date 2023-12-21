@@ -16,7 +16,7 @@ const Navbar: FC = () => {
     
     return (
         <>
-            <Nav width={isNavbarToggled ? "150px" : '1150px' }>
+            <Nav width={isNavbarToggled ? "60px" : '350px' }>
             <Icon onClick={toggleNavbar}><MenuIcon/> </Icon>    
            <WrapDiv>
                 <Wrap>

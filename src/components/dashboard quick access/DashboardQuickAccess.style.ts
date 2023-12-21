@@ -7,7 +7,12 @@ interface ActiveProp {
 
 export const Container = styled.div`
 padding: 1rem;
-
+ width:100%;
+  
+  @media screen and (max-width:768px){
+       padding:1rem 0;
+     }
+ 
 `
 export const Tab = styled.div<ActiveProp>`
   background:${({active}) => active};
@@ -20,10 +25,14 @@ export const Tab = styled.div<ActiveProp>`
   width: 180px;
   border-radius: 10px;
   
+  @media screen and (max-width:768px){
+    margin:0 .3rem;
+  }
 `
 export const Header = styled.header`
    display: flex;
    align-items:center;
+
 `
 export const Icon = styled.div`
  display: flex;
@@ -35,7 +44,9 @@ export const Span = styled.span`
  font-family: "Kanit";
  font-size:18px;
  color:#4ED77C;
-
+  @media screen and (max-width:768px){
+    font-size:13px;
+  }
 `
 export const Text = styled.div`
  font-family: "Kanit";
@@ -43,4 +54,9 @@ export const Text = styled.div`
 export const Wrapper = styled.div`
   display:flex;
   margin-top: .8rem;
+  justify-content:space-between;
+  
+ @media screen and (max-width:768px){
+       overflow-x:scroll;
+     }
 `

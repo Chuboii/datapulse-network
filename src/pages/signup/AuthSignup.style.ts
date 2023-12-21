@@ -41,7 +41,7 @@ export const Input = styled.input`
     color:#777E90
   }
     @media screen and (max-width:768px){
-     width:80%;
+     width:100%;
     }
 `
 export const Button = styled.button<ActiveProp>`

@@ -3,8 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   display:flex;
   flex-direction: column;
-  padding: 1rem;
-
+  padding:0;
+  
+  @media screen and (max-width:768px){
+    position:relative;
+    bottom:1rem;
+  }
 `
 export const Text = styled.div`
   font-family: "Kanit";
@@ -14,7 +18,11 @@ export const Text = styled.div`
 `
 export const Wrapper = styled.div`
  display:flex;
-
+ 
+       @media screen and (max-width:768px){
+       width:100%;
+       overflow-x:scroll;
+     }
 `
 //#FD8080
 // #FECE57
@@ -23,11 +31,15 @@ export const Wrapper = styled.div`
 export const Img = styled.img`
    width:60px;
    height: 60px;
+       @media screen and (max-width:768px){
+       width:35px;
+       height:35px;
+     }
 `
 export const Header = styled.div`
   color:gray;
   font-family: "Kanit";
-  padding: 1rem;
+  padding: 1rem .5rem;
 
 `
 export const Tab = styled.div`
@@ -43,4 +55,10 @@ export const Tab = styled.div`
    align-items: center;
    padding: 0.5rem;
   border-radius: 7px 25px 7px 7px;
+     
+  @media screen and (max-width:768px){
+       width:200px;
+       margin:0 .3rem;
+       border-radius: 7px 20px 7px 7px;
+     }
 `

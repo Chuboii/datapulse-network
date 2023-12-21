@@ -29,8 +29,8 @@ font-size: 14px;
 padding:1rem;
 
     @media screen and (max-width:768px){
-     width:60px;
-     height:60px;
+     width:100px;
+     height:100px;
     }
 `
 export const Icon = styled.div`

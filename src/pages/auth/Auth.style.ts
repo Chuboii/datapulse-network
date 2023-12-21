@@ -4,7 +4,7 @@ export const Container = styled.div`
   display:flex;
   justify-content: space-between;
   padding: 1rem;
-  width: 80%;
+  width:80%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -14,6 +14,6 @@ export const Container = styled.div`
    flex-direction:column;
    justify-content:center;
    align-items:center;
-   width:90%;
+   width:100%;
   }
 `

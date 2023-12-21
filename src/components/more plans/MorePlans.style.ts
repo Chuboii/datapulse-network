@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+
+
 export const Container = styled.div`
   /* position: absolute;
   right: 0;
@@ -91,8 +93,13 @@ export const Span = styled.div`
     font-size:12px;
   }
 `
-
-
+export const Button = styled.button`
+  width:50%;
+  padding:1.5rem;
+  color:#146CB3;
+  text-transform:uppercase;
+  border-radius: 7px 25px 7px 7px;
+`
 export const Wrap = styled.div`
   display:flex;
   width:50%

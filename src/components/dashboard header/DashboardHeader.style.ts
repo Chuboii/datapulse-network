@@ -12,6 +12,12 @@ backdrop-filter: blur(5px);
 position:fixed;
 width:100%;
 top:0;
+z-index:10;
+ @media screen and (max-width:768px){
+       right:0;
+       width:"";
+       padding:1rem;
+     }
 `
 export const Wrap = styled.div`
   display: flex;

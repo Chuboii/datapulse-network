@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
  display:flex;
- padding:0 1rem;
+ 
+ 
+@media screen and (max-width:768px){
+       width:100%;
+     }
 `
 export const Button = styled.button`
    display:flex;
@@ -17,6 +21,17 @@ export const Button = styled.button`
       background-color: #146CB3;
       color:white;
      }
+     @media screen and (max-width:768px){
+       width:100%;
+       
+       padding:.8rem 0;
+       
+       &:first-child{
+         width:50%;
+       }
+     }
+     
+
 `
 export const Span = styled.span`
  margin-left:  .5rem;

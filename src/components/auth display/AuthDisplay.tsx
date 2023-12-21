@@ -41,7 +41,7 @@ const AuthDisplay: FC = () => {
         
             // Request headers
             const headers = {
-              'Authorization': 'b9d09d4523aa5d77f2d9206f3b3f9e06cfeb6a8f676106bda2a4e1aaa73d', 
+              'Authorization': 'Token b9d09d4523aa5d77f2d9206f3b3f9e06cfeb6a8f676106bda2a4e1aaa73d', 
               'Content-Type': 'application/json',
             };
         
@@ -54,7 +54,7 @@ const AuthDisplay: FC = () => {
               
         }
         catch (e) {
-            console.error('API Error:', (e as Error).message);
+            console.error('API Error:', (e as Error));
         }
     }
     

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import {Container, Header, Wrap, H2, Tab, Wrapper, Box, Icon, TabText,Span} from './Services.style'
 
 
 const Services: FC = () => {

@@ -1,26 +1,17 @@
-import { FC, useEffect, useState, useRef } from "react";
+import { FC } from "react";
 import { Container, Header, Wrapper, Tab, Text, Data, Price, Wrap, Button,Img, Span} from './DataPlan.style'
 import img from '../../../../assets/nigeria-naira-currency-symbol-svgrepo-com.svg'
 import PurchaseForm from "../../../purchase form/PurchaseForm"
 import MorePlans from "../../../more plans/MorePlans"
 
 
-const DataPlans: FC = ({ref}) => {
-    const [isWidthSmaller, setIsWidthSmaller] = useState<boolean>(false)
-    const planContainerRef = useRef(null)
-/*
-    useEffect(() => {
-        const width = planContainerRef.current.clientWidth
-        
-        if (width < 100) {
-            setIsWidthSmaller(true)
-        }
-    })*/
+const DataPlans: FC = () => {
+    // const [isWidthSmaller, setIsWidthSmaller] = useState<boolean>(false)
 
     return (
         <>
         <MorePlans/>
-            <Container width={isWidthSmaller ? "relative" : "absolute"} ref={ref}>
+            <Container>
         <Header>Choose Plan</Header>
 
                 <Wrapper>

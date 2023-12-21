@@ -2,13 +2,18 @@ import { FC,useState } from "react";
 import {Form,Numbers, Wrap,Contact, Input, Button, Header} from './PurchaseForm.style'
 import PersonIcon from '@mui/icons-material/Person';
 
+interface InputProp {
+    target: {
+        value: string;
+    }
+}
 
 
 const PurchaseForm: FC = () => {
-  const [numberArray, setNumberArray] = useState([]);
-  const [numberInput, setNumberInput] = useState("")
+  const [numberArray, setNumberArray] = useState<string[]>([]);
+  const [numberInput, setNumberInput] = useState<string>("")
 
-const handleInputChange = (e) => {
+const handleInputChange = (e: InputProp) => {
     const value = e.target.value
     
     if (value.length <= 11) {
@@ -26,14 +31,6 @@ const submitForm = () =>{
   }
 }
 
-/*
-const handleValueChange = (values) => {
-    const { value } = values;
-    
-  if (value.length === 11) {
-      setNumberArray((prevArray) => [...prevArray, value]);
-    }
-  }*/
 
     return (
         <>

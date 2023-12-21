@@ -91,7 +91,9 @@ export const Span = styled.div`
     font-size:12px;
   }
 `
+export const Button = styled.button`
 
+`
 
 export const Wrap = styled.div`
   display:flex;

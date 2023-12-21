@@ -4,7 +4,8 @@ export const Container = styled.div`
 padding:1rem .5rem;
 background:black;
 margin-bottom:7rem;
-position:relative;
+position: relative;
+
 `
 export const Wrapper = styled.div`
   border-bottom:1px solid rgba(255,255,255,.3);

@@ -10,9 +10,17 @@ export const Container = styled.div`
   padding: 1rem;
   margin-top: 6rem;
   @media screen and (max-width:768px){
-    position:relative;
     margin: 0;
     padding:0;
+    width:100%;
+overflow:hidden;
+position:absolute;
+top: 0;
+right: 0;
+bottom:0;
+display: none;
+background-color: black;
+z-index: 20;
   }
 `
 export const Header = styled.div`
@@ -21,16 +29,19 @@ export const Header = styled.div`
   padding: 1rem;
   
     @media screen and (max-width:768px){
-    
-    padding: 0 .5rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
   }
 `
 export const Wrapper = styled.div`
  display:flex;
  
   @media screen and (max-width:768px){
-    margin-top:1rem;
     width:100%;
+    display: flex;
+flex-wrap: wrap;
+padding:1rem;
   }
  
 `
@@ -57,10 +68,11 @@ export const Tab = styled.div`
   border-radius: 7px 25px 7px 7px;
   
   @media screen and (max-width:768px){
-    width:100%;
+   
     height:80px;
     margin:0 .3rem;
     padding:.9rem;
+    margin:.5rem;
   }
 `
 export const Data = styled.div`
@@ -104,4 +116,14 @@ export const Wrap = styled.div`
   display:flex;
   width:50%
   
+`
+export const Icon = styled.div`
+  background:#141414;
+  margin-right: 1rem;
+  border-radius: 50%;
+  display:flex;
+  width:40px;
+  height:40px;
+  justify-content:center;
+  align-items: center;
 `

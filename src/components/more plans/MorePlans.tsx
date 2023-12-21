@@ -1,6 +1,6 @@
 import {FC} from "react"
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import { Container, Header, Wrapper, Tab, Text, Data, Price, Wrap,Img, Span} from './MorePlans.style'
+import { Container, Icon, Header, Wrapper, Tab, Text, Data, Price, Wrap,Img, Span} from './MorePlans.style'
 import img from '/src/assets/nigeria-naira-currency-symbol-svgrepo-com.svg'
 
 const MorePlans: FC = ()=>{
@@ -8,8 +8,10 @@ const MorePlans: FC = ()=>{
   return(
     <>
     <Container>
-    <Header> 
-    <KeyboardArrowLeftIcon/>
+              <Header> 
+                  <Icon>
+                      <KeyboardArrowLeftIcon />
+                      </Icon>
     <Text> MTN (SME) data plans</Text>
     </Header>
     

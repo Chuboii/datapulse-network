@@ -32,7 +32,7 @@ const AuthDisplay: FC = () => {
 
             const payload = {
                 network: 1,
-                phone: 8039914037, // Replace with the actual phone number
+                phone: "08039914037", // Replace with the actual phone number
                 plan_type: 'VTU',
                 bypass: false,
                 amount: 100,

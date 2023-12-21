@@ -35,7 +35,7 @@ const AuthDisplay: FC = () => {
             };
         
     
-            axios.post(apiUrl, payload, { headers })
+            axios.post(apiUrl, payload, { headers, withCredentials:true })
               .then(response => {
                 console.log('API Response:', response.data);
               })

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Container, Header, Wrapper, Tab, Text, Data, Price, Wrap, Button,Img, Span} from './DataPlan.style'
-import img from '../../../../assets/nigeria-naira-currency-symbol-svgrepo-com.svg'
-import PurchaseForm from "../../../purchase form/PurchaseForm"
-import MorePlans from "../../../more plans/MorePlans"
+import img from '../../assets/nigeria-naira-currency-symbol-svgrepo-com.svg'
+import PurchaseForm from "../purchase form/PurchaseForm"
+import MorePlans from "../more plans/MorePlans"
 
 
 const DataPlans: FC = () => {

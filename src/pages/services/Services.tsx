@@ -1,5 +1,9 @@
 import { FC } from "react";
 import {Container, Header, Wrap, H2, Tab, Wrapper, Box, Icon, TabText,Span} from './Services.style'
+import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav";
+import SendIcon from '@mui/icons-material/Send';
+import ChatIcon from '@mui/icons-material/Chat';
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 
 
 const Services: FC = () => {
@@ -9,14 +13,14 @@ const Services: FC = () => {
             <Container>
                 <Header>
                     <Wrap>
-
+                      <SendIcon/>
                         <H2>Services</H2>
                     </Wrap>
                 </Header>
                 
                 <Wrapper>
                     <Tab>
-                        <Icon></Icon>
+                        <Icon><ChatIcon/></Icon>
                         <Box>
                             <TabText>Buy Data</TabText>
                           <Span>Subscribe data to any network</Span>
@@ -24,24 +28,27 @@ const Services: FC = () => {
                     </Tab>
 
                     <Tab>
-                        <Icon></Icon>
+                        <Icon><SendIcon/></Icon>
                         <Box>
-                            <TabText>Buy Data</TabText>
-                          <Span>Subscribe data to any network</Span>
+                            <TabText>Buy Airtime</TabText>
+                          <Span>Recharge any phone easily</Span>
                         </Box>
                     </Tab>
 
                     <Tab>
-                        <Icon></Icon>
+                        <Icon><DonutLargeIcon/></Icon>
                         <Box>
-                            <TabText>Buy Data</TabText>
-                          <Span>Subscribe data to any network</Span>
+                            <TabText>Sell Airtime</TabText>
+                          <Span>Convert airtime to cash</Span>
                         </Box>
                     </Tab>
 
                     
                 </Wrapper>
+
         </Container>
+            <MobileFooterNav />
+            
         </>
     )
 }

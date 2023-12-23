@@ -1,108 +1,71 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import mongoose from 'mongoose'
+import passport from 'passport'
+import session from 'express-session'
+import LocalStrategy from 'passport-local'
+import MongoStore from 'connect-mongo'
+import User from './models/User.js'
+import userRouter from './routes/user.js'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
-
-
 const app = express()
 app.use(cors())
+app.use(express.json())
+app.use(cookieParser())
+const sessionConfig = {
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO,
+      }),
+      cookie: {
+        httpOnly:true,
+        maxAge: 1000 * 60 * 60 * 24
+      }
+}
+app.use(session(sessionConfig))
+app.use(passport.initialize())
+app.use(passport.session())
 
-// const username = 'chuboi';
-// const password = 'Chuboii00**';
 
-// const url = 'https://n3tdata.com/api/user';
+passport.use(new LocalStrategy(User.authenticate()));
+  
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
-// const credentials = Buffer.from(`${username}:${password}`).toString('base64');
+const connect = async () => {
+    try {
+      await mongoose.connect(process.env.MONGO)
+        console.log("Connected to database")
+    }
+    catch (e) {
+        console.log(e, 'Mongoose not connected due to an error')
+    }
+}
 
-// axios.post(url, {}, {
-//     headers: {
-//         'Authorization': `Basic ${credentials}`
-//     }
-// })
-//     .then(response => {
-//         console.log(response.data);
-//     })
-//     .catch(error => {
-//         console.error(error.message);
-//     });
 
-//     // const payload = {
-//     //     network: 1,
-//     //     phone: 8039914037,
-//     //     data_plan: 1,
-//     //     bypass: false,
-//     //     'request-id': 'Data_12345678900'
-//     // };
+app.use("/api", userRouter)
 
-//     // const authToken = 'b9d09d4523aa5d77f2d9206f3b3f9e06cfeb6a8f676106bda2a4e1aaa73d';
-    
-//     // axios.post(url, payload, {
-//     //     headers: {
-//     //         'Authorization': `Token ${authToken}`,
-//     //         'Content-Type': 'application/json'
-//     //     }
-//     // })
-//     //     .then(response => {
-//     //         console.log(response.data);
-//     //     })
-//     //     .catch(error => {
-//     //         console.error(error.message);
-//     //     });
-    
-   
-//     const payload = {
-//         network: 1,
-//         phone: 8039914037, // Replace with the actual phone number
-//         plan_type: 'VTU',
-//         bypass: false,
-//         amount: 100,
-//         'request-id': 'Airtime_12345678900'
-//     };
-    
-//     app.post('/topup', async (req, res) => {
-//         const url = 'https://n3tdata.com/api/topup';
-//         const authToken = 'b9d09d4523aa5d77f2d9206f3b3f9e06cfeb6a8f676106bda2a4e1aaa73d';
-    
-//         const payload = {
-//             network: 1,
-//             phone: 8039914037, // Replace with the actual phone number
-//             plan_type: 'VTU',
-//             bypass: false,
-//             amount: 100,
-//             'request-id': 'Airtime_12345678900'
-//         };
-    
-//         try {
-//             const response = await axios.post(url, payload, {
-//                 headers: {
-//                     'Authorization': `Token ${authToken}`,
-//                     'Content-Type': 'application/json'
-//                 }
-//             });
-    
-//             res.json(response.data);
-//         } catch (error) {
-//             console.error(error.message);
-//             res.status(500).json({ error: 'Internal Server Error' });
-//         }
-//     });
-//     // axios.post(url2, payload, {
-//     //     headers: {
-//     //         'Authorization': `Token ${authToken}`,
-//     //         'Content-Type': 'application/json'
-//     //     }
-//     // }, (req, res) => {
-        
-//     // })
-//     //     .then(response => {
-//     //         console.log(response.data);
-//     //     })
-//     //     .catch(error => {
-//     //         console.error(error.message);
-//     //     });
-    
+app.use((err,req, res, next) => {
+    const status = err.status || 500
+    const message = err.message || 'Internal server error - Check server to fix'
+
+    return res.status(status).json({
+        status,
+        message
+    })
+})
+
+app.use("*", (req,res) => {
+    res.send("The route you entered is not valid. Please try again")
+})
+
 
 app.listen("8080", () => {
+    connect()
     console.log("server listening on port 8080")
 })

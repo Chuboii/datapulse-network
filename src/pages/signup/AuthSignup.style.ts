@@ -33,7 +33,7 @@ export const Input = styled.input`
   border:none;
   padding:1.2rem 1rem;
   border-radius: 10px;
-  width: 90%;
+  width: 100%;
   padding-left: 3.3rem;
   font-family: 'Archivo Black';
   &::placeholder{

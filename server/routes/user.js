@@ -1,6 +1,5 @@
 import express  from "express";
 import { loginUser, registerUser, logoutUser } from "../controllers/users.js";
-import passport from "passport";
 import { verifyUser } from "../middlewares/verifyUser.js";
 
 const router = express.Router()

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 //#080808
 export const Container = styled.div`
 background:#080808;
+display: flex;
 `
 export const Header = styled.div`
  padding: 1.5rem;
@@ -30,6 +31,9 @@ export const Tab = styled.div`
 export const Wrapper = styled.div`
   padding: 1rem;
 
+`
+export const BoxWrap = styled.div`
+width: 100%;
 `
 
 export const Box = styled.div`

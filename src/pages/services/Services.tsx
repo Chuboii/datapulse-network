@@ -1,9 +1,10 @@
 import { FC } from "react";
-import {Container, Header, Wrap, H2, Tab, Wrapper, Box, Icon, TabText,Span} from './Services.style'
+import {Container, Header,BoxWrap, Wrap, H2, Tab, Wrapper, Box, Icon, TabText,Span} from './Services.style'
 import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav";
 import SendIcon from '@mui/icons-material/Send';
 import ChatIcon from '@mui/icons-material/Chat';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+import Navbar from "../../components/navbar/Navbar";
 
 
 const Services: FC = () => {
@@ -11,6 +12,8 @@ const Services: FC = () => {
     return (
         <>
             <Container>
+                <Navbar />
+                <BoxWrap>
                 <Header>
                     <Wrap>
                       <SendIcon/>
@@ -45,7 +48,7 @@ const Services: FC = () => {
 
                     
                 </Wrapper>
-
+</BoxWrap>
         </Container>
             <MobileFooterNav />
             

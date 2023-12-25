@@ -4,6 +4,14 @@ export const Wrapper = styled.div`
   display: none;
 `
 export const Button = styled.button`
+    width:100%;
+    margin-top:1rem;
+    padding:1rem;
+    background:transparent;
+    border:2px solid #0F2337;
+    color:#0F2337;
+    margin-left: .8rem;
+    
  @media screen and (max-width:768px){
     width:100%;
     margin-top:1rem;

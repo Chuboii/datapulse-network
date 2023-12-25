@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface TabProp {
+  bg: string;
+}
+
 export const Container = styled.div`
   display:flex;
   flex-direction: column;
@@ -42,13 +46,13 @@ export const Header = styled.div`
   padding: 1rem .5rem;
 
 `
-export const Tab = styled.div`
+export const Tab = styled.div<TabProp>`
   margin: 0 .7rem;
   width:100px;
   cursor: pointer;
-  height: 100px;
+  height: 120px;
    display:flex;
-   background:#141414;
+   background:${({bg}) => bg};
    flex-direction:column;
    border:1px solid rgba(255, 255, 255, 0.1);
    justify-content: center;

@@ -19,13 +19,13 @@ export const Wrapper = styled.div`
      }
 `
 
-export const Box = styled.div`
-display: flex;
-  position: relative;
-  justify-content: space-between;
+// export const Box = styled.div`
+// display: flex;
+//   position: relative;
+//   justify-content: space-between;
   
-     @media screen and (max-width:768px){
-       display:block;
-     }
+//      @media screen and (max-width:768px){
+//        display:block;
+//      }
 
-`
+// `

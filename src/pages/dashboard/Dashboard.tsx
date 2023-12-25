@@ -1,6 +1,6 @@
 import {FC} from "react"
 import DashboardHeader from "../../components/dashboard header/DashboardHeader"
-import {Container, Wrapper,Box } from './Dashboard.style'
+import {Container, Wrapper } from './Dashboard.style'
 import Navbar from "../../components/navbar/Navbar"
 import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav"
 import DashboardBalance from "../../components/dashboard balance/DashboardBalance"
@@ -18,7 +18,6 @@ const Dashboard: FC = () =>{
   return(
     <>
       <Container>
-        <Box>
         <Navbar />
         <Wrapper>
           <DashboardHeader />
@@ -27,10 +26,11 @@ const Dashboard: FC = () =>{
           <DashboardQuickAccess/>
           <Outlet/>
         <MobileFooterNav/>
-        </Wrapper>
-        </Box>
+      
+    
         {location.pathname === '/dashboard' &&<DataPlans />}
-      <RecentTransactions/>
+          <RecentTransactions />
+          </Wrapper>
   </Container>
     </>
     )

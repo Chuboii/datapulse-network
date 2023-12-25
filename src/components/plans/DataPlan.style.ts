@@ -7,6 +7,9 @@ export const Container = styled.div`
   width:100%;
   padding: 1rem;
   margin-top: 6rem;
+  position:relative;
+    margin: 0;
+    padding:0;
   @media screen and (max-width:768px){
     position:relative;
     margin: 0;

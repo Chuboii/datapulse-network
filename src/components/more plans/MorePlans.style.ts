@@ -9,6 +9,17 @@ export const Container = styled.div`
   width:100%;
   padding: 1rem;
   margin-top: 6rem;
+  margin: 0;
+    padding:0;
+    width:100%;
+overflow:hidden;
+position:absolute;
+top: 0;
+right: 0;
+bottom:0;
+display: none;
+background-color: black;
+z-index: 20;
   @media screen and (max-width:768px){
     margin: 0;
     padding:0;

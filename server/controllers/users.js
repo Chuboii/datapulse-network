@@ -4,11 +4,12 @@ import passport from "passport"
 
 export const registerUser = async (req, res, next) => {
     try {
-        const { email, username, password } = req.body
+        const { email, username, password, photoUrl } = req.body
         
         const newUser = new User({
             email,
-            username
+            username,
+            photoUrl
         })
 
         await User.register(newUser, password)

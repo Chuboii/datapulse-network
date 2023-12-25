@@ -7,29 +7,36 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import {Nav,Wrap,Span,Icon, Wrapper,WrapDiv, Text} from './Navbar.style'
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from "react-router-dom";
 
 const Navbar: FC = () => {
     const [isNavbarToggled, setIsNavbarToggled] = useState<boolean>(false)
- 
+    const navigate = useNavigate()
     const toggleNavbar = () => setIsNavbarToggled(!isNavbarToggled)
 
+
+    const navigateToServices = () => navigate("/services");
+    const navigateToHistory = () => navigate("/history");
+    const navigateToHome = () => navigate("/dashboard");
+   
+  
     
     return (
         <>
             <Nav width={isNavbarToggled ? "60px" : '350px' }>
             <Icon onClick={toggleNavbar}><MenuIcon/> </Icon>    
            <WrapDiv>
-                <Wrap>
+                <Wrap onClick={navigateToHome}>
                     <HomeIcon/>
                 <Span>Home</Span>
                 </Wrap>
                 
-                <Wrap>
+                <Wrap onClick={navigateToServices}>
                     <RocketLaunchIcon/>
                 <Span>Services</Span>
                 </Wrap>
 
-                <Wrap>
+                <Wrap onClick={navigateToHistory}>
                     <AccessTimeIcon/>
                 <Span>History</Span>
                 </Wrap>

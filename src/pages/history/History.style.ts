@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
+  display: flex;
+ 
 `
 
 export const Wrap = styled.div`
@@ -19,4 +20,8 @@ export const Header = styled.header`
 
 export const H2 = styled.div`
   margin: 0 1rem;
+`
+
+export const Box = styled.div`
+width: 100%;
 `

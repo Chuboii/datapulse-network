@@ -9,6 +9,9 @@ import MongoStore from 'connect-mongo'
 import User from './models/User.js'
 import userRouter from './routes/user.js'
 import cookieParser from 'cookie-parser'
+import walletRouter from './routes/wallet.js'
+import notifyRouter from './routes/notification.js'
+import historyRouter from './routes/history.js'
 
 dotenv.config()
 const app = express()
@@ -49,6 +52,9 @@ const connect = async () => {
 
 
 app.use("/api", userRouter)
+app.use("/api", walletRouter)
+app.use("/api", notifyRouter)
+app.use("/api", historyRouter)
 
 app.use((err,req, res, next) => {
     const status = err.status || 500

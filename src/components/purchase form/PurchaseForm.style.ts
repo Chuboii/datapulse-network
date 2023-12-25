@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
- 
+ width:60%;
+   padding:1rem .5rem;
+   margin-bottom:3rem;
+
  @media screen and (max-width:768px){
    width:100%;
    padding:1rem .5rem;
@@ -18,7 +21,13 @@ export const Input = styled.input`
   border-radius:7px;
 `
 export const Button = styled.button`
-  
+    width:100%;
+    margin-top:1rem;
+    padding:1rem;
+    background:transparent;
+    border:2px solid #0F2337;
+    color:#0F2337;
+
   @media screen and (max-width:768px){
     width:100%;
     margin-top:1rem;
@@ -45,6 +54,10 @@ export const Contact = styled.div`
    align-items:center;
 `
 export const Wrap = styled.div`
+display:flex;
+   justify-content:space-between;
+   align-items:center;
+   margin-top:1rem;
  @media screen and (max-width:768px){
    display:flex;
    justify-content:space-between;

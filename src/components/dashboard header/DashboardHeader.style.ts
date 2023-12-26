@@ -35,10 +35,12 @@ export const Wrapper = styled.div`
   margin-left: 1rem;
 `
 export const Username = styled.div`
-
+  text-transform: capitalize;
+  font-family: "Kanit";
 `
 export const Text = styled.div`
   color:gray;
+  font-family: "Kanit";
 `
 export const Icon = styled.div`
   position: absolute;

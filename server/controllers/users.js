@@ -4,7 +4,11 @@ import passport from "passport"
 
 export const registerUser = async (req, res, next) => {
     try {
-        const { email, username, password, photoUrl } = req.body
+        const { email, username, password, photoUrl} = req.body
+        
+        const checkEmail = await User.find({ email })
+        
+        if (checkEmail.length > 0) return next(createError(401, 'Email is already taken'))
         
         const newUser = new User({
             email,
@@ -43,6 +47,7 @@ export const registerUser = async (req, res, next) => {
 }
 
 export const loginUser = (req, res, next) => {
+  
         passport.authenticate("local", (err, user, info) => {
           if (err) return next(err)
       

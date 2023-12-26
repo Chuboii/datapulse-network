@@ -9,7 +9,11 @@ import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import PageLoader from "../../components/page loader/PageLoader";
 
 type FormData = {
     username: string;
@@ -19,16 +23,23 @@ type FormData = {
 };
 
 const AuthSignup: FC = () => {
-    const { register, handleSubmit, formState: { isValid } } = useForm<FormData>();
+    const { register, handleSubmit, reset, formState: { isValid } } = useForm<FormData>();
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
     const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false);
+    const [isDataLoading, setIsDataLoading] = useState<boolean>(false);
+    const navigate = useNavigate()
+
 
     const registerOptions = {
         username: {
             required: true
         },
         email: {
-            required: true
+            required: true,
+            pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: false,
+              }
         },
         password: {
             required: true
@@ -38,8 +49,105 @@ const AuthSignup: FC = () => {
         }
     };
 
-    const submitForm = (data: FormData) => {
-        console.log(data);
+
+    const submitForm = async (data: FormData) => {
+        try {
+            if (data.password === data.confirmPassword) {
+
+                if (data.password.length >= 6) {
+                    setIsDataLoading(true);
+
+                    const formData: {
+                        username: string;
+                        email: string;
+                        password: string;
+                        photoUrl: string;
+                    } = {
+                        username: data.username,
+                        email: data.email,
+                        password: data.password,
+                        photoUrl: "/src/assets/cartoon-face-transparent-1.png"
+                    }
+
+                
+                    const res = await axios.post("http://localhost:8080/api/auth/signup", formData)
+            
+                    console.log(res)
+
+                    setIsDataLoading(false)
+               
+                    toast.success("Success! You will be redirected to the login page", {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                    reset()
+                    setTimeout(() => {
+                        navigate("/auth/signin")
+                    }, 3000)
+                }
+                else {
+                    toast.error('Password length must be greater or equal to six', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        });
+                }
+            }
+            else {
+                toast.error('Passwords does not match', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    });
+            }
+        }
+        catch (err) {
+            setIsDataLoading(false)
+            console.log(err)
+
+            if (axios.isAxiosError(err)) {
+                if (err?.response?.data?.message === "Ooops! username has already been taken") {
+                    toast.error("Username is taken", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                }
+                else if (err?.response?.data?.message === "Email is already taken") {
+                    toast.error("Email is taken", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                }
+            }
+        }
     };
 
     const enablePasswordVisibility = () =>
@@ -50,6 +158,8 @@ const AuthSignup: FC = () => {
 
     return (
         <>
+            {isDataLoading && <PageLoader />}
+            <ToastContainer/>
             <Container>
                 <H2>Sign up with password</H2>
                 <Form onSubmit={handleSubmit(submitForm)}>

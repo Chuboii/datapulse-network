@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding:1rem;
-  position: relative;
-  top: 5rem;
+  padding:.3rem 1rem;
 `;
 //#23262F
 //#4E1726
@@ -15,6 +13,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  padding:1rem;
   font-family: "Kanit";
    justify-content: space-between;
   &:last-child{
@@ -22,6 +21,24 @@ export const Wrapper = styled.div`
     padding:1.5rem 1rem;
    }
 `;
+
+export const WrapHeader = styled.div`
+ display: flex;
+ font-family: 'Archivo Black';
+ 
+`
+
+export const H2 = styled.div`
+  margin: 0 1rem;
+`
+
+export const Header = styled.header`
+ padding: 1rem;
+ border-bottom: 1px solid rgba(255, 255,255, .3);
+
+ 
+`
+
 
 export const Text = styled.div`
   

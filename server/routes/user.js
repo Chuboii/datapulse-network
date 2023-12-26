@@ -12,7 +12,6 @@ router.post("/auth/login", loginUser);
 router.post("/auth/logout", logoutUser)
 
 router.get("/get", verifyUser, (req, res) => {
-    console.log("resource")
     res.json(req.user)
 })
 

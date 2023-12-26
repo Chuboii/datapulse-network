@@ -12,6 +12,8 @@ import cookieParser from 'cookie-parser'
 import walletRouter from './routes/wallet.js'
 import notifyRouter from './routes/notification.js'
 import historyRouter from './routes/history.js'
+// import Pin from './models/Pin.js'
+import pinRouter from './routes/pin.js'
 
 dotenv.config()
 const app = express()
@@ -55,6 +57,8 @@ app.use("/api", userRouter)
 app.use("/api", walletRouter)
 app.use("/api", notifyRouter)
 app.use("/api", historyRouter)
+app.use("/api", pinRouter)
+
 
 app.use((err,req, res, next) => {
     const status = err.status || 500
@@ -65,6 +69,7 @@ app.use((err,req, res, next) => {
         message
     })
 })
+
 
 app.use("*", (req,res) => {
     res.send("The route you entered is not valid. Please try again")

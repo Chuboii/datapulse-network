@@ -1,18 +1,57 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import {  Container,
     Wrapper,
-    Icon, Wrap, Span, Box, Text, Button } from './MoreTab.style'
+    Icon, Wrap, WrapHeader, Span, Box, H2, Text, Button, Header } from './MoreTab.style'
 import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav";
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import HttpsIcon from '@mui/icons-material/Https';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import axios from "axios";
+import PageLoader from "../../components/page loader/PageLoader";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
 
 const MoreTab: FC = () => {
-    
+    const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
+    const dispatch = useDispatch()
+
+
+    const logoutBtn = async () => {
+        try {
+            setIsDataLoaded(true)
+            await axios.post("http://localhost:8080/api/auth/logout", { body: null })
+            dispatch({ type: "GET_USER_DATA", payload: null })
+            setIsDataLoaded(false)
+        }
+        catch (err) {
+            setIsDataLoaded(false)
+            toast.error('Oops! Connection Timeout... Try again', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+        }
+    }
+
     return (
         <>
+            <ToastContainer/>
+            {isDataLoaded && <PageLoader/>}
             <Container>
+            <Header>
+                    <WrapHeader>
+                    <DashboardIcon/>
+                        <H2>History</H2>
+                </WrapHeader>
+                </Header>  
 
                 <Wrapper>
                     <Box>
@@ -46,7 +85,7 @@ const MoreTab: FC = () => {
                     <Button>System</Button>
                 </Wrapper>
                 
-                <Wrapper>
+                <Wrapper onClick={logoutBtn}>
                     <Box>
                     <Icon><LogoutIcon/></Icon>
                     <Wrap>

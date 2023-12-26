@@ -6,16 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import axios, {AxiosResponse} from "axios";
+// import axios, {AxiosResponse} from "axios";
+// import { useDispatch } from "react-redux";
 
 interface Prop {
-    // Define the structure of your API response here
     data: string;
     status: number;
     statusText: string;
     headers: string[];
     config: string;
-    // ... other properties
 }
 
   
@@ -27,35 +26,35 @@ const AuthDisplay: FC = () => {
     }, [navigate])
 
     const testing = async () => {
-        try {
-            const apiUrl = 'https://n3tdata.com/api/topup/';
+        // try {
+        //     const apiUrl = 'https://n3tdata.com/api/topup/';
 
-            const payload = {
-                network: 1,
-                phone: "08039914037", // Replace with the actual phone number
-                plan_type: 'VTU',
-                bypass: false,
-                amount: 100,
-                'request-id': 'Airtime_12345678900'
-            };
+        //     const payload = {
+        //         network: 1,
+        //         phone: "08039914037", // Replace with the actual phone number
+        //         plan_type: 'VTU',
+        //         bypass: false,
+        //         amount: 100,
+        //         'request-id': 'Airtime_12345678900'
+        //     };
         
-            // Request headers
-            const headers = {
-              'Authorization': 'Token b9d09d4523aa5d77f2d9206f3b3f9e06cfeb6a8f676106bda2a4e1aaa73d', 
-              'Content-Type': 'application/json',
-            };
+        //     // Request headers
+        //     const headers = {
+        //       'Authorization': 'Token b9d09d4523aa5d77f2d9206f3b3f9e06cfeb6a8f676106bda2a4e1aaa73d', 
+        //       'Content-Type': 'application/json',
+        //     };
         
     
-            const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+        //     const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
 
     
-                console.log('API Response:', res.data);
+        //         console.log('API Response:', res.data);
               
               
-        }
-        catch (e) {
-            console.error('API Error:', (e as Error));
-        }
+        // }
+        // catch (e) {
+        //     console.error('API Error:', (e as Error));
+        // }
     }
     
     return (

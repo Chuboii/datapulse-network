@@ -7,7 +7,7 @@ interface ActiveProp {
 
 export const Container = styled.div`
 padding:1rem .5rem;
- max-width:60%;
+ max-width:70%;
   
   @media screen and (max-width:768px){
        padding:1rem 0;

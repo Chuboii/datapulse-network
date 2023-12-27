@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Container, Header, Wrapper, Tab, Text, Data, Price, Wrap, Button,Img, Span} from './DataPlan.style'
 import img from '../../assets/nigeria-naira-currency-symbol-svgrepo-com.svg'
 import PurchaseForm from "../purchase form/PurchaseForm"
@@ -6,11 +6,15 @@ import MorePlans from "../more plans/MorePlans"
 
 
 const DataPlans: FC = () => {
-    // const [isWidthSmaller, setIsWidthSmaller] = useState<boolean>(false)
+const [isEnabled, setIsEnabled] = useState(false)
+
+
+const enableMorePlans = () => setIsEnabled(true)
+
 
     return (
         <>
-        <MorePlans/>
+         <MorePlans/>
             <Container>
         <Header>Choose Plan</Header>
 
@@ -60,7 +64,7 @@ const DataPlans: FC = () => {
                      
                     </Tab>
                  */ }
-               <Button> See All </Button>
+               <Button onClick={enableMorePlans}> See All </Button>
                 </Wrapper>          
               <PurchaseForm/>
       </Container>

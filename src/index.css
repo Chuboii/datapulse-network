@@ -25,7 +25,9 @@ body {
   margin: 0;
   padding: 0;
 }
-
+::-webkit-scrollbar {
+  width: 0; /* Set the width to 0 to make it invisible */
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

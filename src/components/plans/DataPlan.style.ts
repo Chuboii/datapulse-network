@@ -28,7 +28,7 @@ export const Header = styled.div`
 `
 export const Wrapper = styled.div`
  display:flex;
- 
+ width:70%;
   @media screen and (max-width:768px){
     margin-top:1rem;
     width:100%;
@@ -95,11 +95,17 @@ export const Span = styled.div`
   }
 `
 export const Button = styled.button`
-
+ width:100%;
+   @media screen and (max-width:768px){
+    width:50%;
+  }
 `
 
 export const Wrap = styled.div`
   display:flex;
-  width:50%
-  
+  overflow:hidden;
+  width:100%;
+  @media screen and (max-width:768px){
+    width:50%;
+  }
 `

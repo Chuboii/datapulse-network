@@ -17,6 +17,9 @@ export const CheckLoggedInProvider: FC<ChildrenProp> = ({ children }) => {
         if (!currentUser) {
             navigate("/")
         }
+        else{
+          navigate("/auth/passcode")
+        }
     }, [currentUser])
 
     const value = ''

@@ -130,7 +130,7 @@ const AuthSignin: FC = () => {
                         </See>
                     </Wrap>
 
-                    <Button active={isValid ? "#0363A4" : "transparent"}>Sign up</Button>
+                    <Button active={isValid ? "#0363A4" : "transparent"}>Sign in</Button>
                 </Form>
 
                 <Text>Already have an account? <Link to={'/'}>Sign up</Link></Text>

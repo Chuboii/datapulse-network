@@ -65,7 +65,7 @@ const AuthSignin: FC = () => {
             });
 
             setTimeout(() => {
-                navigate('/dashboard')
+                navigate('/auth/passcode')
             }, 3000)
      
         }

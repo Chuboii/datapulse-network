@@ -1,14 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translate(-50%, -50%);
+  padding-top:5rem;
 `
 export const Logout = styled.div`
    position: absolute;
@@ -53,4 +50,12 @@ export const Circle = styled.div`
  border-radius: 50%;
  margin-right: .5rem;
  background-color: #0363A4;
+`
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position:relative;
 `

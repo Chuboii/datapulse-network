@@ -1,13 +1,100 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Container, Delete, Wrap, Text, DotWrapper, Dot, Pad, Grid, Span } from './Dialer.style';
 import LockIcon from '@mui/icons-material/Lock';
+import axios from "axios"
+import PageLoader from "../page loader/PageLoader"
+import {StateProp} from "/src/utils/store/reducers/userInterface"
+import {useSelector} from "react-redux"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+;
+import {useNavigate} from "react-router-dom"
 
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-const Dialer: FC = () => {
+const Dialer: FC = ({url}) => {
     const [pin, setPin] = useState<number[]>([]);
     const [count, setCount] = useState<number>(0);
     const [isDigitPresent, setIsDigitPresent] = useState<boolean>(false);
+const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
+   const {currentUser} = useSelector((state:StateProp) => state.user)
+   const navigate = useNavigate()
+   
+   useEffect(()=>{
+    const verifyPin = async() => {
+     if(pin.length === 4){
+       try{
+         setIsDataLoaded(true)
+         
+        const res = await axios.post(url, {
+           userId:currentUser.user._id,
+           username:currentUser.user.username,
+           pin
+         })
+         setIsDataLoaded(false)
+         navigate("/dashboard")
+         
+       }
+       catch(err){
+     console.log(err)
+      if(err.response.data.message === "Pin incorrect"){
+        toast.error("Pin incorrect!", {
+                position: "top-right",
+                autoClose: 500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+                
+         setPin([])
+         setCount(0)
+        
+         const dots = document.querySelectorAll(".dot") as
+         NodeListOf<HTMLElement>;
+         
+        dots.forEach(dot => {
+          dot.style.backgroundColor = "#2A2F3A"
+          dot.style.width = "10px"
+          dot.style.height = "10px"
+        })
+          
+         setIsDataLoaded(false)
+      }
+      else{
+       toast.error("Oops! Connection Timeout! Try again!", {
+                position: "top-right",
+                autoClose: 500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+                
+         setPin([])
+         setCount(0)
+        
+         const dots = document.querySelectorAll(".dot") as
+         NodeListOf<HTMLElement>;
+         
+        dots.forEach(dot => {
+          dot.style.backgroundColor = "#2A2F3A"
+          dot.style.width = "10px"
+          dot.style.height = "10px"
+        })
+          
+         setIsDataLoaded(false) 
+      }
+       }
+     }
+    }
+    verifyPin()
+   },[pin])
+
 
     const insertPin = (el: number) => {
         setIsDigitPresent(true);
@@ -62,6 +149,8 @@ const Dialer: FC = () => {
 
     return (
         <>
+        <ToastContainer/>
+       {isDataLoaded && <PageLoader/> }
             <Container>
                 <Wrap>
                     <LockIcon sx={{ fontSize: '18px', color: "#359758" }} />

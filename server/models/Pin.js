@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 // import passportLocalMongoose from 'passport-local-mongoose'
 const PinSchema = new mongoose.Schema({
-    userId: String,
-    username: String,
-    pin:Number
-}, { timestamps: true })
+  userId: String,
+  username: String,
+  pin: []
+}, {
+  timestamps: true
+})
 
 
 // PinSchema.plugin(passportLocalMongoose)

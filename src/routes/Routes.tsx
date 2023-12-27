@@ -6,19 +6,22 @@ import AuthSignin from "../pages/signin/AuthSignin";
 import AuthPass from "../pages/pass form/AuthPass";
 import Dashboard from "../pages/dashboard/Dashboard";
 import DataServices from '../components/network/DataServices.tsx'
-import Services from "../pages/services/Services.tsx";
 import History from "../pages/history/History.tsx";
 import MoreTab from "../pages/more tab/MoreTab.tsx";
 import Airtime2Cash from "../components/airtime2cash/Airtime2Cash.tsx";
 import Airtime from "../components/airtime/Airtime.tsx";
-
+import Dialer from "../pages/pass form/AuthPass"
+import Services from "../pages/services/Services"
 const RenderRoutes: FC = () => {
     
 
     return (
         <>
             <Routes>
+            
                 <Route path="/" element={<Auth/>} />
+          <Route path='/auth/createpasscode' element={<Dialer/>} />
+           <Route path='/auth/passcode' element={<Dialer/>} />
                 <Route path='/auth/signup' element={<AuthSignup />} />
                 <Route path='/auth/signin' element={ <AuthSignin/>}/>
                 <Route path='/auth/passcode' element={<AuthPass />} />

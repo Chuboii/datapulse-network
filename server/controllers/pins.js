@@ -1,54 +1,61 @@
-import { createError } from "../error/Error.js"
+import {
+  createError
+} from "../error/Error.js"
 import Pin from "../models/Pin.js"
 
 export const createUserPin = async (req, res, next) => {
-    try {
-        const { userId, pin, username } = req.body
-        
-        const isPinCreated = await Pin.find({ userId })
-        
-        if (isPinCreated.length > 0) return next(createError(403, 'You are not allowed to create a new pin'))
+  try {
+    const {
+      userId,
+      pin,
+      username
+    } = req.body
 
-        const hashedPassword = process.env.GENERATED_HASH + pin
-        
-        console.log(hashedPassword)
+    const isPinCreated = await Pin.find({
+      userId
+    })
 
-        const userPin = new Pin({
-            userId,
-            username,
-            pin: hashedPassword
-        })
+    if (isPinCreated.length > 0) return next(createError(403, 'You are not allowed to create a new pin'))
 
-        await userPin.save()
+    const hashedPassword = process.env.GENERATED_HASH + pin
 
-        res.status(200).json(userPin)
-    }
-    catch (err) {
+    const userPin = new Pin({
+      userId,
+      username,
+      pin: hashedPassword
+    })
+
+    await userPin.save()
+
+    res.status(200).json("Successfully created")
+  }
+  catch (err) {
     next(err)
-    }
+  }
 }
 
 export const loginUserPin = async (req, res, next) => {
-    try {
-        const { userId, pin } = req.body
-        
-        const getPin = await Pin.find({ userId })
-        
-        const originalNumber = getPin[0].pin * Math.pow(10, 71);
-    
-        const isPinCorrect = originalNumber === (process.env.GENERATED_HASH + pin)
+  try {
+    const {
+      userId,
+      pin
+    } = req.body
 
-        console.log(originalNumber)
-        console.log((process.env.GENERATED_HASH + pin))
+    const getPin = await Pin.find({
+      userId
+    })
 
-        console.log(isPinCorrect)
-        if (isPinCorrect === false) return next(createError(401, 'Pin incorrect'))
-        
-        res.status(200).json(getPin)
+    if (getPin.length === 0) return next(createError(403, 'You have not created a pin'))
 
-    }
-    catch (err) {
-        next(err)
-    }
+    const isPinCorrect = getPin[0].pin[0] === (process.env.GENERATED_HASH + pin)
+
+    if (isPinCorrect === false) return next(createError(401, 'Pin incorrect'))
+
+    res.status(200).json("Successfully unlocked")
+
+  }
+  catch (err) {
+    next(err)
+  }
 
 }

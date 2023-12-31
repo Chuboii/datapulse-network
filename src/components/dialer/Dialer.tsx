@@ -137,7 +137,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
      }
     }
     verifyPin()
-   },[pin])
+   },[pin, location.pathname, currentUser.user.username, currentUser.user._id, navigate, url])
 
 
     const insertPin = (el: number) => {
@@ -159,7 +159,6 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
         });
 
         if (count < 4) {
-            console.log("effect", count);
             const dots = document.querySelectorAll(".dot") as NodeListOf<HTMLElement>;
             dots[count].style.backgroundColor = '#359758';
             dots[count].style.width = '18px';

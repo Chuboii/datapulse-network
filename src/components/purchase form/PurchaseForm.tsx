@@ -64,7 +64,9 @@ const PurchaseForm: FC = () => {
   };
 
   const clearNumbers = (id: number) => {
-    const deleteNumber = numberArray.filter((number, idx) => idx !== id);
+    const deleteNumber = numberArray.filter((_number, idx) => {
+      return idx !== id
+    });
     setNumberArray(deleteNumber);
   };
 

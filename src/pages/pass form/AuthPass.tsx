@@ -30,7 +30,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
      setUrl("http://localhost:8080/api/auth/passcode")
    }
 
- },[])
+ },[location.pathname])
 
 const logoutBtn = async () => {
         try {

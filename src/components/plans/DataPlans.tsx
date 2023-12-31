@@ -55,7 +55,8 @@ const DataPlans: FC = () => {
 
     useEffect(() => {
         networkDispatch({ type: 'GET_NETWORK_OBJECTS', payload: Plans["MTN SME"] })
-    }, [])
+    }, [networkDispatch])
+    
     
     useEffect(() => {
         if (isNetworkBearerClicked) {

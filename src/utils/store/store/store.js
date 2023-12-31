@@ -2,7 +2,7 @@ import { applyMiddleware,createStore } from 'redux'
 
 import logger from 'redux-logger'
 
-import {rootReducer} from './root reducer/rootReducer'
+import {rootReducer} from '../root reducer/rootReducer'
 
 import storage from 'redux-persist/lib/storage';
 

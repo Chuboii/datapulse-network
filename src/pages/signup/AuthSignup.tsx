@@ -14,6 +14,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageLoader from "../../components/page loader/PageLoader";
+import { useDispatch } from "react-redux";
 
 type FormData = {
     username: string;
@@ -28,7 +29,7 @@ const AuthSignup: FC = () => {
     const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState<boolean>(false);
     const [isDataLoading, setIsDataLoading] = useState<boolean>(false);
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
 
     const registerOptions = {
         username: {
@@ -38,8 +39,8 @@ const AuthSignup: FC = () => {
             required: true,
             pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: false,
-              }
+                message: "Invalid email address"
+            } 
         },
         password: {
             required: true
@@ -48,7 +49,6 @@ const AuthSignup: FC = () => {
             required: true
         }
     };
-
 
     const submitForm = async (data: FormData) => {
         try {
@@ -69,16 +69,17 @@ const AuthSignup: FC = () => {
                         photoUrl: "/src/assets/cartoon-face-transparent-1.png"
                     }
 
-                
                     const res = await axios.post("http://localhost:8080/api/auth/signup", formData)
-            
+
                     console.log(res)
 
+                    dispatch({type:"GET_USER_DATA", payload:res.data})
+
                     setIsDataLoading(false)
-               
-                    toast.success("Success! You will be redirected to the login page", {
+
+                    toast.success("Success! You will be redirected to create a pin", {
                         position: "top-right",
-                        autoClose: 3000,
+                        autoClose: 1000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -88,8 +89,8 @@ const AuthSignup: FC = () => {
                     });
                     reset()
                     setTimeout(() => {
-                        navigate("/auth/signin")
-                    }, 3000)
+                        navigate("/auth/createpasscode")
+                    }, 1500)
                 }
                 else {
                     toast.error('Password length must be greater or equal to six', {

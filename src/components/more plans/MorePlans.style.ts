@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 
+type BgProp = {
+  bg: string;
+}
 
+type DisplayProp = {
+  display: string;
+}
 
-export const Container = styled.div`
-  /* position: absolute;
+export const Container = styled.div<DisplayProp>`
+  /* position: fixed;
   right: 0;
   top: 5rem; */
   width:100%;
@@ -13,11 +19,11 @@ export const Container = styled.div`
     padding:0;
     width:100%;
 overflow:hidden;
-position:absolute;
-top: 0;
+position:fixed;
+top: ${({display}) => display};
 right: 0;
+transition: all .5s;
 bottom:0;
-display: none;
 background-color: black;
 z-index: 20;
   @media screen and (max-width:768px){
@@ -25,12 +31,9 @@ z-index: 20;
     padding:0;
     width:100%;
 overflow:hidden;
-position:absolute;
-top: 0;
+position:fixed;
 right: 0;
 bottom:0;
-display: none;
-background-color: black;
 z-index: 20;
   }
 `
@@ -64,25 +67,25 @@ export const Text = styled.div`
     font-size:12px;
   }
 `
-export const Tab = styled.div`
+export const Tab = styled.div<BgProp>`
  margin: .3rem .7rem;
   width:100px;
   cursor: pointer;
   height: 100px;
    display:flex;
-   background:#141414;
+   background:${({bg}) => bg};
    flex-direction:column;
    border:1px solid rgba(255, 255, 255, 0.1);
    justify-content: center;
    align-items: center;
-   padding: 0.5rem;
+   padding:.5rem;
   border-radius: 7px 25px 7px 7px;
   
   @media screen and (max-width:768px){
    
-    height:80px;
+    height:100px;
     margin:0 .3rem;
-    padding:.9rem;
+    padding: 1.5rem 1.4rem;
     margin:.5rem;
   }
 `
@@ -125,7 +128,8 @@ export const Button = styled.button`
 `
 export const Wrap = styled.div`
   display:flex;
-  width:50%
+  flex-wrap: wrap;
+  width:100%
   
 `
 export const Icon = styled.div`

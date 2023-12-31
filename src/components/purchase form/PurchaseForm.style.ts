@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type BgProp = {
+  bg: string;
+}
+
 export const Form = styled.form`
  width:60%;
    padding:1rem .5rem;
@@ -20,11 +24,11 @@ export const Input = styled.input`
   border:none;
   border-radius:7px;
 `
-export const Button = styled.button`
+export const Button = styled.button<BgProp>`
     width:100%;
     margin-top:1rem;
     padding:1rem;
-    background:transparent;
+    background:${({bg}) => bg};
     border:2px solid #0F2337;
     color:#0F2337;
 
@@ -38,8 +42,17 @@ export const Button = styled.button`
   }
 `
 //#141414
+export const Box = styled.div`
+display: flex;
+flex-wrap: wrap;
+`
 export const Numbers = styled.div`
-
+  background-color: #141410;
+ display: flex;
+  margin-top:1rem;
+  padding:.6rem 1rem;
+  border-radius: 50px;
+  font-family: 'Archivo Black';
 `
 
 export const Header = styled.header`

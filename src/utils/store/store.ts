@@ -1,10 +1,11 @@
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore, Middleware } from 'redux'
 
 import logger from 'redux-logger'
 
-import { rootReducer } from './root reducer/rootReducer'
+import {rootReducer} from './root reducer/rootReducer'
 
 import storage from 'redux-persist/lib/storage';
+
 import { persistReducer, persistStore } from 'redux-persist';
 
 const middlewares = [logger]
@@ -14,6 +15,7 @@ const enhancedComposers = applyMiddleware(...middlewares)
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist:['toggle', 'network', 'transaction']
 }
   
 const persistedReducer = persistReducer(persistConfig, rootReducer)

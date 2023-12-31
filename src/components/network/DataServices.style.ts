@@ -17,14 +17,18 @@ export const Container = styled.div`
 export const Text = styled.div`
   font-family: "Kanit";
   text-transform: uppercase;
+  word-wrap: break-word;
   text-align: center;
   margin:.5rem 0;
+width: 100px;
+  font-size: 13px;
 `
 export const Wrapper = styled.div`
  display:flex;
  
        @media screen and (max-width:768px){
        width:100%;
+       overflow-y: hidden;
        overflow-x:scroll;
      }
 `
@@ -50,7 +54,7 @@ export const Tab = styled.div<TabProp>`
   margin: 0 .7rem;
   width:100px;
   cursor: pointer;
-  height: 120px;
+  height: 100px;
    display:flex;
    background:${({bg}) => bg};
    flex-direction:column;
@@ -61,7 +65,7 @@ export const Tab = styled.div<TabProp>`
   border-radius: 7px 25px 7px 7px;
      
   @media screen and (max-width:768px){
-       width:200px;
+       width:130px;
        margin:0 .3rem;
        border-radius: 7px 20px 7px 7px;
      }

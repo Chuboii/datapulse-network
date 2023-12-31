@@ -7,6 +7,7 @@ const Airtime: FC = () => {
     
     return (
         <>
+         
                     <Wrapper>
                 <Header>Amount to convert</Header>
               <Input placeholder="Min.#1,000"/>

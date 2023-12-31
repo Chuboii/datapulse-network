@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Container, Text, Img, Digits } from './DashboardBalance.style'
 import naira from '/src/assets/nigeria-naira-currency-symbol-svgrepo-com.svg'
 import { useSelector } from "react-redux";
-import { StateProp } from "../../utils/store/reducers/userInterface";
+import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 
 
 const DashboardBalance: FC = () => {

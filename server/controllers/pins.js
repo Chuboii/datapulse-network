@@ -59,3 +59,18 @@ export const loginUserPin = async (req, res, next) => {
   }
 
 }
+
+export const resetPin = async (req, res, next) => {
+  try {
+    const { userId, pin } = req.body
+    
+    const hashedPassword = process.env.GENERATED_HASH + pin
+
+    await Pin.findOneAndUpdate({ userId }, { $set: { pin: hashedPassword } })
+    
+    res.status(200).json("You've successfully changed your pin")
+  }
+  catch (err) {
+    next(err)
+  }
+}

@@ -20,6 +20,7 @@ export const Button = styled.button`
      &:last-child{
       background-color: #146CB3;
       color:white;
+      position: relative;
      }
      @media screen and (max-width:768px){
        width:100%;
@@ -38,4 +39,11 @@ export const Span = styled.span`
 `
 export const Icon = styled.div`
   transform: rotate(-30deg);
+`
+
+export const AddIcon = styled.div`
+   z-index: 1;
+   position: relative;
+   right: 3.2rem;
+    display: flex;
 `

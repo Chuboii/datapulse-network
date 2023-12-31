@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import {Header, Wrap, ProfileImg, Wrapper, Text, Username} from './DashboardHeader.style'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useSelector } from "react-redux";
-import { StateProp } from "../../utils/store/reducers/userInterface";
+import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 
 
 const DashboardHeader: FC = () => {

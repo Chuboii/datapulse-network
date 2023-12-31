@@ -10,8 +10,9 @@ import History from "../pages/history/History.tsx";
 import MoreTab from "../pages/more tab/MoreTab.tsx";
 import Airtime2Cash from "../components/airtime2cash/Airtime2Cash.tsx";
 import Airtime from "../components/airtime/Airtime.tsx";
-import Dialer from "../pages/pass form/AuthPass"
+import CreatePin from "../components/create pin/CreatePin.tsx";
 import Services from "../pages/services/Services"
+import ResetPin from "../components/reset pin header/ResetPinHeader.tsx";
 const RenderRoutes: FC = () => {
     
 
@@ -20,8 +21,8 @@ const RenderRoutes: FC = () => {
             <Routes>
             
                 <Route path="/" element={<Auth/>} />
-          <Route path='/auth/createpasscode' element={<Dialer/>} />
-           <Route path='/auth/passcode' element={<Dialer/>} />
+                <Route path='/auth/resetpasscode' element={<ResetPin />} />
+                <Route path='/auth/createpasscode' element={<CreatePin/>} />
                 <Route path='/auth/signup' element={<AuthSignup />} />
                 <Route path='/auth/signin' element={ <AuthSignin/>}/>
                 <Route path='/auth/passcode' element={<AuthPass />} />

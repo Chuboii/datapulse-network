@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+type BgProp = {
+  bg: string;
+}
 export const Container = styled.div`
   /* position: absolute;
   right: 0;
@@ -43,13 +46,13 @@ export const Text = styled.div`
     font-size:12px;
   }
 `
-export const Tab = styled.div`
+export const Tab = styled.div<BgProp>`
  margin: .3rem .7rem;
   width:100px;
   cursor: pointer;
   height: 100px;
    display:flex;
-   background:#141414;
+   background:${({bg}) => bg};
    flex-direction:column;
    border:1px solid rgba(255, 255, 255, 0.1);
    justify-content: center;
@@ -58,10 +61,11 @@ export const Tab = styled.div`
   border-radius: 7px 25px 7px 7px;
   
   @media screen and (max-width:768px){
-    width:100%;
+    width:190px;
     height:80px;
     margin:0 .3rem;
-    padding:.9rem;
+    padding: 3rem .9rem;
+
   }
 `
 export const Data = styled.div`
@@ -106,6 +110,6 @@ export const Wrap = styled.div`
   overflow:hidden;
   width:100%;
   @media screen and (max-width:768px){
-    width:50%;
+    margin-right: .4rem;
   }
 `

@@ -12,14 +12,16 @@ import cookieParser from 'cookie-parser'
 import walletRouter from './routes/wallet.js'
 import notifyRouter from './routes/notification.js'
 import historyRouter from './routes/history.js'
-// import Pin from './models/Pin.js'
 import pinRouter from './routes/pin.js'
+import forgottenPinRouter from './routes/forgottenPin.js'
 
 dotenv.config()
 const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
+  
+
 const sessionConfig = {
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -58,7 +60,7 @@ app.use("/api", walletRouter)
 app.use("/api", notifyRouter)
 app.use("/api", historyRouter)
 app.use("/api", pinRouter)
-
+app.use("/api", forgottenPinRouter)
 
 app.use((err,req, res, next) => {
     const status = err.status || 500

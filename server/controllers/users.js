@@ -23,7 +23,7 @@ export const registerUser = async (req, res, next) => {
         res.status(200).json({
             status: 200,
             message: "user created successfully",
-            data: newUser
+            user: newUser
         })
     }
     catch (err) {

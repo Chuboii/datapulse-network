@@ -24,10 +24,29 @@ export const Grid = styled.div`
   margin: 1rem;
   cursor: pointer;
   transform: scale();
+  transition: all .4s;
   &:last-child{
     position: relative;
      left: 5.5rem;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 70px;
+    height: 70px;
+    &:last-child{
+    position: relative;
+     left: 6.15rem;
+  }
+    &:hover{
+    width: 80px;
+    height: 80px;
+}
+  }
+
+  &:hover{
+    width: 60px;
+    height: 60px;
+}
 `
 export const Wrap = styled.div`
      display: flex;

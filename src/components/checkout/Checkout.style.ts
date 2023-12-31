@@ -1,14 +1,17 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+type DisplayProp = {
+  display: string;
+}
+export const Container = styled.div<DisplayProp>`
    position: fixed;
-   top: 0;
+   top: ${({display}) => display};
    left: 0;
    right: 0;
    background-color: #080808;
    z-index: 300;
    bottom: 0;
-   display:none;
+   transition: all .5s;
    padding: 0 .8rem;
 `
 export const Header = styled.div`

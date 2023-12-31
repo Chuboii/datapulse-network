@@ -1,126 +1,106 @@
-import { FC, useReducer } from "react";
-import mtn from '/src/assets/mtn-3.svg'
-import airtel from '/src/assets/airtel-logo.svg'
-import glo from '/src/assets/glo-logo.svg'
-import etisalat from '/src/assets/9mobile_logo.svg'
-import {Container, Header, Wrapper, Tab, Text, Img } from './DataServices.style'
+import { FC, useEffect, useReducer } from "react";
+import { Container, Header, Wrapper, Tab, Text, Img } from './DataServices.style'
+import Plans from '../../utils/json plans/Plans.json'
+import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 
 interface InitialReducerProp {
-    isMtn: boolean;
-    isAirtel: boolean;
-    isGlo: boolean;
-    is9mobile: boolean;
+  selectedNetwork: string | null;
 }
 
 interface ActionProp {
-    type: string;
-    payload:boolean;
-}
-const INITIAL_REDUCERS: InitialReducerProp = {
-    isMtn: false,
-    isAirtel: false,
-    isGlo: false,
-    is9mobile: false
+  type: string;
+  payload: string | null;
 }
 
+const INITIAL_REDUCERS: InitialReducerProp = {
+  selectedNetwork: null,
+}
 
 const navigateReducers = (state: InitialReducerProp, action: ActionProp) => {
-   const {type, payload}= action
+  const { type, payload } = action
 
-  
-    switch (type) {
-        case 'MTN_ACTIVE':
-            return {
-                ...state,
-                isMtn:payload
-            }
-        case 'AIRTEL_ACTIVE':
-            return {
-                ...state,
-                isAirtel:payload
-            }
-        case 'GLO_ACTIVE':
-            return {
-                ...state,
-                isGlo:payload
-            }
-        case '9MOBILE_ACTIVE':
-            return {
-                ...state,
-                is9mobile:payload
-            }
-        default:
-            return state
-    }
+  switch (type) {
+    case "SELECT_NETWORK":
+      return {
+        ...state,
+        selectedNetwork: payload
+      }
+    default:
+      return state
   }
-
-
-
-const DataServices: FC = () => {
-    const [state, dispatch] = useReducer(navigateReducers, INITIAL_REDUCERS)
-
-
-    const mtnClicked = () => {
-        dispatch({ type: "MTN_ACTIVE", payload: true })
-        dispatch({ type: "AIRTEL_ACTIVE", payload: false })
-        dispatch({ type: "GLO_ACTIVE", payload: false })
-        dispatch({type:"9MOBILE_ACTIVE", payload:false})
-    }
-    
-    const airtelClicked = () => {
-        dispatch({ type: "MTN_ACTIVE", payload: false })
-        dispatch({ type: "AIRTEL_ACTIVE", payload: true })
-        dispatch({ type: "GLO_ACTIVE", payload: false })
-        dispatch({type:"9MOBILE_ACTIVE", payload:false})
-    }
-    
-    const gloClicked = () => {
-        dispatch({ type: "MTN_ACTIVE", payload: false })
-        dispatch({ type: "AIRTEL_ACTIVE", payload: false })
-        dispatch({ type: "GLO_ACTIVE", payload: true })
-        dispatch({type:"9MOBILE_ACTIVE", payload:false})
-    }
-    
-    const etisaletClicked = () => {
-        dispatch({ type: "MTN_ACTIVE", payload: false })
-        dispatch({ type: "AIRTEL_ACTIVE", payload: false })
-        dispatch({ type: "GLO_ACTIVE", payload: false })
-        dispatch({type:"9MOBILE_ACTIVE", payload:true})
-    }
-    
-    
-    return (
-        <>
-            <Container>
-                
-        <Header>Select Network</Header>
-
-                <Wrapper>
-                    <Tab onClick={mtnClicked} bg={state.isMtn ? "#fecf5773" : "#141414" }>
-                        <Text>mtn sme</Text>
-                        <Img src={mtn}/>
-                    </Tab>
-
-                    <Tab onClick={airtelClicked} bg={state.isAirtel ? "#FD8080" : "#141414" }>
-                        <Text>airtel</Text>
-                        <Img src={airtel}/>
-                    </Tab>
-
-                    <Tab onClick={gloClicked} bg={state.isGlo ? "#50B651" : "#141414" }>
-                        <Text>glo</Text>
-                        <Img src={glo}/>
-                    </Tab>
-
-                    <Tab onClick={etisaletClicked} bg={state.is9mobile ? "#D4E956" : "#141414" }>
-                        <Text>9mobile</Text>
-                        <Img src={etisalat}/>
-                    </Tab>
-                </Wrapper>  
-                
-              
-      </Container>
-        </>
-    )
 }
 
-export default DataServices
+
+  
+const DataServices: FC = () => {
+  const [state, dispatch] = useReducer(navigateReducers, INITIAL_REDUCERS)
+  const transactionDispatch = useDispatch()
+    const networkDispatch = useDispatch()
+
+  const getBackgroundColor = (network: string) => {
+    switch (network) {
+      case "AIRTEL":
+        return "#FD8080";
+      case "9MOBILE GIFTING":
+      case "9MOBILE COOPERATE GIFTING":
+        return "#D4E956";
+      case "MTN SME":
+      case "MTN COOPERATE GIFTING":
+      case "MTN GIFTING":
+        return "#fecf5773";
+      case "GLO GIFTING":
+      case "GLO COOPERATE GIFTING":
+        return "#50B651";
+      default:
+        return "#141414";
+    }
+    };
+    
+    useEffect(() => {
+        transactionDispatch({
+            type: "IS_NETWORK_BEARER_CLICKED", payload: false
+        })
+    },[transactionDispatch])
+    
+    const handleNetworkClicks = (net: string) => {
+        transactionDispatch({
+            type: "IS_NETWORK_BEARER_CLICKED", payload: true
+        })
+        networkDispatch({ type: 'GET_NETWORK_OBJECTS', payload: Plans[net as keyof typeof Plans] })
+        // console.log(Plans[net])
+        transactionDispatch({
+            type: "GET_NETWORK_VALUE", payload: net
+        })
+        transactionDispatch({
+            type: "GET_DATA_PLAN_ID", payload: null
+        })
+        transactionDispatch({
+            type: "GET_DATA_PLAN_VALUE", payload: null
+        })
+    
+        
+        dispatch({ type: "SELECT_NETWORK", payload: net })
+  }
+
+  return (
+    <>
+      <Container>
+        <Header>Select Network</Header>
+        <Wrapper>
+          {Object.keys(Plans).map(network => (
+            <Tab
+              key={Plans[network as keyof typeof Plans][0].id}
+              onClick={() => handleNetworkClicks(network)}
+              bg={state.selectedNetwork === network ? getBackgroundColor(network) : "#141414"}>
+              <Text>{network}</Text>
+              <Img src={Plans[network as keyof typeof Plans][0].image} alt={`${network} logo`} />
+            </Tab>
+          ))}
+        </Wrapper>
+      </Container>
+    </>
+  )
+}
+
+export default DataServices;

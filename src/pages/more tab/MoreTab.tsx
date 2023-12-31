@@ -24,6 +24,11 @@ const MoreTab: FC = () => {
             setIsDataLoaded(true)
             await axios.post("http://localhost:8080/api/auth/logout", { body: null })
             dispatch({ type: "GET_USER_DATA", payload: null })
+
+
+
+
+            
             setIsDataLoaded(false)
         }
         catch (err) {

@@ -3,13 +3,16 @@ import User from "../models/User.js"
 
 export const addToWallet = async (req, res, next) => {
     try {
-        const { id , amount} = req.body
+        const { id, amount } = req.body
         
         const addedAmount = await User.findByIdAndUpdate(id, {
-            $inc:{balance: amount}
+            $inc: { balance: amount }
         }, { new: true })
         
-        res.status(200).json(addedAmount)
+        res.status(200).json({
+            status:200,
+            user:addedAmount
+        })
 
     }
     catch (err) {
@@ -26,8 +29,10 @@ export const deductFromWallet = async (req, res, next) => {
             $inc:{balance: -amount}
         }, { new: true })
         
-        res.status(200).json(deductBalance)
-        
+        res.status(200).json({
+            status:200,
+            user:deductBalance
+        })
 
     }
     catch (err) {

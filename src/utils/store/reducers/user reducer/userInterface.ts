@@ -1,4 +1,5 @@
 export interface User {
+    _id: string;
     balance: number,
     photoUrl: string;
     username: string;

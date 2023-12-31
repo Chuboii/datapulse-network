@@ -6,6 +6,12 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding-top:5rem;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 0;
+    position: relative;
+    bottom: 1rem;
+  }
 `
 export const Logout = styled.div`
    position: absolute;

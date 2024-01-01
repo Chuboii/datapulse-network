@@ -1,4 +1,4 @@
-import { FC, useReducer } from "react";
+import { FC, useEffect, useReducer } from "react";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Container, Icon, Header, Wrapper, Tab, Text, Data, Price, Wrap, Img, Span } from './MorePlans.style';
 import img from '/src/assets/nigeria-naira-currency-symbol-svgrepo-com.svg';
@@ -46,10 +46,18 @@ const MorePlans: FC = () => {
   const getDataPlans = useSelector((state: NetworkStateProp) => state.network.networkObj)
   const [state, dispatch] = useReducer(navigateReducers, INITIAL_REDUCERS)
   const transactionDispatch = useDispatch()
-
+  const morePlanNetwork = useSelector((state:Toggle) => state.toggle.toggleMoreDataNetworkPlan)
+ 
   const disableMoreDataPlans = () => disableMorePlansDispatch({ type: "TOGGLE_MORE_DATA_PLANS", payload: false })
 
+  useEffect(() => {
+    transactionDispatch({type:"TOGGLE_MORE_DATA_NETWORK_PLAN", payload:true})
+
+  }, [transactionDispatch])
+
   const selectPlan = (plan: SelectPlanProp, idx: number) => {
+    transactionDispatch({ type: "TOGGLE_DATA_PLANS", payload: true })
+    transactionDispatch({type:"TOGGLE_MORE_DATA_NETWORK_PLAN", payload:false})
     dispatch({ type: 'SELECT_PLAN', payload: `${plan.network}${idx}` })
     transactionDispatch({ type: "GET_DATA_PLAN_ID", payload: plan.id })
     transactionDispatch({ type: "GET_DATA_PLAN_VALUE", payload: plan.price })
@@ -84,7 +92,9 @@ const MorePlans: FC = () => {
         <Wrapper>
           <Wrap>
             {getDataPlans ? getDataPlans.map((plan, idx: number) => (
-              <Tab key={idx} bg={state.selectedPlan === `${plan.network}${idx}` ? getBackgroundColor(plan.network, idx) : '#141414'} onClick={() => {
+              <Tab key={idx} bg={
+                morePlanNetwork ? "#141414" :
+                state.selectedPlan === `${plan.network}${idx}` ? getBackgroundColor(plan.network, idx) : '#141414'} onClick={() => {
                 selectPlan(plan, idx)
               }}>
                 <Text>30 days</Text>

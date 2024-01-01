@@ -5,9 +5,17 @@ import SendIcon from '@mui/icons-material/Send';
 import ChatIcon from '@mui/icons-material/Chat';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import Navbar from "../../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 
 const Services: FC = () => {
+    const navigate = useNavigate()
+
+    const navigateToData = () => navigate("/dashboard/data")
+
+    const navigateToAirtime = () => navigate("/dashboard/airtime")
+
+    const navigateToAirtime2Cash = () => navigate("/dashboard/airtime2cash")
 
     return (
         <>
@@ -21,8 +29,8 @@ const Services: FC = () => {
                     </Wrap>
                 </Header>
                 
-                <Wrapper>
-                    <Tab>
+                    <Wrapper>
+                    <Tab onClick={navigateToData}>
                         <Icon><ChatIcon/></Icon>
                         <Box>
                             <TabText>Buy Data</TabText>
@@ -30,7 +38,7 @@ const Services: FC = () => {
                         </Box>
                     </Tab>
 
-                    <Tab>
+                    <Tab onClick={navigateToAirtime}>
                         <Icon><SendIcon/></Icon>
                         <Box>
                             <TabText>Buy Airtime</TabText>
@@ -38,7 +46,7 @@ const Services: FC = () => {
                         </Box>
                     </Tab>
 
-                    <Tab>
+                    <Tab onClick={navigateToAirtime2Cash}>
                         <Icon><DonutLargeIcon/></Icon>
                         <Box>
                             <TabText>Sell Airtime</TabText>

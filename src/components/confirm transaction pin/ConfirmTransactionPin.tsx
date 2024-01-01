@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 ;
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
+import { useLocation } from "react-router-dom";
 
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
@@ -27,7 +28,9 @@ const ConfirmTransactionPin: FC = () => {
 const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
    const {currentUser} = useSelector((state:StateProp) => state.user)
     const toggleConfirmTransacPin = useSelector((state: Toggle)=> state.toggle.toggleConfirmationTransactionPinComp)
-   
+    const location = useLocation()
+
+
    useEffect(()=>{
     const verifyPin = async() => {
         if (pin.length === 4) {
@@ -39,29 +42,58 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                         pin
                     })
         
+                if (location.pathname === "/dashboard") {
                     const apiUrl = 'https://n3tdata.com/api/data';
         
                     const payload = {
                         network: '1',
-                        phone: "08039914037", 
+                        phone: "08039914037",
                         data_plan: '1',
                         bypass: false,
-                        plan_type:"",
+                        plan_type: "",
                         amount: 100,
                         'request-id': String(Date.now())
                     };
                 
                     // Request headers
                     const headers = {
-                      'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1', 
-                      'Content-Type': 'application/json',
+                        'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                        'Content-Type': 'application/json',
                     };
                 
             
                     const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
         
                     setIsDataLoaded(false)
-                        console.log('API Response:', res.data);
+                    console.log('API Response:', res.data);
+                }
+                else if (location.pathname === "/dashboard/airtime") {
+                    const apiUrl = 'https://n3tdata.com/api/topup/';
+                    
+                    const payload = {
+                        network: '1',
+                        phone: "08039914037",
+                        plan_type: '1',
+                        bypass: false,
+                        amount: 100,
+                        'request-id': String(Date.now())
+                    };
+                
+                    // Request headers
+                    const headers = {
+                        'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                        'Content-Type': 'application/json',
+                    };
+                
+            
+                    const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+        
+                    setIsDataLoaded(false)
+                    console.log('API Response:', res.data);
+                }
+                else {
+                    console.log("")
+                }
          }
          catch (err) {
              console.log(err)

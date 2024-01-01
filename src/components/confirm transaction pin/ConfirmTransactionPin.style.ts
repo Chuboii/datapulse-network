@@ -16,7 +16,7 @@ export const Container = styled.div<DisplayProp>`
   left:0;
   right: 0;
   height:65%;
-  z-index: 2000;
+  z-index: 40;
   border-top-right-radius: 40px;
   border-top-left-radius: 40px;
   transition: all .5s;

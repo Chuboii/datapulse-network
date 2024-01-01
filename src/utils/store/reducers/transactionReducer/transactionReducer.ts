@@ -7,6 +7,11 @@ type TransactionProp = {
     dataPlanData: null;
     networkBearer: null;
     isNetworkBearerClicked: boolean;
+    airtimeValue: null;
+    airtime2CashAmountValue: null;
+    airtime2CashBankValue: null;
+    airtime2CashAccountNameValue: null;
+    airtime2CashAccountNumberValue: null;
 }
 
 type ActionProp = {
@@ -20,7 +25,12 @@ const INITIAL_STATE = {
     dataPlanValue: null,
     dataPlanData: null,
     networkBearer: null,
-    isNetworkBearerClicked:false,
+    isNetworkBearerClicked: false,
+    airtimeValue: null,
+    airtime2CashAmountValue: null,
+    airtime2CashBankValue: null,
+    airtime2CashAccountNameValue: null,
+    airtime2CashAccountNumberValue: null
 }
 
 
@@ -52,6 +62,31 @@ export const transactionReducer = (state: TransactionProp = INITIAL_STATE, actio
                 return {
                     ...state,
                     networkBearer:payload
+            }
+            case "GET_AIRTIME_VALUE":
+                return {
+                    ...state,
+                    airtimeValue:payload
+            }
+            case "GET_AIRTIME2CASH_AMOUNT_VALUE":
+                return {
+                    ...state,
+                    airtime2CashAmountValue:payload
+            }
+            case "GET_AIRTIME2CASH_ACCOUNT_NAME_VALUE":
+                return {
+                    ...state,
+                    airtime2CashAccountNameValue:payload
+            }
+            case "GET_AIRTIME2CASH_BANK_VALUE":
+                return {
+                    ...state,
+                    airtime2CashBankValue:payload
+            }
+        case "GET_AIRTIME2CASH_ACCOUNT_NUMBER_VALUE":
+                return {
+                    ...state,
+                    airtime2CashAccountNumberValue:payload
             }
             case "IS_NETWORK_BEARER_CLICKED":
                 return {

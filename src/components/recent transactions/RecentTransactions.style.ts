@@ -7,6 +7,9 @@ margin-bottom:7rem;
 position: relative;
 
 `
+
+
+
 export const Wrapper = styled.div`
   border-bottom:1px solid rgba(255,255,255,.3);
   padding:1rem 0;
@@ -67,4 +70,18 @@ export const Button = styled.button`
   left:50%;
   transform:translate(-50%);
   margin-top:1.5rem;
+`
+export const WrapBox = styled.div`
+
+`
+export const Contain = styled.div`
+
+`
+
+export const BoxWrap = styled.div`
+
+`
+
+export const H2 = styled.h2`
+
 `

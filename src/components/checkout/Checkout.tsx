@@ -23,6 +23,9 @@ import { ToggleStateProp } from "../../utils/store/reducers/toggle reducer/toggl
 import { TransactionStateProp } from "../../utils/store/reducers/transactionReducer/transactionInterface";
 import ConfirmTransactionPin from "../confirm transaction pin/ConfirmTransactionPin";
 
+type FormProp = {
+  stopPropagation: () => void
+}
 const Checkout: FC = () => {
   const [isAirtime2CashActive, setIsAirtime2CashActive] = useState(false);
   const [isAirtimeActive, setIsAirtimeActive] = useState(false);
@@ -44,8 +47,14 @@ const Checkout: FC = () => {
   );
   const location = useLocation();
   const dispatch = useDispatch();
-
-  useEffect(() => {
+  const airtimeValue = useSelector((state: TransactionStateProp) => state.transaction.airtimeValue);
+  const bankInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashBankValue)
+  const accountNumberInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAccountNumberValue)
+  const accountNameInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAccountNameValue)
+  const airtime2CashAmount = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAmountValue)
+ 
+ 
+    useEffect(() => {
     if (location.pathname === "/dashboard/airtime2cash") {
       setIsAirtime2CashActive(true);
       setIsAirtimeActive(false);
@@ -61,7 +70,7 @@ const Checkout: FC = () => {
     }
   }, [location]);
 
-    const enableConfirmPinComp = (e) => {
+    const enableConfirmPinComp = (e: FormProp) => {
         e.stopPropagation()
         dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: true });
     }
@@ -94,9 +103,9 @@ const Checkout: FC = () => {
           <To>To</To>
           <Name>
             {isAirtime2CashActive
-              ? "Joe Doe"
+              ? accountNameInputValue
               : isAirtimeActive
-              ? "no"
+              ? phoneNumberValue
               : isDataActive
               ? phoneNumberValue
               : ""}
@@ -104,14 +113,14 @@ const Checkout: FC = () => {
           <Amount>
             <AmtText>Amount</AmtText>
             <Amt>
-              {" "}
               {isAirtime2CashActive
-                ? "Joe Doe"
+                ? 'NGN' + " " + airtime2CashAmount
                 : isAirtimeActive
-                ? "no"
-                : isDataActive
+                 ? "NGN" + " " + airtimeValue 
+                  : isDataActive
                 ? dataPlanValue
                 : ""}
+                    
             </Amt>
           </Amount>
         </Wrap>
@@ -129,7 +138,7 @@ const Checkout: FC = () => {
               </Tab>
               <Tab>
                 <Text>Payment Amount</Text>
-                <SubText>NGN 7888</SubText>
+                <SubText>NGN {airtime2CashAmount }</SubText>
               </Tab>
               <Tab>
                 <Text>Network</Text>
@@ -137,15 +146,15 @@ const Checkout: FC = () => {
               </Tab>
               <Tab>
                 <Text>Phone Number</Text>
-                <SubText>8039914037</SubText>
+                <SubText>{phoneNumberValue }</SubText>
               </Tab>
               <Tab>
                 <Text>Bank</Text>
-                <SubText>Kuda</SubText>
+                <SubText>{bankInputValue}</SubText>
               </Tab>
               <Tab>
                 <Text>Account Number</Text>
-                <SubText>21012345567</SubText>
+                <SubText>{accountNumberInputValue}</SubText>
               </Tab>
             </>
           ) : isDataActive ? (
@@ -166,16 +175,12 @@ const Checkout: FC = () => {
           ) : isAirtimeActive ? (
             <>
               <Tab>
-                <Text>Data Plan</Text>
-                <SubText>MTN Airtime Conversion</SubText>
+                <Text>Network</Text>
+                    <SubText>{networkBearer }</SubText>
               </Tab>
               <Tab>
                 <Text>Phone Number</Text>
-                <SubText>8039914037</SubText>
-              </Tab>
-              <Tab>
-                <Text>Network</Text>
-                <SubText>Kuda</SubText>
+                    <SubText>{phoneNumberValue }</SubText>
               </Tab>
             </>
           ) : (

@@ -4,6 +4,7 @@ export const Container = styled.div`
 padding:.5rem;
 background:black;
 margin-bottom:7rem;
+z-index: 1000;
 position: relative;
 background:rgb(8, 8, 8);
 `
@@ -17,6 +18,9 @@ export const Wrapper = styled.div`
   border-bottom:1px solid rgba(255,255,255,.3);
   padding:1rem 0;
   
+`
+export const Contain = styled.div`
+  margin-top: 5rem;
 `
 export const Text = styled.div`
 @media screen and (max-width:768px){
@@ -58,6 +62,14 @@ display: flex;
 padding-left: 1rem;
 font-family: 'Archivo Black';
 border-bottom:1px solid rgba(255,255,255,.3);
+position: fixed;
+top: 0;
+background: rgb(8, 8, 8, 0.09);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+left: 0;
+right: 0;
 `
 export const Wrap = styled.div`
 display:flex;

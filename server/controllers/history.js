@@ -31,13 +31,14 @@ export const postTransactionHistory = async (req, res, next) => {
 
 export const getLimitedHistory = async (req, res, next) => {
   try {
-    const {
-      userId
-    } = req.params
+    const {userId,  limit = 0  } = req.params
 
+    console.log(limit)
+    const a = +limit + 4
+    console.log(a)
     const getLimited = await History.find({
       userId
-    }).limit(5)
+    }).limit(a)
 
     res.status(200).json(getLimited)
   }

@@ -29,16 +29,13 @@ export const Button = styled.button<BgProp>`
     margin-top:1rem;
     padding:1rem;
     background:${({bg}) => bg};
-    border:2px solid #0F2337;
-    color:#0F2337;
+    border:2px solid ${({bg}) => bg === "#0363A4" ? 'none' : "#0F2337"};
+    color:${({bg}) => bg === "#0363A4" ? 'white' : "#0F2337"};
 
   @media screen and (max-width:768px){
     width:100%;
     margin-top:1rem;
-    padding:1rem;
-    background:transparent;
-    border:2px solid #0F2337;
-    color:#0F2337;
+    padding:1.3rem;
   }
 `
 //#141414

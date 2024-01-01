@@ -8,5 +8,10 @@ export type TransactionStateProp = {
         dataPlanData: null;
         networkBearer: null;
         isNetworkBearerClicked: null;
+        airtimeValue: null;
+        airtime2CashAmountValue: null;
+        airtime2CashBankValue: null;
+        airtime2CashAccountNameValue: null;
+        airtime2CashAccountNumberValue: null;
     }
 }

@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { Container, Header,WrapBox, Wrapper, BoxWrap, Success, DateTime, Time, Img, Text, Wrap, H2, Box } from './History.style'
+import { Container,Contain, Header,WrapBox, Wrapper, BoxWrap, Success, DateTime, Time, Img, Text, Wrap, H2, Box } from './History.style'
 import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav";
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import Navbar from "../../components/navbar/Navbar";
@@ -9,16 +9,17 @@ import { StateProp } from "../../utils/store/reducers/user reducer/userInterface
 import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface";
 
 type HistoryMapProp = {
-  photoUrl: string;
-  _id:number;
-  deposit: string;
-  history:string;
-  amount:number;
+        photoUrl: string;
+        _id: number;
+        deposit: string;
+        history: string;
+        createdAt: string;
+        amount: number;
 }
 const History: FC = () => {
     const {currentUser} = useSelector((state: StateProp) => state.user) 
     const dispatch = useDispatch()
-    const historyData = useSelector((state:HistoryStateProp) => state.history.history)
+    const historyData = useSelector((state:HistoryStateProp) => state.history.history) as HistoryMapProp[]
     
     useEffect(() => {
         const getHistoryData = async () => {
@@ -34,7 +35,7 @@ const History: FC = () => {
              }
         }
         getHistoryData()
-    }, [dispatch])
+    }, [dispatch, currentUser.user._id])
     
     return (
         <>
@@ -45,8 +46,10 @@ const History: FC = () => {
                     <Wrap>
                     <DonutLargeIcon/>
                         <H2>History</H2>
-                </Wrap>
-                </Header>  
+                        </Wrap>
+                    </Header>  
+                    
+                    <Contain>
                     {historyData ? historyData.map((history:HistoryMapProp) => {
                         const date = new Date(history.createdAt)
 
@@ -69,7 +72,9 @@ const History: FC = () => {
                                 </Box>
                             </WrapBox>
                         </Wrapper>
-                    )}):"nothing to see here..."}
+                        )
+                    }) : "nothing to see here..."}
+                        </Contain>
                 </Box>
             </Container>
             <MobileFooterNav/>

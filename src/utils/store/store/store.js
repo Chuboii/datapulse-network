@@ -15,7 +15,7 @@ const enhancedComposers = applyMiddleware(...middlewares)
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist:['toggle', 'network', 'transaction']
+    blacklist:['toggle', 'network', 'transaction', 'history']
 }
   
 const persistedReducer = persistReducer(persistConfig, rootReducer)

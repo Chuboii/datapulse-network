@@ -9,7 +9,7 @@ export const Container = styled.div<DisplayProp>`
    left: 0;
    right: 0;
    background-color: #080808;
-   z-index: 300;
+   z-index: 30;
    bottom: 0;
    transition: all .5s;
    padding: 0 .8rem;

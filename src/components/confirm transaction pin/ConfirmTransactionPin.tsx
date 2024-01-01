@@ -3,13 +3,14 @@ import { Container, Delete, Wrap, Text, DotWrapper, Dot, Pad, Grid } from './Con
 import LockIcon from '@mui/icons-material/Lock';
 import axios, {AxiosResponse} from "axios"
 import PageLoader from "../page loader/PageLoader"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 ;
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { TransactionStateProp } from "../../utils/store/reducers/transactionReducer/transactionInterface";
 
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
@@ -29,8 +30,25 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
    const {currentUser} = useSelector((state:StateProp) => state.user)
     const toggleConfirmTransacPin = useSelector((state: Toggle)=> state.toggle.toggleConfirmationTransactionPinComp)
     const location = useLocation()
-
-
+    const buyAirtimeNetworkId = useSelector((state: TransactionStateProp) => state.transaction.dataPlanId)
+    const buyDataId = useSelector((state:TransactionStateProp)=> state.transaction.dataPlanId)
+    const networkValue = useSelector((state: TransactionStateProp) => state.transaction.networkBearer)
+    const phoneNumberValue = useSelector((state: TransactionStateProp) => state.transaction.phoneNumberValue)
+    const amountValue = useSelector((state: TransactionStateProp) => state.transaction.airtimeValue)
+    const bankInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashBankValue)
+    const accountNumberInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAccountNumberValue)
+    const accountNameInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAccountNameValue)
+    const airtime2cashAmount = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAmountValue)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    //"AIRTEL COOPERATE GIFTING is not available right now"
+    //"GLO GIFTING is not available right now
+    //"9MOBILE GIFTING is not available right now"
+    //Invalid Phone Number 44444444444
+    //This is not a GLO Number =>88888888888'
+    //Insufficient Account Kindly Fund Your Wallet => ₦0.00
+//fix the airtime2cash including the reloads to the whatsapp
+    
    useEffect(()=>{
     const verifyPin = async() => {
         if (pin.length === 4) {
@@ -43,39 +61,42 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                     })
         
                 if (location.pathname === "/dashboard") {
-                    const apiUrl = 'https://n3tdata.com/api/data';
+                    
+                    const networkId = networkValue === "MTN SME" || networkValue === "MTN GIFTING" || networkValue === "MTN COOPERATE GIFTING" ? "1" : networkValue === "AIRTEL" ? "2" : networkValue === "GLO COOPERATE GIFTING" || networkValue === "GLO GIFTING"  ? '3' : networkValue === "9MOBILE COOPERATE GIFTING" || networkValue === "9MOBILE GIFTING" ? "4" : ''
+                            
+                    console.log(buyDataId)
+                        const apiUrl = 'https://n3tdata.com/api/data';
         
-                    const payload = {
-                        network: '1',
-                        phone: "08039914037",
-                        data_plan: '1',
-                        bypass: false,
-                        plan_type: "",
-                        amount: 100,
-                        'request-id': String(Date.now())
-                    };
+                        const payload = {
+                            network: networkId,
+                            phone:phoneNumberValue && phoneNumberValue[0] ,
+                            data_plan: buyDataId,
+                            bypass: false,
+                            'request-id': String(Date.now())
+                        };
                 
-                    // Request headers
-                    const headers = {
-                        'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
-                        'Content-Type': 'application/json',
-                    };
+                        // Request headers
+                        const headers = {
+                            'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                            'Content-Type': 'application/json',
+                        };
                 
             
-                    const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+                        const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
         
-                    setIsDataLoaded(false)
-                    console.log('API Response:', res.data);
+                        setIsDataLoaded(false)
+                        console.log('API Response:', res.data);
+                    
                 }
                 else if (location.pathname === "/dashboard/airtime") {
                     const apiUrl = 'https://n3tdata.com/api/topup/';
-                    
+
                     const payload = {
-                        network: '1',
-                        phone: "08039914037",
-                        plan_type: '1',
+                        network: buyAirtimeNetworkId,
+                        phone: phoneNumberValue && phoneNumberValue[0],
+                        plan_type: 'VTU',
                         bypass: false,
-                        amount: 100,
+                        amount: amountValue,
                         'request-id': String(Date.now())
                     };
                 
@@ -91,8 +112,14 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                     setIsDataLoaded(false)
                     console.log('API Response:', res.data);
                 }
-                else {
-                    console.log("")
+                else if(location.pathname === "/dashboard/airtime2cash") {
+                    setIsDataLoaded(true)
+                    window.open(`https://api.whatsapp.com/send/?phone=%2B2348075075032&text=%0A++++++%2AAIRTIME+2+CASH+Order%3A%2A%0A++%0A++++++%2ANetwork%3A%2A+_${networkValue}_%0A++++++%2AAmount%3A%2A+_${airtime2cashAmount}_%0A++++++%2APhone%3A%2A+_${phoneNumberValue && phoneNumberValue[0]}_%0A++%0A++++++%2ABank%3A%2A+_${bankInputValue}_%0A++++++%2AAcct+No%3A%2A+_${accountNumberInputValue}_%0A++++++%2AAcct+Name%3A%2A+_${accountNameInputValue}_&type=phone_number&app_absent=0`)
+                    navigate('/dashboard/airtime2cash')
+                    setIsDataLoaded(false)
+                    dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: false })
+                    dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: false });
+
                 }
          }
          catch (err) {

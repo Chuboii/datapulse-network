@@ -89,7 +89,7 @@ const DataServices: FC = () => {
     };
 
     
-    const handleNetworkClicks = (net: string) => {
+  const handleNetworkClicks = (net: string, idx: number) => {
         transactionDispatch({
             type: "TOGGLE_DATA_PLANS", payload: true
         })
@@ -100,6 +100,7 @@ const DataServices: FC = () => {
         transactionDispatch({
             type: "GET_NETWORK_VALUE", payload: net
         })
+      transactionDispatch({type:"GET_NETWORK_ID", payload:idx})
         transactionDispatch({
             type: "GET_DATA_PLAN_ID", payload: null
         })
@@ -131,10 +132,10 @@ const DataServices: FC = () => {
           {
             location.pathname === "/dashboard"
               ? 
-              Object.keys(Plans).map(network => (
+              Object.keys(Plans).map((network, idx) => (
                 <Tab
                   key={Plans[network as keyof typeof Plans][0].id}
-                  onClick={() => handleNetworkClicks(network)}
+                  onClick={() => handleNetworkClicks(network, idx)}
                   bg={state.selectedNetwork === network ? getBackgroundColor(network) : "#141414"}>
                   <Text>{network}</Text>
                   <Img src={Plans[network as keyof typeof Plans][0].image} alt={`${network} logo`} />

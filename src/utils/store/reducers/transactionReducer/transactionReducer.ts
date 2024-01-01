@@ -12,6 +12,7 @@ type TransactionProp = {
     airtime2CashBankValue: null;
     airtime2CashAccountNameValue: null;
     airtime2CashAccountNumberValue: null;
+    networkId: null;
 }
 
 type ActionProp = {
@@ -30,7 +31,8 @@ const INITIAL_STATE = {
     airtime2CashAmountValue: null,
     airtime2CashBankValue: null,
     airtime2CashAccountNameValue: null,
-    airtime2CashAccountNumberValue: null
+    airtime2CashAccountNumberValue: null,
+    networkId:null
 }
 
 
@@ -62,6 +64,11 @@ export const transactionReducer = (state: TransactionProp = INITIAL_STATE, actio
                 return {
                     ...state,
                     networkBearer:payload
+            }
+            case "GET_NETWORK_ID":
+                return {
+                    ...state,
+                    networkId:payload
             }
             case "GET_AIRTIME_VALUE":
                 return {

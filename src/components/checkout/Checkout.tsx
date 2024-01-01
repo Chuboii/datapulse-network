@@ -142,7 +142,7 @@ const Checkout: FC = () => {
               </Tab>
               <Tab>
                 <Text>Network</Text>
-                <SubText>MTN Airtime Conversion</SubText>
+                <SubText>{networkBearer} Airtime Conversion</SubText>
               </Tab>
               <Tab>
                 <Text>Phone Number</Text>

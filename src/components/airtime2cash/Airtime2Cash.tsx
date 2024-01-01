@@ -1,4 +1,4 @@
-import { FC} from "react";
+import { FC, useEffect} from "react";
 import DataServices from "../network/DataServices";
 import PurchaseForm from "../purchase form/PurchaseForm";
 import {Wrapper, Header, Input} from './Airtime2Cash.style'
@@ -17,7 +17,13 @@ const Airtime2Cash: FC = () => {
     const changeValue = (e: InputProp) => dispatch({type:'GET_AIRTIME2CASH_AMOUNT_VALUE', payload:e.target.value})
    
 
-
+    useEffect(() => {
+        if (!toggleAirtime2CashBank) {
+            dispatch({ type: "TOGGLE_AIRTIME2CASH_BANK", payload: false })
+            dispatch({ type: 'GET_DATA_PLAN_ID', payload: null })
+        }
+ 
+  }, [dispatch, toggleAirtime2CashBank])
 
     return (
         <>

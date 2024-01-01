@@ -55,7 +55,7 @@ const PurchaseForm: FC = () => {
       }
     }
     else if (location.pathname === '/dashboard/airtime2cash') {
-      if (phoneNumberValue.length > 0 && dataPlansId && airtime2cashAmountValue) {
+      if (phoneNumberValue && phoneNumberValue.length > 0 && dataPlansId && airtime2cashAmountValue) {
         setIsFormValid(true);
       }
       else {

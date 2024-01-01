@@ -20,13 +20,13 @@ type PaystackProps = {
   publicKey: string;
   text: string;
   onSuccess: () => void;
-
+  onError: () => void;
 }
 const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
   const dispatch = useDispatch()
   const {currentUser} = useSelector((state:StateProp) => state.user)
   const navigate = useNavigate()
-
+   
   const componentProps: PaystackProps = {
     email,
     amount: amount * 100,
@@ -40,11 +40,24 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
           id: currentUser.user._id,
           amount
         })
-        dispatch({ type: "GET_USER_DATA", payload: data.data })
+    
+        await axios.post("http://localhost:8080/api/add/history", {
+          userId: currentUser.user._id,
+          photoUrl:"/src/assets/2aKlhqaw0tYWfRTBxyvbVLm1iax.svg",
+          amount,
+          deposit: 'Deposit',
+          history:""
+        })
+
+       dispatch({ type: "GET_USER_DATA", payload: data.data })
         dispatch({type:"TOGGLE_PAYMENT_FORM", payload:false})
         navigate("/dashboard")
       }
       increWallet()
+    },
+    onError: () => {
+      alert("oops")
+      console.log("error")
     }
   }
 

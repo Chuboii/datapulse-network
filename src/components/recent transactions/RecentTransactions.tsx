@@ -1,10 +1,14 @@
 import {FC} from "react"
 import {Container, Wrapper, Header, DateTime, Wrap, Img, Box, Button, Text,Success, Time} from "./RecentTransactions.style"
 import img from "/src/assets/devildoesnotbargain.jpeg"
+import { useSelector } from "react-redux"
+import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface"
 
-const RecentTransactions: FC = () =>{
-  
-  return(
+const RecentTransactions: FC = ({history}) =>{
+ 
+
+
+  return (
     <>
     <Container>
     <Header> Recent Transactions</Header>

@@ -26,7 +26,7 @@ export const CheckLoggedInProvider: FC<ChildrenProp> = ({ children }) => {
                 navigate('/auth/resetpasscode')   
             }
             else {
-                navigate('/auth/passcode')
+                // navigate('/auth/passcode')
             }
         }
     }, [currentUser])

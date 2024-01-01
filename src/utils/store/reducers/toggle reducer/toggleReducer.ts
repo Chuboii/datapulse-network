@@ -4,12 +4,14 @@ interface ToggleMoreDataPlans {
     toggleMoreDataPlans: boolean;
     togglePaymentForm: boolean;
     toggleCheckoutComp: boolean;    
+    toggleConfirmationTransactionPinComp: boolean;
 }
 
 interface StateProp {
     toggleMoreDataPlans: boolean;
     togglePaymentForm: boolean;
     toggleCheckoutComp: boolean;
+    toggleConfirmationTransactionPinComp: boolean;
 }
 
 interface ActionProp {
@@ -19,7 +21,8 @@ interface ActionProp {
 const INITIAL_STATE : ToggleMoreDataPlans = {
     toggleMoreDataPlans: false,
     togglePaymentForm: false,
-    toggleCheckoutComp:false
+    toggleCheckoutComp: false,
+    toggleConfirmationTransactionPinComp: false
 }
 
 
@@ -37,6 +40,11 @@ const toggleReducer = (state: StateProp = INITIAL_STATE, action: ActionProp) => 
                 ...state,
                 togglePaymentForm: payload
             }
+            case 'TOGGLE_CONFIRM_TRANSACTION_PIN_COMP':
+                return {
+                    ...state,
+                    toggleConfirmationTransactionPinComp: payload
+                }
          case 'TOGGLE_CHECKOUT_COMP':
                 return {
                     ...state,

@@ -1,27 +1,75 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
-  display: flex;
- 
+padding:.5rem;
+background:black;
+margin-bottom:7rem;
+position: relative;
+
 `
 
-export const Wrap = styled.div`
- display: flex;
- font-family: 'Archivo Black';
- 
+export const H2 = styled.h2`
+margin-left: .6rem;
+font-size: 20px;
 `
 
-export const Header = styled.header`
- padding: 1.5rem;
- border-bottom: 1px solid rgba(255, 255,255, .3);
-
- 
+export const Wrapper = styled.div`
+  border-bottom:1px solid rgba(255,255,255,.3);
+  padding:1rem 0;
+  
 `
-
-export const H2 = styled.div`
-  margin: 0 1rem;
+export const Text = styled.div`
+@media screen and (max-width:768px){
+    font-family: "Kanit";
+    font-weight:700;
+    font-size:13px;
+}
 `
-
+export const Img = styled.img`
+  width:40px;
+  height:40px;
+  border-radius:50%;
+`
+export const Time = styled.div`
+   color:gray;
+font-family: "Kanit";
+font-size:11px;
+`
+export const DateTime = styled.div`
+   color:gray;
+   font-family: "Kanit";
+   margin-bottom:1rem;
+`
 export const Box = styled.div`
-width: 100%;
+
+
+@media screen and (max-width:768px){
+
+}
+`
+
+export const WrapBox = styled.div`
+ display: flex;
+ justify-content:space-between;
+`
+export const Header = styled.header`
+margin-bottom:.5rem;
+display: flex;
+padding-left: 1rem;
+font-family: 'Archivo Black';
+border-bottom:1px solid rgba(255,255,255,.3);
+`
+export const Wrap = styled.div`
+display:flex;
+position:relative;
+align-items: center;
+`
+export const Success = styled.div`
+  font-family: "Kanit";
+  color:green;
+  font-size:13px;
+`
+
+export const BoxWrap = styled.div`
+  margin-left: 1rem;
 `

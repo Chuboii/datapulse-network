@@ -4,11 +4,13 @@ import { getAllHistory, getLimitedHistory, postTransactionHistory } from "../con
 
 const router = express.Router()
 
-router.post("/add/history", verifyUser, postTransactionHistory)
+router.post("/add/history", postTransactionHistory)
 
-router.get("/get/limited/history/:userId", verifyUser, getLimitedHistory);
+router.get("/get/limited/history/:userId", getLimitedHistory);
 
-router.get("/get/all/history/:userId", verifyUser, getAllHistory);
+router.get("/get/all/history/:userId", getAllHistory);
 
 export default router
+
+
 

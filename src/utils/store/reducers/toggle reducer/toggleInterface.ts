@@ -3,6 +3,7 @@ export interface Toggle {
         toggleMoreDataPlans: boolean;
         togglePaymentForm: boolean;
         toggleCheckoutComp: boolean;
+        toggleConfirmationTransactionPinComp: boolean;
     }
 }
 
@@ -13,6 +14,7 @@ export interface ToggleStateProp {
         toggleMoreDataPlans: boolean;
         togglePaymentForm: boolean;
         toggleCheckoutComp: boolean;
+        toggleConfirmationTransactionPinComp: boolean;
     }
 }
 

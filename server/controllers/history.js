@@ -2,13 +2,14 @@ import History from "../models/History.js"
 
 export const postTransactionHistory = async (req, res, next) => {
     try {
-        const { userId, photoUrl, amount, history } = req.body
+        const { userId, photoUrl, amount, history, deposit } = req.body
         
         const createHistory = new History({
             userId,
             photoUrl,
             amount,
-            history
+            history,
+            deposit
         })
 
         await createHistory.save()

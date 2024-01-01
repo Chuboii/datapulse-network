@@ -42,7 +42,7 @@ export const getAllHistory = async (req, res, next) => {
     try {
         const { userId } = req.params
         
-        const getHistory = await History.find({ userId })
+        const getHistory = await History.find({ userId }).sort({createdAt: -1})
         
         res.status(200).json(getHistory)
     }

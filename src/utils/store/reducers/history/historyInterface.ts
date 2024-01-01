@@ -1,11 +1,13 @@
 export interface History {
-    history: object[]
+    history: object[],
+    recentTransaction: object[]
 }
 
 
 
 export interface HistoryStateProp {
-    history: object[]
+    history: object[],
+    recentTransaction:object[]
 }
 
 

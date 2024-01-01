@@ -29,7 +29,7 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
    
   const componentProps: PaystackProps = {
     email,
-    amount: amount * 100,
+    amount: amount * 1000,
       name,
       phone,
     publicKey: "pk_test_c50b4674fe806e57ac9232d139a235df8dd03ed6",

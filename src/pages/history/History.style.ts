@@ -5,7 +5,7 @@ padding:.5rem;
 background:black;
 margin-bottom:7rem;
 position: relative;
-
+background:rgb(8, 8, 8);
 `
 
 export const H2 = styled.h2`

@@ -8,7 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface";
 
-
+type HistoryMapProp = {
+  photoUrl: string;
+  _id:number;
+  deposit: string;
+  history:string;
+  amount:number;
+}
 const History: FC = () => {
     const {currentUser} = useSelector((state: StateProp) => state.user) 
     const dispatch = useDispatch()
@@ -41,7 +47,7 @@ const History: FC = () => {
                         <H2>History</H2>
                 </Wrap>
                 </Header>  
-                    {historyData ? historyData.map((history) => {
+                    {historyData ? historyData.map((history:HistoryMapProp) => {
                         const date = new Date(history.createdAt)
 
                         return(

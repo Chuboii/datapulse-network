@@ -1,53 +1,69 @@
 import History from "../models/History.js"
 
 export const postTransactionHistory = async (req, res, next) => {
-    try {
-        const { userId, photoUrl, amount, history, deposit } = req.body
-        
-        const createHistory = new History({
-            userId,
-            photoUrl,
-            amount,
-            history,
-            deposit
-        })
+  try {
+    const {
+      userId,
+      photoUrl,
+      amount,
+      history,
+      deposit
+    } = req.body
 
-        await createHistory.save()
+    const createHistory = new History({
+      userId,
+      photoUrl,
+      amount,
+      history,
+      deposit
+    })
 
-        res.status(200).json(createHistory)
+    await createHistory.save()
 
-    }
-    catch (err) {
-        console.log(err)
-        next(err)
-    }
+    res.status(200).json(createHistory)
+
+  }
+  catch (err) {
+    console.log(err)
+    next(err)
+  }
 }
 
 export const getLimitedHistory = async (req, res, next) => {
-    try {
-        const { userId } = req.params
-        
-        const getLimited = await History.find({ userId }).limit(5)
-        
-        res.status(200).json(getLimited)
-    }
-    catch (err) {
-        console.log(err)
-        next(err)
-    }
+  try {
+    const {
+      userId
+    } = req.params
+
+    const getLimited = await History.find({
+      userId
+    }).limit(5)
+
+    res.status(200).json(getLimited)
+  }
+  catch (err) {
+    console.log(err)
+    next(err)
+  }
 }
 
 
 export const getAllHistory = async (req, res, next) => {
-    try {
-        const { userId } = req.params
-        
-        const getHistory = await History.find({ userId }).sort({createdAt: -1})
-        
-        res.status(200).json(getHistory)
-    }
-    catch (err) {
-        console.log(err)
-        next(err)
-    }
+  try {
+    const {
+      userId
+    } = req.params
+
+    const getHistory = await History.find({
+      userId
+    }).sort({
+      createdAt: -1
+    })
+
+    res.status(200).json(getHistory)
+  }
+  catch (err) {
+    console.log(err)
+    next(err)
+  }
 }

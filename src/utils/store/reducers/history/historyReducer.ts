@@ -1,6 +1,7 @@
 
 type HistoryProp = {
-    history:object[]
+    history:object[];
+    recentTransaction: object[]
 }
 
 type ActionProp = {
@@ -8,7 +9,8 @@ type ActionProp = {
     payload: object[]
 }
 const INITIAL_STATE = {
-   history: []
+   history: [],
+   recentTransaction:[]
 }
 
 
@@ -20,6 +22,11 @@ export const historyReducer = (state: HistoryProp = INITIAL_STATE, action: Actio
             return {
                 ...state,
                 history: payload
+            }
+            case "GET_RECENT_TRANSACTION":
+            return {
+                ...state,
+                recentTransaction: payload
             }
         default:
             return state

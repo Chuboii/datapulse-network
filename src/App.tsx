@@ -27,7 +27,7 @@ const App:FC = () => {
               navigate('/auth/resetpasscode')   
           }
           else {
-              // navigate('/auth/passcode')
+              navigate('/auth/passcode')
           }
       }
   }, [])
@@ -39,7 +39,7 @@ const App:FC = () => {
     }, 1000);
 
     if (timer > 180) {
-      // navigate('/auth/passcode');
+      navigate('/auth/passcode');
     }
 
     function isUserActive() {

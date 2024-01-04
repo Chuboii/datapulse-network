@@ -66,7 +66,7 @@ const AuthSignup: FC = () => {
                         username: data.username,
                         email: data.email,
                         password: data.password,
-                        photoUrl: "/src/assets/cartoon-face-transparent-1.png"
+                        photoUrl: "https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/cartoon-face-transparent-1.png?alt=media&token=60a774e8-af48-49bd-89dc-39f8da3613eb"
                     }
 
                     const res = await axios.post("https://datapulse-network.onrender.com/api/auth/signup", formData)

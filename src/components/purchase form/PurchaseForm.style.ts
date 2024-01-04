@@ -23,6 +23,7 @@ export const Input = styled.input`
   background:#141414;
   border:none;
   border-radius:7px;
+  color: white;
 `
 export const Button = styled.button<BgProp>`
     width:100%;

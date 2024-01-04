@@ -45,6 +45,7 @@ export const Input = styled.input`
   width: 100%;
   padding-left: 3.3rem;
   font-family: 'Archivo Black';
+  color:white;
   &::placeholder{
     font-size: 17px;
     color:#777E90

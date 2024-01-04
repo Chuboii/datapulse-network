@@ -57,7 +57,11 @@ const PaymentForm: FC = () => {
     },
   };
 
-  const submitForm = () => dispatch({type:"TOGGLE_PAGE_LOADER", payload:true})
+  const submitForm = () => {
+    // if (isValid) {
+    //   dispatch({ type: "TOGGLE_PAGE_LOADER", payload: true })
+    // }
+  }
 
   
     
@@ -106,7 +110,7 @@ const PaymentForm: FC = () => {
                 {...register("amount", registerOptions.amount)}
               />
             </Wrap>
-            <Button active={isValid ? "#0363A4" : "transparent"} onClick={submitForm}>
+            <Button active={isValid ? "#0363A4" : "transparent"}>
               {isValid ?
                 <Paystack name={getValues().username} email={getValues().email} amount={getValues().amount} phone={getValues().phone} />
                 : "Pay now"}

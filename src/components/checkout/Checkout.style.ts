@@ -36,6 +36,7 @@ flex-direction: column;
 export const Button = styled.button`
   background-color: #0363A4;
   width: 100%;
+  color:white;
   padding: 1rem 0;
 `
 export const H2 = styled.div`

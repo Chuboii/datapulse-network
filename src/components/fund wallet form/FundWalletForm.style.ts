@@ -102,7 +102,6 @@ export const See = styled.div`
 `
 
 export const Box = styled.div`
-  margin-top: 2rem;
    max-width: 600px;
    width:100%;
    box-sizing: border-box;

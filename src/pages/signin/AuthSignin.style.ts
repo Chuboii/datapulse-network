@@ -36,6 +36,7 @@ export const Input = styled.input`
   border-radius: 10px;
   width: 100%;
   padding-left: 3.3rem;
+  color: white;
   font-family: 'Archivo Black';
   &::placeholder{
     font-size: 17px;

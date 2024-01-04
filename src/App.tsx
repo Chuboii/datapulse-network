@@ -30,7 +30,7 @@ const App:FC = () => {
               navigate('/auth/passcode')
           }
       }
-  }, [currentUser])
+  }, [])
 
 
   useEffect(() => {

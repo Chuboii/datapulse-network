@@ -13,21 +13,19 @@ import PageLoader from "../../components/page loader/PageLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const MoreTab: FC = () => {
     const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
 
     const logoutBtn = async () => {
         try {
             setIsDataLoaded(true)
             await axios.post("https://datapulse-network.onrender.com/api/auth/logout", { body: null })
             dispatch({ type: "GET_USER_DATA", payload: null })
-
-
-
-
+            navigate('/')
             
             setIsDataLoaded(false)
         }

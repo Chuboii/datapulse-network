@@ -1,7 +1,7 @@
-import { FC, createContext, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { StateProp } from "../utils/store/reducers/user reducer/userInterface";
-import { useLocation, useNavigate } from "react-router-dom";
+import { FC, createContext } from "react";
+// import { useSelector } from "react-redux";
+// import { StateProp } from "../utils/store/reducers/user reducer/userInterface";
+// import { useLocation, useNavigate } from "react-router-dom";
 
 interface ChildrenProp {
     children?: string;

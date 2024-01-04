@@ -32,7 +32,7 @@ const DashboardHeader: FC = () => {
         <>
             <Header>
                 <Wrap>
-                    <ProfileImg src={currentUser ? currentUser.user.photoUrl : ""} />
+                    <ProfileImg src={currentUser.user.photoUrl ? currentUser.user.photoUrl : ""} />
                     <Wrapper>
                         <Text>{currentTime}👋</Text>
                         <Username>{currentUser ? currentUser.user.username : ""}!</Username>

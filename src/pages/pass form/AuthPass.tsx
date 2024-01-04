@@ -54,9 +54,9 @@ const logoutBtn = async () => {
                 theme: "colored",
                 });
         }
-    }
+  }
 
-
+  // logoutBtn()
     return (
         <>
         {isDataLoaded && <PageLoader/>}

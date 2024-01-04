@@ -50,18 +50,18 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
    useEffect(()=>{
     const verifyPin = async() => {
         if (pin.length === 4) {
-            //500 < 400
                 try {
 
                     setIsDataLoaded(true)
-                    await axios.post("http://localhost:8080/api/auth/passcode", {
+                    await axios.post("https://datapulse-network.onrender.com/api/auth/passcode", {
                         userId: currentUser.user._id,
                         username: currentUser.user.username,
                         pin
                     })
     
-           const dataPrice = dataPlanValue && (dataPlanValue as unknown as string)?.split("₦")?.[1]?.split(".")?.[0];
+      const dataPrice =  dataPlanValue && (dataPlanValue as string)?.split("₦")?.[1]?.split(".")?.[0];
 
+   
              if (location.pathname === "/dashboard") {
                 if (dataPrice && +dataPrice <= currentUser.user.balance) {
                   
@@ -77,7 +77,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                             bypass: false,
                             'request-id': String(Date.now())
                     };
-          
+    
                         const headers = {
                             'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
                             'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
             
                         dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${dataPlanData} to ${phoneNumberValue}`})
                         
-                        await axios.post("http://localhost:8080/api/add/history", {
+                        await axios.post("https://datapulse-network.onrender.com/api/add/history", {
                             userId: currentUser.user._id,
                             photoUrl:networkImg,
                             amount:dataPrice,
@@ -103,7 +103,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                             declined:false
                         })
                         
-                       const newBalance = await axios.put("http://localhost:8080/api/decre/balance", {
+                       const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
                             id: currentUser.user._id,
                             amount: dataPrice
                        })
@@ -178,7 +178,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
             
                         dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${amountValue} airtime to ${phoneNumberValue}`})
                         
-                        await axios.post("http://localhost:8080/api/add/history", {
+                        await axios.post("https://datapulse-network.onrender.com/api/add/history", {
                             userId: currentUser.user._id,
                             photoUrl:networkImg,
                             amount:amountValue,
@@ -188,7 +188,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                             declined:false
                         })
                         
-                       const newBalance = await axios.put("http://localhost:8080/api/decre/balance", {
+                       const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
                             id: currentUser.user._id,
                             amount: amountValue
                        })
@@ -305,6 +305,17 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                 setIsDataLoaded(false)
                             }
                             else if (err?.response?.data.message === `${networkValue} is not available right now`) {
+                                
+                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                    userId: currentUser.user._id,
+                                    photoUrl:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
+                                    amount:amountValue,
+                                    deposit: null,
+                                    plan:"Data",
+                                    history: `${amountValue} to ${phoneNumberValue} failed`,
+                                    declined:true
+                                })
+                                
                                 dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
             
                                 dispatch({type:"TRANSACTION_STATUS", payload:`${networkValue} is not available right now`})
@@ -320,16 +331,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                     dot.style.height = "10px"
                                 })
          
-                                await axios.post("http://localhost:8080/api/add/history", {
-                                    userId: currentUser.user._id,
-                                    photoUrl:"/src/assets/error-svgrepo-com.svg",
-                                    amount:amountValue,
-                                    deposit: null,
-                                    plan:"Data",
-                                    history: `${amountValue} to ${phoneNumberValue} failed`,
-                                    declined:true
-                                })
-                                
+                                navigate("/transaction/status")
                                 setIsDataLoaded(false)
                             }
                      
@@ -357,9 +359,20 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                 navigate("/transaction/status")
                             }
                             else if (err?.response?.data.message === `This is not a ${networkValue} Number => ${phoneNumberValue}`) {
+
+                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                    userId: currentUser.user._id,
+                                    photoUrl:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
+                                    amount:amountValue,
+                                    deposit: null,
+                                    plan:"Airtime",
+                                    history: `This is not a ${networkValue} Number => ${phoneNumberValue}`,
+                                    declined:true
+                                })
+
                                 dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
             
-                                dispatch({ type: "TRANSACTION_STATUS", payload: `This is not a ${networkValue} Number =>${phoneNumberValue}` })
+                                dispatch({ type: "TRANSACTION_STATUS", payload: `This is not a ${networkValue} Number => ${phoneNumberValue}` })
                                 
                                 setPin([])
                                 setCount(0)
@@ -374,19 +387,12 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                 })
          
                                 setIsDataLoaded(false)
-        
+                                
                                 navigate("/transaction/status")
                             }
                                 //"Minimum Airtime Purchase for this account is => ₦50.00
-                    else if (err?.response?.data.message === `Minimum Airtime Purchase for this account is => ₦50.00`) {
-                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
-            
-                                dispatch({ type: "TRANSACTION_STATUS", payload: `Minimum Airtime Purchase for this account is => ₦50.00 ` })
-                                
-                                setPin([])
-                                setCount(0)
-       
-                                await axios.post("http://localhost:8080/api/add/history", {
+                            else if (err?.response?.data.message === `Minimum Airtime Purchase for this account is => ₦50.00`) {
+                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
                                     userId: currentUser.user._id,
                                     photoUrl:"/src/assets/error-svgrepo-com.svg",
                                     amount:amountValue,
@@ -395,6 +401,13 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                     history: `${amountValue} airtime to ${phoneNumberValue} failed`,
                                     declined:true
                                 })
+
+                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+            
+                                dispatch({ type: "TRANSACTION_STATUS", payload: `Minimum Airtime Purchase for this account is => ₦50.00 ` })
+                                
+                                setPin([])
+                                setCount(0)
                                 
                                 const dots = document.querySelectorAll(".dot") as
                                     NodeListOf<HTMLElement>;

@@ -13,7 +13,7 @@ const App:FC = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: StateProp) => state.user)
 
-  
+
 
   useEffect(() => {
       if (!currentUser) {
@@ -30,7 +30,7 @@ const App:FC = () => {
               navigate('/auth/passcode')
           }
       }
-  }, [])
+  }, [currentUser])
 
 
   useEffect(() => {

@@ -60,6 +60,7 @@ export const Button = styled.button<ActiveProp>`
   border:2px solid #0363A4;
   color:${({active}) => active === '#0363A4' ?
   "white" : "#0363A4"};
+  position: relative;
   padding: 2rem 0;
   margin-top: .5rem;
   filter: brightness(${({active}) => active === '#0363A4' ? "1" : ".6"});

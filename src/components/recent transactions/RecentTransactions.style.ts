@@ -66,6 +66,7 @@ export const Success = styled.div`
 `
 export const Button = styled.button`
   margin:1rem auto;
+  color: white;
   position:absolute;
   left:50%;
   transform:translate(-50%);

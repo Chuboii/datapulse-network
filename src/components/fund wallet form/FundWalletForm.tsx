@@ -54,7 +54,11 @@ const PaymentForm: FC = () => {
     },
   };
 
-    const submitForm = () => console.log("")
+  const submitForm = () => console.log("")
+    // if (data.username && data.email && data.amount && data.phone) {
+        
+    // }
+  
     
   const disablePaymentForm = () => dispatch({ type: "TOGGLE_PAYMENT_FORM", payload: false });
 
@@ -100,9 +104,11 @@ const PaymentForm: FC = () => {
                 {...register("amount", registerOptions.amount)}
               />
             </Wrap>
-            <Button active={isValid ? "#0363A4" : "transparent"}>
-              <Paystack name={getValues().username} email={getValues().email} amount={getValues().amount} phone={getValues().phone} />
-            </Button>
+            <Button active={isValid ? "#0363A4" : "transparent"} onClick={submitForm}>
+           
+                <Paystack name={getValues().username} email={getValues().email} amount={getValues().amount} phone={getValues().phone} />
+              
+              </Button>
           </Form>
           <Follow>Follow us:</Follow>
           <Icons>

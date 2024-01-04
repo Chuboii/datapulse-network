@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Paystack from "../../utils/paystack/Paystack";
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 import { ToggleStateProp } from "../../utils/store/reducers/toggle reducer/toggleInterface";
+import PreventScroll from "../../components/prevent scroll/PreventScroll"
 
 type FormData = {
   username: string;
@@ -59,6 +60,7 @@ const PaymentForm: FC = () => {
 
   return (
     <>
+   {togglePaymentForm && <PreventScroll/>}
       <Container display={togglePaymentForm ? "0" : "5000px"}>
         <Header>
           <ArrowCircleLeftOutlinedIcon onClick={disablePaymentForm} sx={{ fontSize: "50px" }} />

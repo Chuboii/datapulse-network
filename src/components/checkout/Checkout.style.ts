@@ -13,6 +13,8 @@ export const Container = styled.div<DisplayProp>`
    bottom: 0;
    transition: all .5s;
    padding: 0 .8rem;
+   overflow-y:scroll;
+   padding-bottom:3rem;
 `
 export const Header = styled.div`
  padding: 1rem .5rem;

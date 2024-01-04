@@ -5,6 +5,7 @@ import img from '/src/assets/nigeria-naira-currency-symbol-svgrepo-com.svg';
 import { useDispatch, useSelector } from "react-redux";
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
 import { NetworkStateProp } from "../../utils/store/reducers/network reducer/networkInterface";
+import PreventScroll from "../../components/prevent scroll/PreventScroll"
 
 interface InitialReducerProp {
   selectedPlan: string | null;
@@ -81,6 +82,7 @@ const MorePlans: FC = () => {
 
   return (
     <>
+  { toggleMoreDataPlans && <PreventScroll/> }
       <Container display={toggleMoreDataPlans ? "0" : "5000px"}>
         <Header>
           <Icon onClick={disableMoreDataPlans}>

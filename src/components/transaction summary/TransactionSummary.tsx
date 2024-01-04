@@ -6,6 +6,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useDispatch, useSelector } from "react-redux";
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
 import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface";
+import PreventScroll from "../../components/prevent scroll/PreventScroll"
 
 type RecentTransacMapProp = {
     createdAt: string;
@@ -31,6 +32,7 @@ const TransactionSummary: FC = () => {
 
     return (
         <>
+        {toggleTransactionSummary && <PreventScroll/>}
             <Container display={toggleTransactionSummary ? "0" : "5000px"}>
                 <Header>
                     <Icon onClick={disableTransactionSummary}><KeyboardArrowLeftIcon/></Icon>

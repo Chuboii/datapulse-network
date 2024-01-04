@@ -23,6 +23,7 @@ import { ToggleStateProp } from "../../utils/store/reducers/toggle reducer/toggl
 import { TransactionStateProp } from "../../utils/store/reducers/transactionReducer/transactionInterface";
 import ConfirmTransactionPin from "../confirm transaction pin/ConfirmTransactionPin";
 import Alert from "../alert/Alert";
+import PreventScroll from "../../components/prevent scroll/PreventScroll"
 
 type FormProp = {
   stopPropagation: () => void
@@ -88,6 +89,7 @@ const Checkout: FC = () => {
 
   return (
     <>
+    {toggleCheckoutComp && <PreventScroll/>}
       <Alert/>
       <ConfirmTransactionPin />
       <Container onClick={disableConfirmPinComp} display={toggleCheckoutComp ? "0" : "5000px"}>

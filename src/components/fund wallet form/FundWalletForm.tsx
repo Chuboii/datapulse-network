@@ -14,6 +14,7 @@ import Paystack from "../../utils/paystack/Paystack";
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 import { ToggleStateProp } from "../../utils/store/reducers/toggle reducer/toggleInterface";
 import PreventScroll from "../../components/prevent scroll/PreventScroll"
+import PageLoader from "../page loader/PageLoader";
 
 type FormData = {
   username: string;
@@ -26,6 +27,8 @@ type FormData = {
 
 const PaymentForm: FC = () => {
   const { currentUser } = useSelector((state: StateProp) => state.user);
+  const togglePageLoader = useSelector((state: ToggleStateProp) => state.toggle.togglePageLoader)
+
   const { register, handleSubmit, getValues, formState: { isValid } } = useForm<FormData>({
     defaultValues: {
       username: currentUser.user.username,
@@ -54,17 +57,16 @@ const PaymentForm: FC = () => {
     },
   };
 
-  const submitForm = () => console.log("")
-    // if (data.username && data.email && data.amount && data.phone) {
-        
-    // }
+  const submitForm = () => dispatch({type:"TOGGLE_PAGE_LOADER", payload:true})
+
   
     
   const disablePaymentForm = () => dispatch({ type: "TOGGLE_PAYMENT_FORM", payload: false });
 
   return (
     <>
-   {togglePaymentForm && <PreventScroll/>}
+      {togglePaymentForm && <PreventScroll />}
+      {togglePageLoader && <PageLoader />}
       <Container display={togglePaymentForm ? "0" : "5000px"}>
         <Header>
           <ArrowCircleLeftOutlinedIcon onClick={disablePaymentForm} sx={{ fontSize: "50px" }} />

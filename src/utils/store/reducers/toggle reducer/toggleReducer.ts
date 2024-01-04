@@ -8,6 +8,7 @@ interface ToggleMoreDataPlans {
     toggleAirtime2CashBank: boolean;
     toggleAlert: boolean;
     toggleTransactionSummary: boolean;
+    togglePageLoader: boolean;
     
 }
 
@@ -21,6 +22,7 @@ interface StateProp {
     toggleAirtime2CashBank: boolean;
     toggleAlert: boolean;
     toggleTransactionSummary: boolean;
+    togglePageLoader: boolean;
 }
 
 interface ActionProp {
@@ -36,7 +38,8 @@ const INITIAL_STATE : ToggleMoreDataPlans = {
     toggleMoreDataNetworkPlan: false,
     toggleAirtime2CashBank: false,
     toggleAlert: false,
-    toggleTransactionSummary: false
+    toggleTransactionSummary: false,
+    togglePageLoader: false
 }
 
 
@@ -49,6 +52,11 @@ const toggleReducer = (state: StateProp = INITIAL_STATE, action: ActionProp) => 
                 ...state,
                 toggleMoreDataPlans:payload
             }
+            case "TOGGLE_PAGE_LOADER":
+                return {
+                    ...state,
+                    togglePageLoader:payload
+                }
         case 'TOGGLE_PAYMENT_FORM':
             return {
                 ...state,

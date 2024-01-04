@@ -27,6 +27,7 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
   const {currentUser} = useSelector((state:StateProp) => state.user)
   const navigate = useNavigate()
    
+  
   const componentProps: PaystackProps = {
     email,
     amount: amount * 100,
@@ -50,6 +51,7 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
           plan:"Deposit"
         })
 
+        dispatch({type:"TOGGLE_PAGE_LOADER", payload:false})
        dispatch({ type: "GET_USER_DATA", payload: data.data })
         dispatch({type:"TOGGLE_PAYMENT_FORM", payload:false})
         navigate("/dashboard")

@@ -16,7 +16,7 @@ export const Container = styled.div<DisplayProp>`
    bottom:0;
    box-sizing: border-box;
    background-color: rgb(8, 8, 8); ;
-   z-index: 1000;
+   z-index: 200;
    transition: all .5s;
 `
 export const Text = styled.div`

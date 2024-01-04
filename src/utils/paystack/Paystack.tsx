@@ -43,7 +43,7 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
     
         await axios.post("https://datapulse-network.onrender.com/api/add/history", {
           userId: currentUser.user._id,
-          photoUrl:"/src/assets/2aKlhqaw0tYWfRTBxyvbVLm1iax.svg",
+          photoUrl:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/%E2%80%94Pngtree%E2%80%94money%20savings%20glyph%20icon%20vector_5058355%20(1).png?alt=media&token=d1a708cc-7cb0-4c2d-b2d6-faf22b49cf27",
           amount,
           deposit: 'Deposit',
           history: "",

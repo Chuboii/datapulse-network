@@ -6,6 +6,7 @@ type TransactionProp = {
     dataPlanValue: null;
     dataPlanData: null;
     networkBearer: null;
+    networkImg: null;
     isNetworkBearerClicked: boolean;
     airtimeValue: null;
     airtime2CashAmountValue: null;
@@ -13,6 +14,8 @@ type TransactionProp = {
     airtime2CashAccountNameValue: null;
     airtime2CashAccountNumberValue: null;
     networkId: null;
+    transactionStatus: null;
+    isTransactionSuccessful: boolean;
 }
 
 type ActionProp = {
@@ -32,7 +35,10 @@ const INITIAL_STATE = {
     airtime2CashBankValue: null,
     airtime2CashAccountNameValue: null,
     airtime2CashAccountNumberValue: null,
-    networkId:null
+    networkId: null,
+    networkImg: null,
+    transactionStatus: null,
+    isTransactionSuccessful: false
 }
 
 
@@ -70,6 +76,16 @@ export const transactionReducer = (state: TransactionProp = INITIAL_STATE, actio
                     ...state,
                     networkId:payload
             }
+            case "GET_NETWORK_IMG":
+                return {
+                    ...state,
+                    networkImg:payload
+            }
+            case "IS_TRANSACTION_SUCCESSFUL":
+                return {
+                    ...state,
+                    isTransactionSuccessful:payload
+            }
             case "GET_AIRTIME_VALUE":
                 return {
                     ...state,
@@ -105,6 +121,11 @@ export const transactionReducer = (state: TransactionProp = INITIAL_STATE, actio
                 ...state,
                 phoneNumberValue:payload
             }
+            case "TRANSACTION_STATUS":
+                return {
+                    ...state,
+                    transactionStatus:payload
+                }
         default:
             return state
     }

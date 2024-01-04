@@ -9,7 +9,10 @@ display: flex;
 export const Header = styled.div`
  padding: 1.5rem;
  border-bottom: 1px solid rgba(255, 255,255, .3);
-
+ background: rgb(8, 8, 8, 0.09);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
  
 `
 export const Wrap = styled.div`

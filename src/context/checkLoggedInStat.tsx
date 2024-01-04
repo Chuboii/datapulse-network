@@ -10,26 +10,26 @@ interface ChildrenProp {
 export const CheckLoggedInStatContext = createContext('')
 
 export const CheckLoggedInProvider: FC<ChildrenProp> = ({ children }) => {
-    const { currentUser } = useSelector((state: StateProp) => state.user)
-    const navigate = useNavigate()
-    const location = useLocation()
+    // const { currentUser } = useSelector((state: StateProp) => state.user)
+    // const navigate = useNavigate()
+    // const location = useLocation()
 
-    useEffect(() => {
-        if (!currentUser) {
-            navigate("/")
-        }
-        else {
-            if (location.pathname === "/auth/createpasscode") {
-                navigate("/auth/createpasscode")
-            }
-            else if (location.pathname === "/auth/resetpasscode") {
-                navigate('/auth/resetpasscode')   
-            }
-            else {
-                // navigate('/auth/passcode')
-            }
-        }
-    }, [currentUser])
+    // useEffect(() => {
+    //     if (!currentUser) {
+    //         navigate("/")
+    //     }
+    //     else {
+    //         if (location.pathname === "/auth/createpasscode") {
+    //             navigate("/auth/createpasscode")
+    //         }
+    //         else if (location.pathname === "/auth/resetpasscode") {
+    //             navigate('/auth/resetpasscode')   
+    //         }
+    //         else {
+    //             navigate('/auth/passcode')
+    //         }
+    //     }
+    // }, [])
 
     const value = ''
 

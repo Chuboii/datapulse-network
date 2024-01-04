@@ -7,6 +7,8 @@ export interface Toggle {
         toggleDataPlans: boolean;
         toggleMoreDataNetworkPlan: boolean;
         toggleAirtime2CashBank: boolean;
+        toggleAlert: boolean;
+        toggleTransactionSummary: boolean;
     }
 }
 
@@ -21,6 +23,8 @@ export interface ToggleStateProp {
         toggleDataPlans: boolean;
         toggleMoreDataNetworkPlan: boolean;
         toggleAirtime2CashBank: boolean;
+        toggleAlert: boolean;
+        toggleTransactionSummary: boolean;
     }
 }
 

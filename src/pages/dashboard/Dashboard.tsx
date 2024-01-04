@@ -1,4 +1,4 @@
-import {FC} from "react"
+import {FC, useEffect, useRef} from "react"
 import DashboardHeader from "../../components/dashboard header/DashboardHeader"
 import {Container, Wrapper } from './Dashboard.style'
 import Navbar from "../../components/navbar/Navbar"
@@ -9,14 +9,23 @@ import DashboardQuickAccess from "../../components/dashboard quick access/Dashbo
 import { Outlet } from "react-router-dom"
 import DataPlans from "../../components/plans/DataPlans"
 import RecentTransactions from "../../components/recent transactions/RecentTransactions"
+import { useDispatch } from "react-redux"
 
 const Dashboard: FC = () => {
+  const containerRef = useRef()
+  const dispatch = useDispatch()
 
-
+  useEffect(() => {
+  containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    dispatch({ type: "TOGGLE_TRANSACTION_SUMMARY", payload: false })
+    dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: false });
+   dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: false });
+  }, [dispatch])
   
   return(
     <>
-      <Container>
+     
+      <Container ref={containerRef}>
         <Navbar />
         <Wrapper>
           <DashboardHeader />

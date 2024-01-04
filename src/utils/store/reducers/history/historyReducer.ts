@@ -2,6 +2,7 @@
 type HistoryProp = {
     history:object[];
     recentTransaction: object[]
+    childHistory: object[]
 }
 
 type ActionProp = {
@@ -10,7 +11,8 @@ type ActionProp = {
 }
 const INITIAL_STATE = {
    history: [],
-   recentTransaction:[]
+    recentTransaction: [],
+   childHistory: []
 }
 
 
@@ -23,6 +25,11 @@ export const historyReducer = (state: HistoryProp = INITIAL_STATE, action: Actio
                 ...state,
                 history: payload
             }
+            case "GET_CHILD_HISTORY_DATA":
+                return {
+                    ...state,
+                    childHistory: payload
+                }
             case "GET_RECENT_TRANSACTION":
             return {
                 ...state,

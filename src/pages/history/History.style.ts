@@ -4,7 +4,7 @@ export const Container = styled.div`
 padding:.5rem;
 background:black;
 margin-bottom:7rem;
-z-index: 1000;
+z-index: 100;
 position: relative;
 background:rgb(8, 8, 8);
 `
@@ -84,4 +84,9 @@ export const Success = styled.div`
 
 export const BoxWrap = styled.div`
   margin-left: 1rem;
+`
+export const Failure = styled.div`
+    font-family: "Kanit";
+  color:red;
+  font-size:13px;
 `

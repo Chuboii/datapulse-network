@@ -41,148 +41,408 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
     const airtime2cashAmount = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAmountValue)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    //"AIRTEL COOPERATE GIFTING is not available right now"
-    //"GLO GIFTING is not available right now
-    //"9MOBILE GIFTING is not available right now"
-    //Invalid Phone Number 44444444444
-    //This is not a GLO Number =>88888888888'
-    //Insufficient Account Kindly Fund Your Wallet => ₦0.00
-//fix the airtime2cash including the reloads to the whatsapp
+    const dataPlanValue = useSelector((state: TransactionStateProp) => state.transaction.dataPlanValue)
+    const dataPlanData = useSelector((state: TransactionStateProp) => state.transaction.dataPlanData)
+    const networkImg = useSelector((state:TransactionStateProp) => state.transaction.networkImg)
     
+
+
    useEffect(()=>{
     const verifyPin = async() => {
         if (pin.length === 4) {
-            try {
+            //500 < 400
+                try {
+
                     setIsDataLoaded(true)
                     await axios.post("http://localhost:8080/api/auth/passcode", {
                         userId: currentUser.user._id,
                         username: currentUser.user.username,
                         pin
                     })
-        
-                if (location.pathname === "/dashboard") {
-                    
-                    const networkId = networkValue === "MTN SME" || networkValue === "MTN GIFTING" || networkValue === "MTN COOPERATE GIFTING" ? "1" : networkValue === "AIRTEL" ? "2" : networkValue === "GLO COOPERATE GIFTING" || networkValue === "GLO GIFTING"  ? '3' : networkValue === "9MOBILE COOPERATE GIFTING" || networkValue === "9MOBILE GIFTING" ? "4" : ''
+    
+      const dataPrice = dataPlanValue && dataPlanValue.split("₦")[1].split(".")[0] 
+   
+             if (location.pathname === "/dashboard") {
+                if (dataPrice && +dataPrice <= currentUser.user.balance) {
+                  
+                        const networkId = networkValue === "MTN SME" || networkValue === "MTN GIFTING" || networkValue === "MTN COOPERATE GIFTING" ? "1" : networkValue === "AIRTEL" ? "2" : networkValue === "GLO COOPERATE GIFTING" || networkValue === "GLO GIFTING" ? '3' : networkValue === "9MOBILE COOPERATE GIFTING" || networkValue === "9MOBILE GIFTING" ? "4" : ''
                             
-                    console.log(buyDataId)
-                        const apiUrl = 'https://n3tdata.com/api/data';
+                   
+                        // const apiUrl = 'https://n3tdata.com/api/data';
         
-                        const payload = {
-                            network: networkId,
-                            phone:phoneNumberValue && phoneNumberValue[0] ,
-                            data_plan: buyDataId,
-                            bypass: false,
-                            'request-id': String(Date.now())
-                        };
+                        // const payload = {
+                        //     network: networkId,
+                        //     phone: phoneNumberValue && phoneNumberValue[0],
+                        //     data_plan: buyDataId,
+                        //     bypass: false,
+                        //     'request-id': String(Date.now())
+                        // };
                 
-                        // Request headers
-                        const headers = {
-                            'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
-                            'Content-Type': 'application/json',
-                        };
+                        // // Request headers
+                        // const headers = {
+                        //     'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                        //     'Content-Type': 'application/json',
+                        // };
                 
             
-                        const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+                        // const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
         
+                        // setIsDataLoaded(false)
+                        // console.log('API Response:', res.data);
+        
+                        dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
+            
+                        dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${dataPlanData} to ${phoneNumberValue}`})
+                        
+                        await axios.post("http://localhost:8080/api/add/history", {
+                            userId: currentUser.user._id,
+                            photoUrl:networkImg,
+                            amount:dataPrice,
+                            deposit: null,
+                            plan:"Data",
+                            history: `${dataPlanData} to ${phoneNumberValue}`,
+                            declined:false
+                        })
+                        
+                       const newBalance = await axios.put("http://localhost:8080/api/decre/balance", {
+                            id: currentUser.user._id,
+                            amount: dataPrice
+                       })
+                        
+                        dispatch({ type: 'GET_USER_DATA', payload: newBalance.data })
                         setIsDataLoaded(false)
-                        console.log('API Response:', res.data);
-                    
-                }
-                else if (location.pathname === "/dashboard/airtime") {
-                    const apiUrl = 'https://n3tdata.com/api/topup/';
+                        
+                        setPin([])
+                        setCount(0)
 
-                    const payload = {
-                        network: buyAirtimeNetworkId,
-                        phone: phoneNumberValue && phoneNumberValue[0],
-                        plan_type: 'VTU',
-                        bypass: false,
-                        amount: amountValue,
-                        'request-id': String(Date.now())
-                    };
+                        const dots = document.querySelectorAll(".dot") as
+                            NodeListOf<HTMLElement>;
+
+                        dots.forEach(dot => {
+                            dot.style.backgroundColor = "#2A2F3A"
+                            dot.style.width = "10px"
+                            dot.style.height = "10px"
+                        })
+                 
+                      navigate("/transaction/status")
+                    }
+                    else {
+                        setIsDataLoaded(false)
+                        setPin([])
+                        setCount(0)
+           
+                        const dots = document.querySelectorAll(".dot") as
+                            NodeListOf<HTMLElement>;
+           
+                        dots.forEach(dot => {
+                            dot.style.backgroundColor = "#2A2F3A"
+                            dot.style.width = "10px"
+                            dot.style.height = "10px"
+                        })
+           
+                        toast.error("Insufficient funds!", {
+                           position: "top-right",
+                           autoClose: 500,
+                           hideProgressBar: false,
+                           closeOnClick: true,
+                           pauseOnHover: true,
+                           draggable: true,
+                           progress: undefined,
+                           theme: "colored",
+                       });
+           
+                       }
+                    }
+     else if (location.pathname === "/dashboard/airtime") {
+                 if (amountValue && +amountValue <= currentUser.user.balance) {
+                    
+                //    const apiUrl = 'https://n3tdata.com/api/topup/';
+
+                //         const payload = {
+                //             network: buyAirtimeNetworkId,
+                //             phone: phoneNumberValue && phoneNumberValue[0],
+                //             plan_type: 'VTU',
+                //             bypass: false,
+                //             amount: amountValue,
+                //             'request-id': String(Date.now())
+                //         };
                 
-                    // Request headers
-                    const headers = {
-                        'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
-                        'Content-Type': 'application/json',
-                    };
+                //         // Request headers
+                //         const headers = {
+                //             'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                //             'Content-Type': 'application/json',
+                //         };
                 
             
-                    const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+                //        await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
         
-                    setIsDataLoaded(false)
-                    console.log('API Response:', res.data);
-                }
-                else if(location.pathname === "/dashboard/airtime2cash") {
-                    setIsDataLoaded(true)
-                    window.open(`https://api.whatsapp.com/send/?phone=%2B2348075075032&text=%0A++++++%2AAIRTIME+2+CASH+Order%3A%2A%0A++%0A++++++%2ANetwork%3A%2A+_${networkValue}_%0A++++++%2AAmount%3A%2A+_${airtime2cashAmount}_%0A++++++%2APhone%3A%2A+_${phoneNumberValue && phoneNumberValue[0]}_%0A++%0A++++++%2ABank%3A%2A+_${bankInputValue}_%0A++++++%2AAcct+No%3A%2A+_${accountNumberInputValue}_%0A++++++%2AAcct+Name%3A%2A+_${accountNameInputValue}_&type=phone_number&app_absent=0`)
-                    navigate('/dashboard/airtime2cash')
-                    setIsDataLoaded(false)
-                    dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: false })
-                    dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: false });
+                        dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
+            
+                        dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${amountValue} airtime to ${phoneNumberValue}`})
+                        
+                        await axios.post("http://localhost:8080/api/add/history", {
+                            userId: currentUser.user._id,
+                            photoUrl:networkImg,
+                            amount:amountValue,
+                            deposit: null,
+                            plan:"Airtime",
+                            history: `${amountValue} airtime to ${phoneNumberValue}`,
+                            declined:false
+                        })
+                        
+                       const newBalance = await axios.put("http://localhost:8080/api/decre/balance", {
+                            id: currentUser.user._id,
+                            amount: amountValue
+                       })
+                        
+                        dispatch({ type: 'GET_USER_DATA', payload: newBalance.data })
 
-                }
-         }
-         catch (err) {
-             console.log(err)
-             if (axios.isAxiosError(err)) {
-                 if (err?.response?.data.message === "Pin incorrect") {
-                     toast.error("Pin incorrect!", {
-                         position: "top-right",
-                         autoClose: 500,
-                         hideProgressBar: false,
-                         closeOnClick: true,
-                         pauseOnHover: true,
-                         draggable: true,
-                         progress: undefined,
-                         theme: "colored",
-                     });
-                
-                     setPin([])
-                     setCount(0)
-        
-                     const dots = document.querySelectorAll(".dot") as
-                         NodeListOf<HTMLElement>;
-         
-                     dots.forEach(dot => {
-                         dot.style.backgroundColor = "#2A2F3A"
-                         dot.style.width = "10px"
-                         dot.style.height = "10px"
-                     })
-          
-                     setIsDataLoaded(false)
-                 }
-                 else {
-                     toast.error("Oops! Connection Timeout! Try again!", {
-                         position: "top-right",
-                         autoClose: 500,
-                         hideProgressBar: false,
-                         closeOnClick: true,
-                         pauseOnHover: true,
-                         draggable: true,
-                         progress: undefined,
-                         theme: "colored",
-                     });
-                
-                     setPin([])
-                     setCount(0)
-        
-                     const dots = document.querySelectorAll(".dot") as
-                         NodeListOf<HTMLElement>;
-         
-                     dots.forEach(dot => {
-                         dot.style.backgroundColor = "#2A2F3A"
-                         dot.style.width = "10px"
-                         dot.style.height = "10px"
-                     })
-          
-                     setIsDataLoaded(false)
-                 }
+                        setIsDataLoaded(false)
+                        // console.log('API Response:', res.data);
+                        setPin([])
+                        setCount(0)
+
+                        const dots = document.querySelectorAll(".dot") as
+                            NodeListOf<HTMLElement>;
+
+                        dots.forEach(dot => {
+                            dot.style.backgroundColor = "#2A2F3A"
+                            dot.style.width = "10px"
+                            dot.style.height = "10px"
+                        })
+                        navigate("/transaction/status")
+
+                    }
+                    else {
+                        setIsDataLoaded(false)
+                        setPin([])
+                        setCount(0)
+           
+                        const dots = document.querySelectorAll(".dot") as
+                            NodeListOf<HTMLElement>;
+           
+                        dots.forEach(dot => {
+                            dot.style.backgroundColor = "#2A2F3A"
+                            dot.style.width = "10px"
+                            dot.style.height = "10px"
+                        })
+           
+                        toast.error("Insufficient funds!", {
+                           position: "top-right",
+                           autoClose: 500,
+                           hideProgressBar: false,
+                           closeOnClick: true,
+                           pauseOnHover: true,
+                           draggable: true,
+                           progress: undefined,
+                           theme: "colored",
+                       });
+           
+                       }
+                    }
+                    else if (location.pathname === "/dashboard/airtime2cash") {
+                        setIsDataLoaded(true)
+                        window.open(`https://api.whatsapp.com/send/?phone=%2B2348075075032&text=%0A++++++%2AAIRTIME+2+CASH+Order%3A%2A%0A++%0A++++++%2ANetwork%3A%2A+_${networkValue}_%0A++++++%2AAmount%3A%2A+_${airtime2cashAmount}_%0A++++++%2APhone%3A%2A+_${phoneNumberValue && phoneNumberValue[0]}_%0A++%0A++++++%2ABank%3A%2A+_${bankInputValue}_%0A++++++%2AAcct+No%3A%2A+_${accountNumberInputValue}_%0A++++++%2AAcct+Name%3A%2A+_${accountNameInputValue}_&type=phone_number&app_absent=0`)
+                        navigate('/dashboard/airtime2cash')
+                        setIsDataLoaded(false)
+                        dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: false })
+                        dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: false });
+                        setPin([])
+                        setCount(0)
+
+                        const dots = document.querySelectorAll(".dot") as
+                            NodeListOf<HTMLElement>;
+
+                        dots.forEach(dot => {
+                            dot.style.backgroundColor = "#2A2F3A"
+                            dot.style.width = "10px"
+                            dot.style.height = "10px"
+                        })
+
              }
-         }
+    
+                }
+            catch (err) {
+                 
+                    setIsDataLoaded(false)
+                    console.log(err)
+                                   
+                    setPin([])
+                    setCount(0)
+
+                    const dots = document.querySelectorAll(".dot") as
+                        NodeListOf<HTMLElement>;
+
+                    dots.forEach(dot => {
+                        dot.style.backgroundColor = "#2A2F3A"
+                        dot.style.width = "10px"
+                        dot.style.height = "10px"
+                    })
+
+                        if (axios.isAxiosError(err)) {
+                            if (err?.response?.data.message === "Pin incorrect") {
+                                toast.error("Pin incorrect!", {
+                                    position: "top-right",
+                                    autoClose: 500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "colored",
+                                });
+                
+                                setPin([])
+                                setCount(0)
+        
+                                const dots = document.querySelectorAll(".dot") as
+                                    NodeListOf<HTMLElement>;
+         
+                                dots.forEach(dot => {
+                                    dot.style.backgroundColor = "#2A2F3A"
+                                    dot.style.width = "10px"
+                                    dot.style.height = "10px"
+                                })
+          
+                                setIsDataLoaded(false)
+                            }
+                            else if (err?.response?.data.message === `${networkValue} is not available right now`) {
+                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+            
+                                dispatch({type:"TRANSACTION_STATUS", payload:`${networkValue} is not available right now`})
+                                setPin([])
+                                setCount(0)
+       
+                                const dots = document.querySelectorAll(".dot") as
+                                    NodeListOf<HTMLElement>;
+        
+                                dots.forEach(dot => {
+                                    dot.style.backgroundColor = "#2A2F3A"
+                                    dot.style.width = "10px"
+                                    dot.style.height = "10px"
+                                })
+         
+                                await axios.post("http://localhost:8080/api/add/history", {
+                                    userId: currentUser.user._id,
+                                    photoUrl:"/src/assets/error-svgrepo-com.svg",
+                                    amount:amountValue,
+                                    deposit: null,
+                                    plan:"Data",
+                                    history: `${amountValue} to ${phoneNumberValue} failed`,
+                                    declined:true
+                                })
+                                
+                                setIsDataLoaded(false)
+                            }
+                     
+                            else if (err?.response?.data.message === `Invalid Phone Number ${phoneNumberValue}`) {
+                               
+                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+            
+                                dispatch({type:"TRANSACTION_STATUS", payload:`Invalid phone Number => ${phoneNumberValue}`})
+                                setPin([])
+                                setCount(0)
+       
+                                setPin([])
+                                setCount(0)
+       
+                                const dots = document.querySelectorAll(".dot") as
+                                    NodeListOf<HTMLElement>;
+        
+                                dots.forEach(dot => {
+                                    dot.style.backgroundColor = "#2A2F3A"
+                                    dot.style.width = "10px"
+                                    dot.style.height = "10px"
+                                })
+         
+                                setIsDataLoaded(false)
+                                navigate("/transaction/status")
+                            }
+                            else if (err?.response?.data.message === `This is not a ${networkValue} Number => ${phoneNumberValue}`) {
+                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+            
+                                dispatch({ type: "TRANSACTION_STATUS", payload: `This is not a ${networkValue} Number =>${phoneNumberValue}` })
+                                
+                                setPin([])
+                                setCount(0)
+       
+                                const dots = document.querySelectorAll(".dot") as
+                                    NodeListOf<HTMLElement>;
+        
+                                dots.forEach(dot => {
+                                    dot.style.backgroundColor = "#2A2F3A"
+                                    dot.style.width = "10px"
+                                    dot.style.height = "10px"
+                                })
+         
+                                setIsDataLoaded(false)
+        
+                                navigate("/transaction/status")
+                            }
+                                //"Minimum Airtime Purchase for this account is => ₦50.00
+                    else if (err?.response?.data.message === `Minimum Airtime Purchase for this account is => ₦50.00`) {
+                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+            
+                                dispatch({ type: "TRANSACTION_STATUS", payload: `Minimum Airtime Purchase for this account is => ₦50.00 ` })
+                                
+                                setPin([])
+                                setCount(0)
+       
+                                await axios.post("http://localhost:8080/api/add/history", {
+                                    userId: currentUser.user._id,
+                                    photoUrl:"/src/assets/error-svgrepo-com.svg",
+                                    amount:amountValue,
+                                    deposit: null,
+                                    plan:"Airtime",
+                                    history: `${amountValue} airtime to ${phoneNumberValue} failed`,
+                                    declined:true
+                                })
+                                
+                                const dots = document.querySelectorAll(".dot") as
+                                    NodeListOf<HTMLElement>;
+        
+                                dots.forEach(dot => {
+                                    dot.style.backgroundColor = "#2A2F3A"
+                                    dot.style.width = "10px"
+                                    dot.style.height = "10px"
+                                })
+         
+                                setIsDataLoaded(false)
+        
+                                navigate("/transaction/status")
+                            }
+                            else {
+                                toast.error("Oops! Connection Timeout! Try again!", {
+                                    position: "top-right",
+                                    autoClose: 500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "colored",
+                                });
+                
+                                setPin([])
+                                setCount(0)
+        
+                                const dots = document.querySelectorAll(".dot") as
+                                    NodeListOf<HTMLElement>;
+         
+                                dots.forEach(dot => {
+                                    dot.style.backgroundColor = "#2A2F3A"
+                                    dot.style.width = "10px"
+                                    dot.style.height = "10px"
+                                })
+          
+                                setIsDataLoaded(false)
+                            }
+                        }
+                    }
      }
     }
     verifyPin()
-   },[pin, currentUser.user.username, currentUser.user._id])
+   },[pin, currentUser.user.username, currentUser.user._id, dispatch])
 
 
     const insertPin = (el: number) => {

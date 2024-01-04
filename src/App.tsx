@@ -1,7 +1,7 @@
 import RenderRoutes from "./routes/Routes"
 import {FC, useState, useEffect} from "react"
 import {useLocation, useNavigate } from "react-router-dom"
-
+import { useSelector } from "react-redux";
 type TimeInterval = ReturnType<typeof setInterval>;
 
 
@@ -10,6 +10,26 @@ const App:FC = () => {
   const location = useLocation();
   const [timer, setTimer] = useState<number>(0);
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state: StateProp) => state.user)
+
+
+  useEffect(() => {
+      if (!currentUser) {
+          navigate("/")
+      }
+      else {
+          if (location.pathname === "/auth/createpasscode") {
+              navigate("/auth/createpasscode")
+          }
+          else if (location.pathname === "/auth/resetpasscode") {
+              navigate('/auth/resetpasscode')   
+          }
+          else {
+              navigate('/auth/passcode')
+          }
+      }
+  }, [])
+
 
   useEffect(() => {
     const interval: TimeInterval = setInterval(() => {
@@ -17,7 +37,7 @@ const App:FC = () => {
     }, 1000);
 
     if (timer > 180) {
-      navigate('/auth/passcode');
+      // navigate('/auth/passcode');
     }
 
     function isUserActive() {

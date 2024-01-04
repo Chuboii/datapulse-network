@@ -85,3 +85,8 @@ export const BoxWrap = styled.div`
 export const H2 = styled.h2`
 
 `
+export const Failure = styled.div`
+    font-family: "Kanit";
+  color:red;
+  font-size:13px;
+`

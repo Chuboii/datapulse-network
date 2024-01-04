@@ -1,5 +1,5 @@
 import History from "../models/History.js"
-
+import {v4 as uuid} from 'uuid'
 export const postTransactionHistory = async (req, res, next) => {
   try {
     const {
@@ -7,7 +7,9 @@ export const postTransactionHistory = async (req, res, next) => {
       photoUrl,
       amount,
       history,
-      deposit
+      deposit,
+      plan,
+      declined
     } = req.body
 
     const createHistory = new History({
@@ -15,7 +17,10 @@ export const postTransactionHistory = async (req, res, next) => {
       photoUrl,
       amount,
       history,
-      deposit
+      deposit,
+      uid: uuid(),
+      plan,
+      declined
     })
 
     await createHistory.save()
@@ -33,12 +38,13 @@ export const getLimitedHistory = async (req, res, next) => {
   try {
     const {userId,  limit = 0  } = req.params
 
-    console.log(limit)
-    const a = +limit + 4
-    console.log(a)
+    
+    const limitAmount = +limit + 4
     const getLimited = await History.find({
       userId
-    }).limit(a)
+    })
+      .sort({ createdAt: -1 })
+      .limit(limitAmount)
 
     res.status(200).json(getLimited)
   }

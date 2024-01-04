@@ -14,8 +14,8 @@ const Airtime: FC = () => {
     const dispatch = useDispatch()
 
 
-    const changeValue = (e:ValueProp) => {
-        dispatch({type:"GET_AIRTIME_VALUE", payload:e.target.value})
+    const changeValue = (e: ValueProp) => {
+            dispatch({ type: "GET_AIRTIME_VALUE", payload: e.target.value })
     }
 
     return (
@@ -23,7 +23,7 @@ const Airtime: FC = () => {
          
                     <Wrapper>
                 <Header>Amount</Header>
-              <Input onChange={changeValue} type="number" placeholder="e.g 700"/>
+              <Input onChange={changeValue} type="number" placeholder="Minimum NGN 50"/>
             </Wrapper>
         <DataServices/>
         <PurchaseForm/>

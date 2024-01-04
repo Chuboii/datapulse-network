@@ -11,11 +11,11 @@ right:0;
 display:flex;
 justify-content:space-between;
 padding:.5rem 1rem;
-background: rgb(8, 8, 8, 0.09);
+background: rgb(8, 8, 8, 0.79);
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
-z-index:10;
+z-index:100;
 
 @media screen and (min-width:768px){
     display:none;

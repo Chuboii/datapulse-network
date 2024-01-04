@@ -29,7 +29,7 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
    
   const componentProps: PaystackProps = {
     email,
-    amount: amount * 1000,
+    amount: amount * 100,
       name,
       phone,
     publicKey: "pk_test_c50b4674fe806e57ac9232d139a235df8dd03ed6",
@@ -46,7 +46,8 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
           photoUrl:"/src/assets/2aKlhqaw0tYWfRTBxyvbVLm1iax.svg",
           amount,
           deposit: 'Deposit',
-          history:""
+          history: "",
+          plan:"Deposit"
         })
 
        dispatch({ type: "GET_USER_DATA", payload: data.data })

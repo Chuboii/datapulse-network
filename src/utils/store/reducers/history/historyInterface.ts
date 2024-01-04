@@ -1,7 +1,8 @@
 export interface History {
     history:{
     history: object[],
-    recentTransaction: object[]
+        recentTransaction: object[],
+        childHistory:object[]
 }
 }
 
@@ -9,7 +10,8 @@ export interface History {
 export interface HistoryStateProp {
     history:{
     history: object[],
-    recentTransaction:object[]
+        recentTransaction: object[],
+        childHistory:object[]
 }
 }
 

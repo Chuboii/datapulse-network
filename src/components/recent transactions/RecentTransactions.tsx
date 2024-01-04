@@ -1,10 +1,11 @@
 import {FC, useEffect, useState} from "react"
-import {Container, Wrapper, Header, DateTime, Wrap, Img, Box, Button, Text,Success, Time} from "./RecentTransactions.style"
+import {Container, Wrapper, Failure, Header, DateTime, Wrap, Img, Box, Button, Text,Success, Time} from "./RecentTransactions.style"
 import { useSelector, useDispatch} from "react-redux"
 import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface"
 import axios from "axios"
 import {useLocation} from "react-router-dom"
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface"
+import TransactionSummary from "../transaction summary/TransactionSummary"
 
 type RecentTransacMapProp = {
   createdAt: string;
@@ -13,6 +14,9 @@ type RecentTransacMapProp = {
   amount: number;
   _id: string;
   history: string;
+  declined: boolean;
+  uid: string;
+  plan: string;
 
 }
 const RecentTransactions: FC = () =>{
@@ -60,15 +64,22 @@ const location = useLocation()
   }
 
 
+  const enableTransactionSummary = (history: RecentTransacMapProp) => {
+    dispatch({type:"GET_CHILD_HISTORY_DATA", payload:history})
+    dispatch({ type: "TOGGLE_TRANSACTION_SUMMARY", payload: true })
+  }
   return (
     <>
+      <TransactionSummary/>
     <Container>
     <Header> Recent Transactions</Header>
     {
       historyData ? historyData.map((history:RecentTransacMapProp) => {
       const date = new Date(history.createdAt)
       return (
-    <Wrapper key={history._id}>
+        <Wrapper key={history._id} onClick={() => {
+          enableTransactionSummary(history)
+    }}>
     <DateTime>{ date.toDateString()}</DateTime>
     <Wrap>
     <Img src={history.photoUrl}/>
@@ -79,8 +90,10 @@ const location = useLocation()
     <Box>
     <Text>
     {history.amount}.00
-    </Text>
-    <Success>Successful </Success>
+              </Text>
+              {history.declined ? <Failure>Failed</Failure>:
+                <Success>Successful</Success>
+              }
     </Box>
     </Wrap>
     </Wrapper>

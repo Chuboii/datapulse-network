@@ -6,7 +6,10 @@ const historySchema = new mongoose.Schema({
     history: String,
     deposit: String,
     photoUrl: String,
-    amount:String
+    amount: String,
+    uid: String,
+    plan: String,
+    declined:Boolean
 }, {timestamps:true})
 
 

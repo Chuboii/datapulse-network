@@ -100,7 +100,9 @@ const DataServices: FC = () => {
         transactionDispatch({
             type: "GET_NETWORK_VALUE", payload: net
         })
-      transactionDispatch({type:"GET_NETWORK_ID", payload:idx})
+    
+    transactionDispatch({ type: "GET_NETWORK_ID", payload: idx })
+    
         transactionDispatch({
             type: "GET_DATA_PLAN_ID", payload: null
         })
@@ -108,11 +110,15 @@ const DataServices: FC = () => {
             type: "GET_DATA_PLAN_VALUE", payload: null
         })
     
+        transactionDispatch({
+          type: "GET_NETWORK_IMG", payload: Plans[net as keyof typeof Plans][0].image
+      })
+  
         
         dispatch({ type: "SELECT_NETWORK", payload: net })
   }
 
-  const handleAirtimeNetworkClicks = (net:string, id:number) => {
+  const handleAirtimeNetworkClicks = (net:string, id:number, img:string) => {
     transactionDispatch({
       type: "GET_DATA_PLAN_ID", payload: id
     })
@@ -120,6 +126,10 @@ const DataServices: FC = () => {
       type: "GET_NETWORK_VALUE", payload: net
   })
     dispatch({ type: "SELECT_NETWORK", payload: net })
+
+    transactionDispatch({
+      type: "GET_NETWORK_IMG", payload: img
+  })
   }
 
 
@@ -146,7 +156,7 @@ const DataServices: FC = () => {
               networkForAirtime.map(network => (
                 <Tab key={network.id}
                   onClick={() => {
-                    handleAirtimeNetworkClicks(network.network, network.id)
+                    handleAirtimeNetworkClicks(network.network, network.id, network.img)
                   }
                   }
                   bg={state.selectedNetwork === network.network ? getBackgroundColor(network.network) : "#141414"}>

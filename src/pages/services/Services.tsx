@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Services: FC = () => {
     const navigate = useNavigate()
 
-    const navigateToData = () => navigate("/dashboard/data")
+    const navigateToData = () => navigate("/dashboard")
 
     const navigateToAirtime = () => navigate("/dashboard/airtime")
 

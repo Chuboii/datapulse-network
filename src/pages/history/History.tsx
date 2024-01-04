@@ -1,5 +1,5 @@
-import { FC, useEffect } from "react";
-import { Container,Contain, Header,WrapBox, Wrapper, BoxWrap, Success, DateTime, Time, Img, Text, Wrap, H2, Box } from './History.style'
+import { FC, useEffect, useRef } from "react";
+import { Container,Contain, Failure, Header,WrapBox, Wrapper, BoxWrap, Success, DateTime, Time, Img, Text, Wrap, H2, Box } from './History.style'
 import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav";
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import Navbar from "../../components/navbar/Navbar";
@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface";
+import TransactionSummary from "../../components/transaction summary/TransactionSummary";
 
 type HistoryMapProp = {
         photoUrl: string;
@@ -20,8 +21,10 @@ const History: FC = () => {
     const {currentUser} = useSelector((state: StateProp) => state.user) 
     const dispatch = useDispatch()
     const historyData = useSelector((state:HistoryStateProp) => state.history.history) as HistoryMapProp[]
-    
+    const containerRef = useRef(null)
+   
     useEffect(() => {
+        containerRef.current.scrollIntoView({ behavior: 'smooth' });
         const getHistoryData = async () => {
             try {
               const history = await axios.get(`http://localhost:8080/api/get/all/history/${currentUser.user._id}`)
@@ -36,10 +39,16 @@ const History: FC = () => {
         }
         getHistoryData()
     }, [dispatch, currentUser.user._id])
+
+    const enableTransactionSummary = (history) => {
+        dispatch({ type: "GET_CHILD_HISTORY_DATA", payload: history })
+        dispatch({ type: "TOGGLE_TRANSACTION_SUMMARY", payload: true })
+    }
     
     return (
         <>
-            <Container>
+            <TransactionSummary/>
+            <Container ref={containerRef}>
                 <Navbar />
                 <Box>
                 <Header>
@@ -54,7 +63,10 @@ const History: FC = () => {
                         const date = new Date(history.createdAt)
 
                         return(
-                        <Wrapper key={history._id}>
+                            <Wrapper key={history._id} onClick={() => {
+                                enableTransactionSummary(history)
+                            } }>
+                        
                             <DateTime> {date.toDateString()} </DateTime>
                             <WrapBox>
                                 <Wrap>
@@ -68,7 +80,9 @@ const History: FC = () => {
                                     <Text>
                                         {history.amount}.00
                                     </Text>
-                                    <Success>Successful </Success>
+                                    {history.declined ? <Failure>Failed</Failure>:
+                <Success>Successful</Success>
+              }
                                 </Box>
                             </WrapBox>
                         </Wrapper>

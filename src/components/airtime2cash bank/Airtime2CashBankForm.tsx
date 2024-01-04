@@ -42,7 +42,7 @@ const Airtime2CashBankForm: FC = () => {
     
     const enableCheckoutForm = () => {
         if (bankInputValue && accountNameInputValue && accountNumberInputValue) {
-            console.log('clicked')
+                dispatch({ type: "TOGGLE_AIRTIME2CASH_BANK", payload: false })
             dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: true })
         }
     }

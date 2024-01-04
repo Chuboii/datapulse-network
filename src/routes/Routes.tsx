@@ -13,13 +13,15 @@ import Airtime from "../components/airtime/Airtime.tsx";
 import CreatePin from "../components/create pin/CreatePin.tsx";
 import Services from "../pages/services/Services"
 import ResetPin from "../components/reset pin header/ResetPinHeader.tsx";
+import MorePlans from "../components/more plans/MorePlans.tsx";
+import TransactionStatus from "../components/transaction status/TransactionStatus.tsx";
 const RenderRoutes: FC = () => {
     
 
     return (
         <>
             <Routes>
-            
+            <Route path="/transaction/status" element={<TransactionStatus/>} />
                 <Route path="/" element={<Auth/>} />
                 <Route path='/auth/resetpasscode' element={<ResetPin />} />
                 <Route path='/auth/createpasscode' element={<CreatePin/>} />
@@ -31,7 +33,8 @@ const RenderRoutes: FC = () => {
                 <Route path='/more' element={<MoreTab/>} />
                 
                 <Route path='/dashboard' element={<Dashboard />}>  
-                <Route index element={<DataServices/>}/> 
+                    <Route index element={<DataServices />} /> 
+             <Route path='more/plans' element={<MorePlans/>}/>
                  <Route path="airtime" element={<Airtime/>}/> 
                  <Route path="airtime2cash" element={<Airtime2Cash/>}/> 
                   

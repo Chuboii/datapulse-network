@@ -25,7 +25,7 @@ export const Logout = styled.div`
 `
 export const Welcome = styled.h2`
 font-family: 'Archivo Black';
-margin: 0;
+margin:.5rem 0;
 `
 export const ProfileImg = styled.img`
   width: 70px;

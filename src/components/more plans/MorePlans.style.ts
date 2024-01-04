@@ -24,17 +24,13 @@ top: ${({display}) => display};
 right: 0;
 transition: all .5s;
 bottom:0;
-background-color: black;
-z-index: 20;
+background-color:rgb(8, 8, 8) ;
+z-index: 5000;
   @media screen and (max-width:768px){
     margin: 0;
     padding:0;
     width:100%;
 overflow:hidden;
-position:fixed;
-right: 0;
-bottom:0;
-z-index: 20;
   }
 `
 export const Header = styled.div`

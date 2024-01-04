@@ -4,16 +4,16 @@
       {"id": 2, "category": "SME", "plan": "1GB", "price": "₦255.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
       {"id": 3, "category": "SME", "plan": "2GB", "price": "₦510.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
       {"id": 4, "category": "SME", "plan": "3GB", "price": "₦765.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
-      {"id": 5, "category": "SME", "plan": "5GB", "price": "₦1,275.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
-      {"id": 6, "category": "SME", "plan": "10GB", "price": "₦2,550.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"}
+      {"id": 5, "category": "SME", "plan": "5GB", "price": "₦1275.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
+      {"id": 6, "category": "SME", "plan": "10GB", "price": "₦2550.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"}
     ],
     "MTN COOPERATE GIFTING": [
       {"id": 50, "category": "COOPERATE GIFTING", "plan": "500MB", "price": "₦130.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
       {"id": 51, "category": "COOPERATE GIFTING", "plan": "1GB", "price": "₦260.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
       {"id": 52, "category": "COOPERATE GIFTING", "plan": "2GB", "price": "₦520.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
       {"id": 53, "category": "COOPERATE GIFTING", "plan": "3GB", "price": "₦780.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
-      {"id": 54, "category": "COOPERATE GIFTING", "plan": "5GB", "price": "₦1,300.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
-      {"id": 55, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦2,600.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"}
+      {"id": 54, "category": "COOPERATE GIFTING", "plan": "5GB", "price": "₦1300.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
+      {"id": 55, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦2600.00", "validity": "1 Month", "image": "/src/assets/mtn-3.svg", "network": "MTN"}
     ],
     "MTN GIFTING": [
       {"id": 65, "category": "GIFTING", "plan": "1GB", "price": "₦240.00", "validity": "7 Days", "image": "/src/assets/mtn-3.svg", "network": "MTN"},
@@ -23,16 +23,16 @@
       {"id": 46, "category": "COOPERATE GIFTING", "plan": "500MB", "price": "₦103.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
       {"id": 47, "category": "COOPERATE GIFTING", "plan": "1GB", "price": "₦205.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
       {"id": 48, "category": "COOPERATE GIFTING", "plan": "2GB", "price": "₦410.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
-      {"id": 49, "category": "COOPERATE GIFTING", "plan": "5GB", "price": "₦1,025.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
-      {"id": 56, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦2,050.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
+      {"id": 49, "category": "COOPERATE GIFTING", "plan": "5GB", "price": "₦1025.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
+      {"id": 56, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦2050.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
       {"id": 70, "category": "COOPERATE GIFTING", "plan": "300MB", "price": "₦85.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"},
       {"id": 71, "category": "COOPERATE GIFTING", "plan": "100MB", "price": "₦30.00", "validity": "1 Month", "image": "/src/assets/airtel-logo.svg", "network": "AIRTEL"}
     ],
     "GLO GIFTING": [
       {"id": 20, "category": "GIFTING", "plan": "1.35GB", "price": "₦480.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
       {"id": 21, "category": "GIFTING", "plan": "2.9GB", "price": "₦970.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
-      {"id": 22, "category": "GIFTING", "plan": "4.1GB", "price": "₦1,450.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
-      {"id": 24, "category": "GIFTING", "plan": "5.8GB", "price": "₦1,900.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"}
+      {"id": 22, "category": "GIFTING", "plan": "4.1GB", "price": "₦1450.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
+      {"id": 24, "category": "GIFTING", "plan": "5.8GB", "price": "₦1900.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"}
     ],
     "GLO COOPERATE GIFTING": [
       {"id": 57, "category": "COOPERATE GIFTING", "plan": "200MB", "price": "₦50.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
@@ -40,14 +40,14 @@
       {"id": 59, "category": "COOPERATE GIFTING", "plan": "1GB", "price": "₦230.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
       {"id": 60, "category": "COOPERATE GIFTING", "plan": "2GB", "price": "₦460.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
       {"id": 61, "category": "COOPERATE GIFTING", "plan": "3GB", "price": "₦690.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
-      {"id": 62, "category": "COOPERATE GIFTING", "plan": "5GB", "price": "₦1,150.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
-      {"id": 63, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦2,300.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"}
+      {"id": 62, "category": "COOPERATE GIFTING", "plan": "5GB", "price": "₦1150.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"},
+      {"id": 63, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦2300.00", "validity": "1 Month", "image": "/src/assets/glo-logo.svg", "network": "GLO"}
     ],
     "9MOBILE GIFTING": [
       {"id": 36, "category": "GIFTING", "plan": "1.5GB", "price": "₦880.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
-      {"id": 37, "category": "GIFTING", "plan": "2GB", "price": "₦1,000.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
-      {"id": 38, "category": "GIFTING", "plan": "3GB", "price": "₦1,300.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
-      {"id": 39, "category": "GIFTING", "plan": "4.5GB", "price": "₦1,750.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"}
+      {"id": 37, "category": "GIFTING", "plan": "2GB", "price": "₦1000.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
+      {"id": 38, "category": "GIFTING", "plan": "3GB", "price": "₦1300.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
+      {"id": 39, "category": "GIFTING", "plan": "4.5GB", "price": "₦1750.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"}
     ],
     "9MOBILE COOPERATE GIFTING": [
       {"id": 72, "category": "COOPERATE GIFTING", "plan": "500MB", "price": "₦90.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
@@ -55,7 +55,7 @@
       {"id": 74, "category": "COOPERATE GIFTING", "plan": "2GB", "price": "₦340.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
       {"id": 75, "category": "COOPERATE GIFTING", "plan": "3GB", "price": "₦510.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
       {"id": 76, "category": "COOPERATE GIFTING", "plan": "5GB", "price": "₦850.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"},
-      {"id": 77, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦1,700.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"}
+      {"id": 77, "category": "COOPERATE GIFTING", "plan": "10GB", "price": "₦1700.00", "validity": "1 Month", "image": "/src/assets/9mobile_logo.svg", "network": "9MOBILE"}
     ]
 }
   

@@ -13,5 +13,8 @@ export type TransactionStateProp = {
         airtime2CashBankValue: null;
         airtime2CashAccountNameValue: null;
         airtime2CashAccountNumberValue: null;
+        networkImg: null;
+        transactionStatus: null;
+        isTransactionSuccessful: null;
     }
 }

@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToggleStateProp } from "../../utils/store/reducers/toggle reducer/toggleInterface";
 import { TransactionStateProp } from "../../utils/store/reducers/transactionReducer/transactionInterface";
 import ConfirmTransactionPin from "../confirm transaction pin/ConfirmTransactionPin";
+import Alert from "../alert/Alert";
 
 type FormProp = {
   stopPropagation: () => void
@@ -71,9 +72,14 @@ const Checkout: FC = () => {
   }, [location]);
 
     const enableConfirmPinComp = (e: FormProp) => {
-        e.stopPropagation()
+      e.stopPropagation()
+      if (location.pathname === '/dashboard/airtime2cash') {
+        dispatch({type:"TOGGLE_ALERT_COMP", payload:true})
+      }
+      else {
         dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: true });
-    }
+      }
+      }
 
     const disableConfirmPinComp = () => dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: false });
     
@@ -82,6 +88,7 @@ const Checkout: FC = () => {
 
   return (
     <>
+      <Alert/>
       <ConfirmTransactionPin />
       <Container onClick={disableConfirmPinComp} display={toggleCheckoutComp ? "0" : "5000px"}>
         <Header>

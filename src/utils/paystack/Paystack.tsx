@@ -21,6 +21,7 @@ type PaystackProps = {
   text: string;
   onSuccess: () => void;
   onError: () => void;
+  onClose: () => void;
 }
 const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
   const dispatch = useDispatch()
@@ -59,8 +60,10 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
       increWallet()
     },
     onError: () => {
-      alert("oops")
-      console.log("error")
+      dispatch({type:"TOGGLE_PAGE_LOADER", payload:false})
+    },
+    onClose: () => {
+      dispatch({type:"TOGGLE_PAGE_LOADER", payload:false});
     }
   }
 

@@ -104,10 +104,10 @@ const PaymentForm: FC = () => {
                 {...register("amount", registerOptions.amount)}
               />
             </Wrap>
-            <Button active={isValid ? "#0363A4" : "transparent"} onClick={submitForm} disabled={true}>
-           
+            <Button active={isValid ? "#0363A4" : "transparent"} onClick={submitForm}>
+              {isValid ?
                 <Paystack name={getValues().username} email={getValues().email} amount={getValues().amount} phone={getValues().phone} />
-              
+                : "Pay now"}
               </Button>
           </Form>
           <Follow>Follow us:</Follow>

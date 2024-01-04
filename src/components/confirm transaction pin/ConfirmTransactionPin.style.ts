@@ -15,11 +15,11 @@ export const Container = styled.div<DisplayProp>`
   bottom: ${({display}) => display};
   left:0;
   right: 0;
-  height:65%;
   z-index: 410;
   border-top-right-radius: 40px;
   border-top-left-radius: 40px;
   transition: all .5s;
+  padding: 4rem 0;
 `
 export const ProfileImg = styled.div`
 

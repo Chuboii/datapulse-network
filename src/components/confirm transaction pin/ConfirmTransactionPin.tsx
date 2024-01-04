@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { Container, Delete, Wrap, Text, DotWrapper, Dot, Pad, Grid } from './ConfirmTransactionPin.style';
 import LockIcon from '@mui/icons-material/Lock';
-import axios, {AxiosResponse} from "axios"
+import axios/*, {AxiosResponse}*/ from "axios"
 import PageLoader from "../page loader/PageLoader"
 import {useDispatch, useSelector} from "react-redux"
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,13 +14,13 @@ import { TransactionStateProp } from "../../utils/store/reducers/transactionRedu
 
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-interface Prop {
-    data: string;
-    status: number;
-    statusText: string;
-    headers: string[];
-    config: string;
-}
+// interface Prop {
+//     data: string;
+//     status: number;
+//     statusText: string;
+//     headers: string[];
+//     config: string;
+// }
 
 const ConfirmTransactionPin: FC = () => {
     const [pin, setPin] = useState<number[]>([]);
@@ -54,31 +54,32 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                 try {
 
                     setIsDataLoaded(true)
-                    await axios.post("http://localhost:8080/api/auth/passcode", {
+                    await axios.post("https://datapulse-network.onrender.com/api/auth/passcode", {
                         userId: currentUser.user._id,
                         username: currentUser.user.username,
                         pin
                     })
     
-      const dataPrice = dataPlanValue && dataPlanValue.split("₦")[1].split(".")[0] 
-   
+           const dataPrice = dataPlanValue && (dataPlanValue as unknown as string)?.split("₦")?.[1]?.split(".")?.[0];
+
              if (location.pathname === "/dashboard") {
                 if (dataPrice && +dataPrice <= currentUser.user.balance) {
                   
                         const networkId = networkValue === "MTN SME" || networkValue === "MTN GIFTING" || networkValue === "MTN COOPERATE GIFTING" ? "1" : networkValue === "AIRTEL" ? "2" : networkValue === "GLO COOPERATE GIFTING" || networkValue === "GLO GIFTING" ? '3' : networkValue === "9MOBILE COOPERATE GIFTING" || networkValue === "9MOBILE GIFTING" ? "4" : ''
                             
                    
-                        // const apiUrl = 'https://n3tdata.com/api/data';
+                        const apiUrl = 'https://n3tdata.com/api/data';
         
-                        // const payload = {
-                        //     network: networkId,
-                        //     phone: phoneNumberValue && phoneNumberValue[0],
-                        //     data_plan: buyDataId,
-                        //     bypass: false,
-                        //     'request-id': String(Date.now())
-                        // };
+                        const payload = {
+                            network: networkId,
+                            phone: phoneNumberValue && phoneNumberValue[0],
+                            data_plan: buyDataId,
+                            bypass: false,
+                            'request-id': String(Date.now())
+                    };
+                    console.log(apiUrl, payload)
                 
-                        // // Request headers
+                        // Request headers
                         // const headers = {
                         //     'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
                         //     'Content-Type': 'application/json',
@@ -87,14 +88,14 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
             
                         // const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
         
-                        // setIsDataLoaded(false)
+                    
                         // console.log('API Response:', res.data);
         
                         dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
             
                         dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${dataPlanData} to ${phoneNumberValue}`})
                         
-                        await axios.post("http://localhost:8080/api/add/history", {
+                        await axios.post("https://datapulse-network.onrender.com/api/add/history", {
                             userId: currentUser.user._id,
                             photoUrl:networkImg,
                             amount:dataPrice,
@@ -104,7 +105,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                             declined:false
                         })
                         
-                       const newBalance = await axios.put("http://localhost:8080/api/decre/balance", {
+                       const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
                             id: currentUser.user._id,
                             amount: dataPrice
                        })
@@ -156,31 +157,33 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
      else if (location.pathname === "/dashboard/airtime") {
                  if (amountValue && +amountValue <= currentUser.user.balance) {
                     
-                //    const apiUrl = 'https://n3tdata.com/api/topup/';
+                   const apiUrl = 'https://n3tdata.com/api/topup/';
 
-                //         const payload = {
-                //             network: buyAirtimeNetworkId,
-                //             phone: phoneNumberValue && phoneNumberValue[0],
-                //             plan_type: 'VTU',
-                //             bypass: false,
-                //             amount: amountValue,
-                //             'request-id': String(Date.now())
-                //         };
+                        const payload = {
+                            network: buyAirtimeNetworkId,
+                            phone: phoneNumberValue && phoneNumberValue[0],
+                            plan_type: 'VTU',
+                            bypass: false,
+                            amount: amountValue,
+                            'request-id': String(Date.now())
+                     };
+                     
+                     console.log(apiUrl, payload)
                 
-                //         // Request headers
-                //         const headers = {
-                //             'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
-                //             'Content-Type': 'application/json',
-                //         };
+                        // Request headers
+                    //     const headers = {
+                    //         'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                    //         'Content-Type': 'application/json',
+                    //     };
                 
             
-                //        await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+                    //    await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
         
                         dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
             
                         dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${amountValue} airtime to ${phoneNumberValue}`})
                         
-                        await axios.post("http://localhost:8080/api/add/history", {
+                        await axios.post("https://datapulse-network.onrender.com/api/add/history", {
                             userId: currentUser.user._id,
                             photoUrl:networkImg,
                             amount:amountValue,
@@ -190,7 +193,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                             declined:false
                         })
                         
-                       const newBalance = await axios.put("http://localhost:8080/api/decre/balance", {
+                       const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
                             id: currentUser.user._id,
                             amount: amountValue
                        })
@@ -322,7 +325,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                     dot.style.height = "10px"
                                 })
          
-                                await axios.post("http://localhost:8080/api/add/history", {
+                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
                                     userId: currentUser.user._id,
                                     photoUrl:"/src/assets/error-svgrepo-com.svg",
                                     amount:amountValue,
@@ -388,7 +391,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                 setPin([])
                                 setCount(0)
        
-                                await axios.post("http://localhost:8080/api/add/history", {
+                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
                                     userId: currentUser.user._id,
                                     photoUrl:"/src/assets/error-svgrepo-com.svg",
                                     amount:amountValue,

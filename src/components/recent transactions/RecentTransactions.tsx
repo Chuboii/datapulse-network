@@ -32,7 +32,7 @@ const location = useLocation()
         const getRecentTransacData = async () => {
             try {
               const history = await
-              axios.get(`http://localhost:8080/api/get/limited/history/${currentUser.user._id}/${0}`)
+              axios.get(`https://datapulse-network.onrender.com/api/get/limited/history/${currentUser.user._id}/${0}`)
                 dispatch({type: "GET_RECENT_TRANSACTION", payload: history.data})
             }
             catch (e) {
@@ -46,7 +46,7 @@ const location = useLocation()
     const loadMore = async () => {
     try{
       const history = await
-                axios.get(`http://localhost:8080/api/get/limited/history/${currentUser.user._id}/${count}`)
+                axios.get(`https://datapulse-network.onrender.com/api/get/limited/history/${currentUser.user._id}/${count}`)
                   dispatch({type: "GET_RECENT_TRANSACTION", payload:
                     history.data
                   })

@@ -3,7 +3,9 @@ type TransactionProp = {
     wallet: null;
     dataPlanId: null;
     phoneNumberValue?: string[];
-    dataPlanValue: null;
+    dataPlanValue: null | {
+        split: string
+    };
     dataPlanData: null;
     networkBearer: null;
     networkImg: null;

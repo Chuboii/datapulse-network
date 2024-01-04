@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NetworkStateProp } from "../../utils/store/reducers/network reducer/networkInterface";
 import Plans from '../../utils/json plans/Plans.json'
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
-
+import 'animate.css';
 
 interface InitialReducerProp {
     selectedPlan: string | null;
@@ -100,7 +100,8 @@ const DataPlans: FC = () => {
 
                                 if (idx < 2) {
                                     return (
-                                      <Tab key={idx} bg={
+                                      <Tab className='animate__animated animate__backInUp'
+                                        key={idx} bg={
                                         isNetworkBearerClicked ?
                                         "#141414":
                                           state.selectedPlan === `${plan.network}${idx}` ? getBackgroundColor(plan.network, idx) : "#141414"

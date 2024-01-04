@@ -69,7 +69,7 @@ const AuthSignup: FC = () => {
                         photoUrl: "/src/assets/cartoon-face-transparent-1.png"
                     }
 
-                    const res = await axios.post("http://localhost:8080/api/auth/signup", formData)
+                    const res = await axios.post("https://datapulse-network.onrender.com/api/auth/signup", formData)
 
                     console.log(res)
 

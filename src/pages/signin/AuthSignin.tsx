@@ -48,7 +48,7 @@ const AuthSignin: FC = () => {
                 password: data.password
             }
 
-            const userData = await axios.post("http://localhost:8080/api/auth/login", formData)
+            const userData = await axios.post("https://datapulse-network.onrender.com/api/auth/login", formData)
             
             dispatch({type:"GET_USER_DATA", payload: userData.data})
             setIsDataLoaded(false)

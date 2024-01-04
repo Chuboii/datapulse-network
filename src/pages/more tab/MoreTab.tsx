@@ -22,7 +22,7 @@ const MoreTab: FC = () => {
     const logoutBtn = async () => {
         try {
             setIsDataLoaded(true)
-            await axios.post("http://localhost:8080/api/auth/logout", { body: null })
+            await axios.post("https://datapulse-network.onrender.com/api/auth/logout", { body: null })
             dispatch({ type: "GET_USER_DATA", payload: null })
 
 

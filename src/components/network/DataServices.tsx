@@ -1,7 +1,8 @@
-import { FC, useReducer } from "react";
+import { FC, useReducer, useState } from "react";
 import { Container, Header, Wrapper, Tab, Text, Img } from './DataServices.style'
 import Plans from '../../utils/json plans/Plans.json'
 import { useDispatch } from "react-redux";
+import 'animate.css';
 
 
 interface InitialReducerProp {
@@ -64,7 +65,8 @@ const navigateReducers = (state: InitialReducerProp, action: ActionProp) => {
 const DataServices: FC = () => {
   const [state, dispatch] = useReducer(navigateReducers, INITIAL_REDUCERS)
   const transactionDispatch = useDispatch()
-    const networkDispatch = useDispatch()
+  const networkDispatch = useDispatch()
+  const [isClicked, setIsClicked] = useState(false)
 
   const getBackgroundColor = (network: string) => {
     switch (network) {
@@ -90,6 +92,7 @@ const DataServices: FC = () => {
 
     
   const handleNetworkClicks = (net: string, idx: number) => {
+    setIsClicked(true)
         transactionDispatch({
             type: "TOGGLE_DATA_PLANS", payload: true
         })
@@ -141,9 +144,10 @@ const DataServices: FC = () => {
 
           {
             location.pathname === "/dashboard"
-              ? 
+              ?
               Object.keys(Plans).map((network, idx) => (
                 <Tab
+                  className={isClicked ? 'animate__animated animate__backInUp' : 'animate__animated animate__backInUp'}
                   key={Plans[network as keyof typeof Plans][0].id}
                   onClick={() => handleNetworkClicks(network, idx)}
                   bg={state.selectedNetwork === network ? getBackgroundColor(network) : "#141414"}>
@@ -155,6 +159,7 @@ const DataServices: FC = () => {
            
               networkForAirtime.map(network => (
                 <Tab key={network.id}
+                className='animate__animated animate__backInUp'
                   onClick={() => {
                     handleAirtimeNetworkClicks(network.network, network.id, network.img)
                   }

@@ -15,19 +15,24 @@ type HistoryMapProp = {
         deposit: string;
         history: string;
         createdAt: string;
-        amount: number;
+    amount: number;
+    declined: boolean;
+    plan: string;
+    uid: string;
 }
 const History: FC = () => {
     const {currentUser} = useSelector((state: StateProp) => state.user) 
     const dispatch = useDispatch()
     const historyData = useSelector((state:HistoryStateProp) => state.history.history) as HistoryMapProp[]
-    const containerRef = useRef(null)
+    const containerRef = useRef<HTMLDivElement>(null)
    
     useEffect(() => {
-        containerRef.current.scrollIntoView({ behavior: 'smooth' });
+        if (containerRef.current) {
+            containerRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
         const getHistoryData = async () => {
             try {
-              const history = await axios.get(`http://localhost:8080/api/get/all/history/${currentUser.user._id}`)
+              const history = await axios.get(`https://datapulse-network.onrender.com/api/get/all/history/${currentUser.user._id}`)
                 
                 dispatch({
                     type: "GET_HISTORY_DATA", payload: history.data
@@ -40,7 +45,7 @@ const History: FC = () => {
         getHistoryData()
     }, [dispatch, currentUser.user._id])
 
-    const enableTransactionSummary = (history) => {
+    const enableTransactionSummary = (history: HistoryMapProp) => {
         dispatch({ type: "GET_CHILD_HISTORY_DATA", payload: history })
         dispatch({ type: "TOGGLE_TRANSACTION_SUMMARY", payload: true })
     }

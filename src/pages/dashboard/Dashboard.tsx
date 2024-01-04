@@ -12,11 +12,14 @@ import RecentTransactions from "../../components/recent transactions/RecentTrans
 import { useDispatch } from "react-redux"
 
 const Dashboard: FC = () => {
-  const containerRef = useRef()
+  const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch()
 
   useEffect(() => {
-  containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
     dispatch({ type: "TOGGLE_TRANSACTION_SUMMARY", payload: false })
     dispatch({ type: "TOGGLE_CONFIRM_TRANSACTION_PIN_COMP", payload: false });
    dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: false });

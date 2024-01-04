@@ -1,6 +1,5 @@
 import { FC } from "react";
 import {Container,More,Wrap1,Wrap2,Failure, Header, Icon, H2, Main,Wrapper, Section,Success, Wrap, Img, Text, Bold, Tab, BoxWrap } from './TransactionSummary.style'
-import img from '../../assets/glo-logo.svg'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useDispatch, useSelector } from "react-redux";
@@ -8,17 +7,7 @@ import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterfac
 import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface";
 import PreventScroll from "../../components/prevent scroll/PreventScroll"
 
-type RecentTransacMapProp = {
-    createdAt: string;
-    photoUrl: string;
-    deposit: string;
-    amount: number;
-    _id: string;
-    history: string;
-    declined: boolean;
-    uid: string;
-  
-}
+
   
 const TransactionSummary: FC = () => {
     const toggleTransactionSummary = useSelector((state:Toggle) => state.toggle.toggleTransactionSummary)

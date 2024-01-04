@@ -20,14 +20,14 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
  
  useEffect(()=>{
    if(location.pathname === "/auth/createpasscode"){
-     setUrl("http://localhost:8080/api/auth/createpasscode")
+     setUrl("https://datapulse-network.onrender.com/api/auth/createpasscode")
   
    }
    else if (location.pathname === "/auth/resetpasscode") {
-    setUrl("http://localhost:8080/api/auth/resetpasscode")
+    setUrl("https://datapulse-network.onrender.com/api/auth/resetpasscode")
    }
    else if(location.pathname === "/auth/passcode"){
-     setUrl("http://localhost:8080/api/auth/passcode")
+     setUrl("https://datapulse-network.onrender.com/api/auth/passcode")
    }
 
  },[location.pathname])
@@ -35,7 +35,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
 const logoutBtn = async () => {
         try {
             setIsDataLoaded(true)
-            await axios.post("http://localhost:8080/api/auth/logout", { body: null })
+            await axios.post("https://datapulse-network.onrender.com/api/auth/logout", { body: null })
             dispatch({ type: "GET_USER_DATA", payload: null })
             setIsDataLoaded(false)
         }

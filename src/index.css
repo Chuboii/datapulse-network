@@ -53,6 +53,7 @@ button:focus-visible {
 .paystack-button{
   background:transparent;
   position: absolute;
+  color: white;
    inset: 0;
   padding: .5rem;
 

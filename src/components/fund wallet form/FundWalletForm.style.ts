@@ -102,10 +102,7 @@ export const See = styled.div`
 `
 
 export const Box = styled.div`
-     position: absolute;
-   top:50%;
-   left:50%;
-   transform:translate(-50%, -50%);
+  margin-top: 2rem;
    max-width: 600px;
    width:100%;
    box-sizing: border-box;

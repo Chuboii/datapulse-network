@@ -1,7 +1,5 @@
 import { FC } from "react"
 import {Container, Image, Success, Text, Button } from './TransactionStatus.style'
-import successImg from '../../assets/success-svgrepo-com.svg'
-import failureImg from '../../assets/error-svgrepo-com.svg'
 import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { TransactionStateProp } from "../../utils/store/reducers/transactionReducer/transactionInterface"
@@ -18,13 +16,13 @@ const TransactionStatus:FC = () => {
             <Container>
                 {isTransactionSuccessful ?
                     <>
-                <Image src={successImg} />
+                <Image src={"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/success-svgrepo-com.svg?alt=media&token=f2dc690b-fab3-46da-9799-a23322a0382a"} />
                 <Success>Success</Success>
                         <Text>{transactionStatus}</Text>
                     </>
                     : 
                     <>
-                             <Image src={failureImg} />
+                             <Image src={"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c"} />
                 <Success>Failure</Success>
                         <Text>{transactionStatus}</Text>
                     </>

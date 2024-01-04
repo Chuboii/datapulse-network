@@ -19,6 +19,7 @@ export const Input = styled.input`
   margin-right:.6rem;
   padding:1.3rem 1rem;
   background:#141414;
+  color: white;
   border:none;
   border-radius:7px;
 `

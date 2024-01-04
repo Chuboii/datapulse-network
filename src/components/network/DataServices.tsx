@@ -26,22 +26,22 @@ const networkForAirtime: {
   {
     id: 1,
     network: "MTN",
-    img:"/src/assets/mtn-3.svg"
+    img:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/mtn-3.svg?alt=media&token=6319745b-7105-413f-80fc-adba589f18e1"
   },
   {
     id:2,
     network: "AIRTEL",
-    img:"/src/assets/airtel-logo.svg"
+    img:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/airtel-logo.svg?alt=media&token=21313382-0f20-43fb-81fe-34cf891163ba"
   },
   {
     id: 3,
     network: "GLO",
-    img:"/src/assets/glo-logo.svg"
+    img:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/glo-logo.svg?alt=media&token=7f0d4744-b978-4483-b92b-f2d02e056c33"
   },
   {
     id: 4,
     network: "9MOBILE",
-    img:"/src/assets/9mobile_logo.svg"
+    img:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/9mobile_logo.svg?alt=media&token=f5ac1dca-e8b6-4cc8-9faf-35a2c36e18ed"
   }
   ]
 

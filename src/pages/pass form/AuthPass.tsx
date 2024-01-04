@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { Container, Box, Logout, ProfileImg, Welcome, Wrap, Circle, ProfileName } from './AuthPass.style'
 import Dialer from "../../components/dialer/Dialer";
 import {useSelector, useDispatch} from "react-redux"
-import {useLocation} from "react-router-dom"
+import {useLocation, useNavigate} from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
@@ -16,7 +16,8 @@ const AuthPass: FC = () => {
  const location = useLocation()
  const [url, setUrl] = useState('')
 const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
- const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
  
  useEffect(()=>{
    if(location.pathname === "/auth/createpasscode"){
@@ -36,7 +37,8 @@ const logoutBtn = async () => {
         try {
             setIsDataLoaded(true)
             await axios.post("https://datapulse-network.onrender.com/api/auth/logout", { body: null })
-            dispatch({ type: "GET_USER_DATA", payload: null })
+          dispatch({ type: "GET_USER_DATA", payload: null })
+          navigate('/')
             setIsDataLoaded(false)
         }
         catch (err) {

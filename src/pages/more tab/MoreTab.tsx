@@ -44,6 +44,18 @@ const MoreTab: FC = () => {
         }
     }
 
+    const clickButton = () => {
+        toast.info('Feature coming soon!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
   
     return (
         <>
@@ -53,9 +65,20 @@ const MoreTab: FC = () => {
             <Header>
                     <WrapHeader>
                     <DashboardIcon/>
-                        <H2>History</H2>
+                        <H2>More Offers</H2>
                 </WrapHeader>
                 </Header>  
+
+                <Wrapper>
+                    <Box>
+                    <Icon><CelebrationIcon/></Icon>
+                    <Wrap>
+                        <Span>Get a website like this in minutes</Span>
+                        </Wrap>
+                        <Button onClick={clickButton}>Click to get started</Button>
+                    </Box>
+        
+                </Wrapper>
 
                 <Wrapper>
                     <Box>
@@ -65,11 +88,11 @@ const MoreTab: FC = () => {
                     <Text>Get paid when you spread the world!</Text>
                         </Wrap>
                     </Box>
-                    <Button>Invite</Button>
+                    <Button onClick={clickButton}>Invite</Button>
                 </Wrapper>
                 
                 <Wrapper>
-                    <Box>
+                    <Box onClick={clickButton}>
                     <Icon><HttpsIcon/></Icon>
                     <Wrap>
                         <Span>Protect yourself from intruders</Span>

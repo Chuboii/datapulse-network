@@ -25,7 +25,8 @@ width: 100px;
 `
 export const Wrapper = styled.div`
  display:flex;
- 
+ max-width: 700px;
+ overflow-x:scroll;
        @media screen and (max-width:768px){
        width:100%;
        overflow-y: hidden;

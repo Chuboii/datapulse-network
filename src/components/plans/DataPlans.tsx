@@ -98,6 +98,7 @@ const DataPlans: FC = () => {
                         {
                           getDataPlans ? getDataPlans.map((plan, idx) => {
 
+                            if(window.innerWidth < 768){
                                 if (idx < 2) {
                                     return (
                                       <Tab className='animate__animated animate__backInUp'
@@ -116,7 +117,29 @@ const DataPlans: FC = () => {
                      
                                         </Tab>
                                     )
-                                }
+                              }
+                            }
+                            else {
+                              if (idx < 4) {
+                                return (
+                                  <Tab className='animate__animated animate__backInUp'
+                                    key={idx} bg={
+                                      isNetworkBearerClicked ?
+                                        "#141414" :
+                                        state.selectedPlan === `${plan.network}${idx}` ? getBackgroundColor(plan.network, idx) : "#141414"
+                                
+                                    } onClick={() => {
+                                      selectPlan(plan, idx)
+                                    }
+                                    }>
+                                    <Text>30 days</Text>
+                                    <Data>{plan.plan}</Data>
+                                    <Price><Img src={img} /> <Span>{plan.price}</Span></Price>
+               
+                                  </Tab>
+                                )
+                              }
+                            }
                             }) : ""}
                     </Wrap>
                <Button onClick={enableMorePlans}> See All </Button>

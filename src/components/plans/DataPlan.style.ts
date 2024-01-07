@@ -31,7 +31,8 @@ export const Header = styled.div`
 `
 export const Wrapper = styled.div`
  display:flex;
- width:70%;
+ width:65%;
+ align-items: center;
   @media screen and (max-width:768px){
     margin-top:1rem;
     width:100%;
@@ -99,7 +100,10 @@ export const Span = styled.div`
   }
 `
 export const Button = styled.button`
+ max-width:250px;
  width:100%;
+ padding: 0;
+ height:70px;
  color: white;
    @media screen and (max-width:768px){
     width:50%;
@@ -110,6 +114,7 @@ export const Wrap = styled.div`
   display:flex;
   overflow:hidden;
   width:100%;
+
   @media screen and (max-width:768px){
     margin-right: .4rem;
   }

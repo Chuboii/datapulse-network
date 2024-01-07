@@ -57,9 +57,9 @@ export const Text = styled.div`
 export const Wrapper = styled.div`
   display:flex;
   margin-top: .8rem;
-  justify-content:space-between;
   
  @media screen and (max-width:768px){
        overflow-x:scroll;
+       justify-content:space-between;
      }
 `

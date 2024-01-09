@@ -3,7 +3,7 @@ import { Container, Delete, Wrap, Text, DotWrapper, Dot, Pad, Grid, Span } from 
 import LockIcon from '@mui/icons-material/Lock';
 import axios from "axios"
 import PageLoader from "../page loader/PageLoader"
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 ;
@@ -24,6 +24,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
    const {currentUser} = useSelector((state:StateProp) => state.user)
     const navigate = useNavigate()
     const location = useLocation()
+    const dispatch = useDispatch()
    
    useEffect(()=>{
     const verifyPin = async() => {
@@ -43,13 +44,20 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                 }
                 else if (location.pathname === '/auth/signin' || location.pathname === '/auth/passcode') {
                     setIsDataLoaded(true)
-         
+                
                     await axios.post(url, {
                         userId: currentUser.user._id,
                         username: currentUser.user.username,
                         pin
                     })
+
+                    const balance = await axios.post('https://datapulse-network.onrender.com/api/auth/user', {
+                            id: currentUser.user._id
+                    });
+                    console.log(balance)
+              dispatch({ type: "GET_USER_DATA", payload: balance.data })
                     setIsDataLoaded(false)
+                    
                     navigate("/dashboard")   
                 }
                 else if (location.pathname === '/auth/resetpasscode') {

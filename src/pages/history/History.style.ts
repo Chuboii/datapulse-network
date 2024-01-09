@@ -13,7 +13,11 @@ width:100%;
 display: flex;
 }
 `
-
+export const Nothing = styled.div`
+margin-top:5rem;
+color:white;
+font-family: 'Archivo Black';
+`
 export const H2 = styled.h2`
 margin-left: .6rem;
 font-size: 20px;

@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react";
-import { Container,Contain, Failure, Header,WrapBox, Wrapper, BoxWrap, Success, DateTime, Time, Img, Text, Wrap, H2, Box } from './History.style'
+import { Container,Contain, Failure,Nothing, Header,WrapBox, Wrapper, BoxWrap, Success, DateTime, Time, Img, Text, Wrap, H2, Box } from './History.style'
 import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav";
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import Navbar from "../../components/navbar/Navbar";
@@ -64,7 +64,7 @@ const History: FC = () => {
                     </Header>  
                     
                     <Contain>
-                    {historyData ? historyData.map((history:HistoryMapProp) => {
+                    {historyData && historyData.length > 0 ? historyData.map((history:HistoryMapProp) => {
                         const date = new Date(history.createdAt)
 
                         return(
@@ -92,7 +92,7 @@ const History: FC = () => {
                             </WrapBox>
                         </Wrapper>
                         )
-                    }) : "nothing to see here..."}
+                    }) : <Nothing>No transaction have been made yet</Nothing>}
                         </Contain>
                 </Box>
             </Container>

@@ -1,7 +1,7 @@
 import express  from "express";
 import {
     loginUser, registerUser, logoutUser, getCurrentUser} from "../controllers/users.js";
-import { get } from "mongoose";
+
 // import { verifyUser } from "../middlewares/verifyUser.js";
 
 const router = express.Router()

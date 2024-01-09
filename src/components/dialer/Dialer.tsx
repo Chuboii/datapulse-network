@@ -196,7 +196,7 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
             console.log(currentUser.user.email);
             
             setIsDataLoaded(true)
-            await axios.post("http://localhost:8080/api/forgotpin", {
+            await axios.post("https://datapulse-network.onrender.com/api/forgotpin", {
                 name: currentUser.user.username,
                 email: currentUser.user.email
             })

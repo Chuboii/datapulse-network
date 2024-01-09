@@ -57,6 +57,9 @@ const MoreTab: FC = () => {
             });
     }
   
+    const navigateToWhatsapp = () => {
+        
+    }
     return (
         <>
             <ToastContainer/>
@@ -75,7 +78,7 @@ const MoreTab: FC = () => {
                     <Wrap>
                         <Span>Get a website like this in minutes</Span>
                         </Wrap>
-                        <Button onClick={clickButton}>Click to get started</Button>
+                        <Button onClick={navigateToWhatsapp} style={{fontSize:"11px"}}>Click to get started</Button>
                     </Box>
         
                 </Wrapper>

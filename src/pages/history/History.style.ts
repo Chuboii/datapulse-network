@@ -33,6 +33,7 @@ export const Wrapper = styled.div`
 `
 export const Contain = styled.div`
   margin-top: 5rem;
+  
   @media screen and (min-width: 768px){
     margin:0;
   }
@@ -74,6 +75,7 @@ width: 100%;
 export const WrapBox = styled.div`
  display: flex;
  justify-content:space-between;
+
 `
 export const Header = styled.header`
 margin-bottom:.5rem;
@@ -107,6 +109,7 @@ export const Success = styled.div`
 
 export const BoxWrap = styled.div`
   margin-left: 1rem;
+
 `
 export const Failure = styled.div`
     font-family: "Kanit";

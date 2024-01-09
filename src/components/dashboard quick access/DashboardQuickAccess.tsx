@@ -75,74 +75,76 @@ const DashboardQuickAccess: FC = () => {
 
     }, [location])
     
-    const slideTab = (index:number) => {
-        if (index === 0) {
-            anime({
-                targets: '.tab',
-                translateX:0, // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+    const slideTab = (index: number) => {
+        if (window.innerWidth < 768) {
+            if (index === 0) {
+                anime({
+                    targets: '.tab',
+                    translateX: 0, // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
             
-            anime({
-                targets: '.tab2',
-                translateX:"0px", // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+                anime({
+                    targets: '.tab2',
+                    translateX: "0px", // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
             
-            anime({
-                targets: '.tab3',
-                translateX:"0px", // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+                anime({
+                    targets: '.tab3',
+                    translateX: "0px", // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
             
             
-        }
-        else if(index === 1) {
-            anime({
-                targets: '.tab',
-                translateX:'128px', // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+            }
+            else if (index === 1) {
+                anime({
+                    targets: '.tab',
+                    translateX: '128px', // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
             
-            anime({
-                targets: '.tab2',
-                translateX:"128px", // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+                anime({
+                    targets: '.tab2',
+                    translateX: "128px", // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
             
-            anime({
-                targets: '.tab3',
-                translateX:"-275px", // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
-        }
-        else if(index === 2) {
-            anime({
-                targets: '.tab',
-                translateX:'168px', // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+                anime({
+                    targets: '.tab3',
+                    translateX: "-275px", // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
+            }
+            else if (index === 2) {
+                anime({
+                    targets: '.tab',
+                    translateX: '168px', // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
             
-            anime({
-                targets: '.tab2',
-                translateX:"-110px", // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+                anime({
+                    targets: '.tab2',
+                    translateX: "-110px", // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
             
-            anime({
-                targets: '.tab3',
-                translateX:"0px", // Adjust the translation distance based on your layout
-                easing: 'easeInOutQuad',
-                duration: 500,
-            });
+                anime({
+                    targets: '.tab3',
+                    translateX: "0px", // Adjust the translation distance based on your layout
+                    easing: 'easeInOutQuad',
+                    duration: 500,
+                });
+            }
         }
       };
     

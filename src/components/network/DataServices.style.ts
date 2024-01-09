@@ -21,7 +21,11 @@ export const Text = styled.div`
   text-align: center;
   margin:.5rem 0;
 width: 100px;
-  font-size: 13px;
+  font-size: 11px;
+
+  @media screen and (max-width:768px){
+    font-size: 13px;
+  }
 `
 export const Wrapper = styled.div`
  display:flex;
@@ -38,8 +42,8 @@ export const Wrapper = styled.div`
 //#50B651
 //#D4E956
 export const Img = styled.img`
-   width:60px;
-   height: 60px;
+   width:50px;
+   height: 50px;
        @media screen and (max-width:768px){
        width:35px;
        height:35px;
@@ -64,7 +68,7 @@ export const Tab = styled.div<TabProp>`
    align-items: center;
    padding: 0.5rem;
   border-radius: 7px 25px 7px 7px;
-     
+ 
   @media screen and (max-width:768px){
        width:130px;
        margin:0 .3rem;

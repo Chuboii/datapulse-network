@@ -43,6 +43,8 @@ export const Text = styled.div`
  font-family: "Kanit";
   text-transform: uppercase;
   text-align: center;
+  font-size: 13px;
+
   @media screen and (max-width:768px){
     font-size:12px;
   }
@@ -73,6 +75,7 @@ export const Data = styled.div`
  font-family: "Kanit";
   text-transform: uppercase;
   text-align: center;
+  font-size: 11px;
   @media screen and (max-width:768px){
     font-size:12px;
   }
@@ -83,7 +86,10 @@ export const Price = styled.div`
   text-align: center;
   display:flex;
   align-items:center;
- 
+  font-size: 15px;
+  @media screen and (max-width:768px){
+    font-size:12px;
+  }
 `
 export const Img = styled.img`
  width:15px;

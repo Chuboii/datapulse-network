@@ -62,10 +62,6 @@ export const loginUser = (req, res, next) => {
         })(req, res, next);
 }
 
-// export const googleLogin = () => {
-
-// }
-
 export const logoutUser = (req, res, next) => {
     try {
         req.logout(() => {
@@ -77,18 +73,3 @@ export const logoutUser = (req, res, next) => {
     }
 }
 
-export const getUser = async (req, res, next) => {
-    try {
-        const { id } = req.params
-        
-        const user = await User.findById(id)
-
-        res.status(200).json({
-            success: 200,
-            user
-        })
-    }
-    catch (err) {
-        next(err)
-    }
-}

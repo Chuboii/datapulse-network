@@ -73,7 +73,8 @@ app.use((err,req, res, next) => {
 })
 
 
-app.use("*", (req,res) => {
+app.use("*", (req, res) => {
+    console.log(res)
     res.send("The route you entered is not valid. Please try again")
 })
 

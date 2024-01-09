@@ -21,6 +21,24 @@ export const addToWallet = async (req, res, next) => {
     }
 }
 
+export const getWalletBalance = async (req, res, next) => {
+    try {
+        console.log(req.params)
+        const { id } = req.params
+        
+        const user = await User.findById(id)
+
+        console.log(user)
+        res.status(200).json({
+            success: 200,
+            user
+        })
+    }
+    catch (err) {
+        next(err)
+    }
+}
+
 export const deductFromWallet = async (req, res, next) => {
     try {
         const { id, amount } = req.body

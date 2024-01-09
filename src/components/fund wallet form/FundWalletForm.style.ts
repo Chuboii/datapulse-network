@@ -18,6 +18,14 @@ export const Container = styled.div<DisplayProp>`
    background-color: rgb(8, 8, 8); ;
    z-index: 200;
    transition: all .5s;
+
+  @media screen and (min-width:768px){
+    overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
 `
 export const Text = styled.div`
   text-align: center;  
@@ -26,6 +34,10 @@ export const Text = styled.div`
 
 export const Header = styled.header`
 padding: 2rem 1rem;
+@media screen and (min-width:768px){
+  width: 100%;
+ 
+  }
 `
 export const Icons = styled.div`
   display: flex;

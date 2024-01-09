@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
 import { NetworkStateProp } from "../../utils/store/reducers/network reducer/networkInterface";
 import PreventScroll from "../../components/prevent scroll/PreventScroll"
+import { TransactionStateProp } from "../../utils/store/reducers/transactionReducer/transactionInterface";
 
 interface InitialReducerProp {
   selectedPlan: string | null;
@@ -48,7 +49,7 @@ const MorePlans: FC = () => {
   const [state, dispatch] = useReducer(navigateReducers, INITIAL_REDUCERS)
   const transactionDispatch = useDispatch()
   const morePlanNetwork = useSelector((state:Toggle) => state.toggle.toggleMoreDataNetworkPlan)
- 
+ const networkBearer = useSelector((state:TransactionStateProp) => state.transaction.networkBearer)
   const disableMoreDataPlans = () => disableMorePlansDispatch({ type: "TOGGLE_MORE_DATA_PLANS", payload: false })
 
   useEffect(() => {
@@ -88,7 +89,7 @@ const MorePlans: FC = () => {
           <Icon onClick={disableMoreDataPlans}>
             <KeyboardArrowLeftIcon />
           </Icon>
-          <Text> MTN (SME) data plans</Text>
+          <Text> {networkBearer ? networkBearer : 'MTN SME' }</Text>
         </Header>
 
         <Wrapper>

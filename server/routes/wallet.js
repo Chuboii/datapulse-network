@@ -1,7 +1,10 @@
 import express  from "express";
-import { addToWallet, deductFromWallet } from "../controllers/wallets.js";
+import { addToWallet, deductFromWallet, getWalletBalance } from "../controllers/wallets.js";
 
 const router = express.Router()
+
+
+router.get("/wallet/:id", getWalletBalance)
 
 router.put("/incre/balance", addToWallet)
 

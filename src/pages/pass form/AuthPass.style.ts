@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding-top:5rem;
 
   @media screen and (min-width: 768px) {
-    padding-top: 0;
+    padding-top: 2rem;
     position: relative;
     bottom: 1rem;
   }

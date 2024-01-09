@@ -37,10 +37,10 @@ export const Grid = styled.div`
     position: relative;
      left: 6.15rem;
   }
-    &:hover{
+    /* &:hover{
     width: 80px;
     height: 80px;
-}
+} */
   }
 
   &:hover{

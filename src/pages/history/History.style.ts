@@ -7,6 +7,11 @@ margin-bottom:7rem;
 z-index: 100;
 position: relative;
 background:rgb(8, 8, 8);
+width:100%;
+@media screen and (min-width:768px){
+  background:#080808;
+display: flex;
+}
 `
 
 export const H2 = styled.h2`
@@ -18,11 +23,22 @@ export const Wrapper = styled.div`
   border-bottom:1px solid rgba(255,255,255,.3);
   padding:1rem 0;
   
+  @media screen and (min-width:768px){
+    padding:1rem;
+}
 `
 export const Contain = styled.div`
   margin-top: 5rem;
+  @media screen and (min-width: 768px){
+    margin:0;
+  }
+
 `
 export const Text = styled.div`
+   font-family: "Kanit";
+    font-weight:700;
+    font-size:13px;
+
 @media screen and (max-width:768px){
     font-family: "Kanit";
     font-weight:700;
@@ -46,9 +62,8 @@ export const DateTime = styled.div`
 `
 export const Box = styled.div`
 
-
-@media screen and (max-width:768px){
-
+@media screen and (min-width:768px){
+width: 100%;
 }
 `
 
@@ -70,6 +85,10 @@ backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
 left: 0;
 right: 0;
+
+@media screen and (min-width:768px){
+  position: sticky;
+}
 `
 export const Wrap = styled.div`
 display:flex;

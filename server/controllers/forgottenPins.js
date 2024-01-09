@@ -23,11 +23,11 @@ export const forgottenPin = async (req, res, next) => {
 <div style="padding:20px">
 <p> Hi! ${name} </p>
             <p> We received a request to reset your account authorization PIN. To proceed with the pin reset, please click on the following link: </p>  
-            <a href="http://localhost:5173/auth/resetpasscode">  Reset Pin </a>
+            <a href="https://datapulsenetwork.netlify.app/auth/resetpasscode">  Reset Pin </a>
             <p>Still have questions? Please contact
             <br/>
             <br/>
-            <a href="smedatashare.netlify.app/support">SME Datashare Support</a> </p>
+            <a href="datapulsenetwork.netlify.app/support">SME Datashare Support</a> </p>
             <p>
             Thanks,
             <br/>

@@ -62,6 +62,25 @@ export const loginUser = (req, res, next) => {
         })(req, res, next);
 }
 
+
+export const getCurrentUser = async (req, res, next) => {
+    try {
+        const { id } = req.body
+        
+        const user = await User.findById(id)
+
+        console.log(user)
+        res.status(200).json({
+            success: 200,
+            user
+        })
+    }
+    catch (err) {
+        next(err)
+    }
+}
+
+
 export const logoutUser = (req, res, next) => {
     try {
         req.logout(() => {

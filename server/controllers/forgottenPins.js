@@ -13,12 +13,12 @@ export const forgottenPin = async (req, res, next) => {
         });
         
         const mailInfo = {
-                    from: "SME Datashare favoronyechere@gmail.com", // sender address
+                    from: "Datapulse network favoronyechere@gmail.com", // sender address
                     to: email, // list of receivers
                     subject: "Reset your PIN", // Subject line
             html: `
             <div style="background-color: #f8f8f8; padding: 40px; text-align: center;">
-            <h1 style="color: #333; padding:1rem;">SME Datashare</h1>
+            <h1 style="color: #333; padding:1rem;">Datapulse network</h1>
 </div>
 <div style="padding:20px">
 <p> Hi! ${name} </p>
@@ -27,11 +27,11 @@ export const forgottenPin = async (req, res, next) => {
             <p>Still have questions? Please contact
             <br/>
             <br/>
-            <a href="datapulsenetwork.netlify.app/support">SME Datashare Support</a> </p>
+            <a href="datapulsenetwork.netlify.app/support">Datapulse network Support</a> </p>
             <p>
             Thanks,
             <br/>
-            Team SME Datashare
+            Team Datapulse network
              </p>
           </div>
             `, // html body

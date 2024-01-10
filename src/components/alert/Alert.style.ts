@@ -12,13 +12,14 @@ export const Container = styled.div<DisplayProp>`
   background-color: #23262F;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 80%;
   padding:.5rem 1rem;
   flex-direction: column;
-  z-index: 300;
-  transform: translate(-50%, -50%);
+  z-index: 500;
+  transform: translate(-50%, -80%);
   border-radius:10px;
   display: ${({ display }) => display};
+
 `
 export const H2 = styled.h2`
   font-family: 'Archivo Black';

@@ -9,6 +9,12 @@ export const Wrapper = styled.div`
   margin-bottom: 3rem;
   position: relative;
   bottom: 1rem;
+
+  @media screen and (min-width:768px){
+    width: 70%;
+    padding: 0.3rem .5rem;
+  }
+ 
 `
 export const Button = styled.button<BgProp>`
     width:100%;

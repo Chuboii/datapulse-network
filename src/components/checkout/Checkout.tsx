@@ -54,7 +54,7 @@ const Checkout: FC = () => {
   const accountNumberInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAccountNumberValue)
   const accountNameInputValue = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAccountNameValue)
   const airtime2CashAmount = useSelector((state: TransactionStateProp) => state.transaction.airtime2CashAmountValue)
- 
+  
  
     useEffect(() => {
     if (location.pathname === "/dashboard/airtime2cash") {

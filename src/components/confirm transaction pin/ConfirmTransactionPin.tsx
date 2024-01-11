@@ -235,12 +235,12 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                            progress: undefined,
                            theme: "colored",
                        });
-           
+                       
                        }
                     }
                     else if (location.pathname === "/dashboard/airtime2cash") {
                         setIsDataLoaded(true)
-                        window.open(`https://api.whatsapp.com/send/?phone=%2B2348075075032&text=%0A++++++%2AAIRTIME+2+CASH+Order%3A%2A%0A++%0A++++++%2ANetwork%3A%2A+_${networkValue}_%0A++++++%2AAmount%3A%2A+_${airtime2cashAmount}_%0A++++++%2APhone%3A%2A+_${phoneNumberValue && phoneNumberValue[0]}_%0A++%0A++++++%2ABank%3A%2A+_${bankInputValue}_%0A++++++%2AAcct+No%3A%2A+_${accountNumberInputValue}_%0A++++++%2AAcct+Name%3A%2A+_${accountNameInputValue}_&type=phone_number&app_absent=0`)
+                        window.open(`https://api.whatsapp.com/send/?phone=%2B2348140402506&text=%0A++++++%2AAIRTIME+2+CASH+Order%3A%2A%0A++%0A++++++%2ANetwork%3A%2A+_${networkValue}_%0A++++++%2AAmount%3A%2A+_${airtime2cashAmount}_%0A++++++%2APhone%3A%2A+_${phoneNumberValue && phoneNumberValue[0]}_%0A++%0A++++++%2ABank%3A%2A+_${bankInputValue}_%0A++++++%2AAcct+No%3A%2A+_${accountNumberInputValue}_%0A++++++%2AAcct+Name%3A%2A+_${accountNameInputValue}_&type=phone_number&app_absent=0`)
                         navigate('/dashboard/airtime2cash')
                         setIsDataLoaded(false)
                         dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: false })

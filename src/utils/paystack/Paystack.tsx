@@ -34,7 +34,7 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
     amount: amount * 100,
       name,
       phone,
-    publicKey:'pk_live_afb9b2fb9b120c6bc00df2e3c152cb0daf1a64e6',
+    publicKey:'pk_live_dfe2e7ff6743f9f8bc24ff270b7cc667af80164d',
     text: "Pay Now",
     onSuccess: () => {
       async function increWallet() {

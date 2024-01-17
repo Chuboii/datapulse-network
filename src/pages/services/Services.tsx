@@ -3,7 +3,7 @@ import {Container, Header,BoxWrap, Wrap, H2, Tab, Wrapper, Box, Icon, TabText,Sp
 import MobileFooterNav from "../../components/mobile footer nav/MobileFooterNav";
 import SendIcon from '@mui/icons-material/Send';
 import ChatIcon from '@mui/icons-material/Chat';
-import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+// import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import Navbar from "../../components/navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const Services: FC = () => {
 
     const navigateToAirtime = () => navigate("/dashboard/airtime")
 
-    const navigateToAirtime2Cash = () => navigate("/dashboard/airtime2cash")
+    // const navigateToAirtime2Cash = () => navigate("/dashboard/airtime2cash")
 
     return (
         <>
@@ -46,13 +46,13 @@ const Services: FC = () => {
                         </Box>
                     </Tab>
 
-                    <Tab onClick={navigateToAirtime2Cash}>
+                    {/* <Tab onClick={navigateToAirtime2Cash}>
                         <Icon><DonutLargeIcon/></Icon>
                         <Box>
                             <TabText>Sell Airtime</TabText>
                           <Span>Convert airtime to cash</Span>
                         </Box>
-                    </Tab>
+                    </Tab> */}
 
                     
                 </Wrapper>

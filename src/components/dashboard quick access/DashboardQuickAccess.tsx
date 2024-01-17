@@ -2,7 +2,7 @@ import { FC, useReducer, useEffect} from "react";
 import {Container, Header, Wrapper, Span, Tab, Icon, Text} from './DashboardQuickAccess.style'
 import BoltIcon from '@mui/icons-material/Bolt';
 import ChatIcon from '@mui/icons-material/Chat';
-import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+// import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import SendIcon from '@mui/icons-material/Send';
 import {useLocation, useNavigate} from 'react-router-dom'
 import anime from 'animejs/lib/anime.es.js';
@@ -104,47 +104,47 @@ const DashboardQuickAccess: FC = () => {
             else if (index === 1) {
                 anime({
                     targets: '.tab',
-                    translateX: '128px', // Adjust the translation distance based on your layout
+                    translateX: '200px', // Adjust the translation distance based on your layout
                     easing: 'easeInOutQuad',
                     duration: 500,
                 });
             
                 anime({
                     targets: '.tab2',
-                    translateX: "128px", // Adjust the translation distance based on your layout
+                    translateX: "-200px", // Adjust the translation distance based on your layout
                     easing: 'easeInOutQuad',
                     duration: 500,
                 });
             
-                anime({
-                    targets: '.tab3',
-                    translateX: "-275px", // Adjust the translation distance based on your layout
-                    easing: 'easeInOutQuad',
-                    duration: 500,
-                });
+                // anime({
+                //     targets: '.tab3',
+                //     translateX: "-275px", // Adjust the translation distance based on your layout
+                //     easing: 'easeInOutQuad',
+                //     duration: 500,
+                // });
             }
-            else if (index === 2) {
-                anime({
-                    targets: '.tab',
-                    translateX: '168px', // Adjust the translation distance based on your layout
-                    easing: 'easeInOutQuad',
-                    duration: 500,
-                });
+            // else if (index === 2) {
+            //     anime({
+            //         targets: '.tab',
+            //         translateX: '168px', // Adjust the translation distance based on your layout
+            //         easing: 'easeInOutQuad',
+            //         duration: 500,
+            //     });
             
-                anime({
-                    targets: '.tab2',
-                    translateX: "-110px", // Adjust the translation distance based on your layout
-                    easing: 'easeInOutQuad',
-                    duration: 500,
-                });
+            //     anime({
+            //         targets: '.tab3',
+            //         translateX: "-110px", // Adjust the translation distance based on your layout
+            //         easing: 'easeInOutQuad',
+            //         duration: 500,
+            //     });
             
-                anime({
-                    targets: '.tab3',
-                    translateX: "0px", // Adjust the translation distance based on your layout
-                    easing: 'easeInOutQuad',
-                    duration: 500,
-                });
-            }
+            //     anime({
+            //         targets: '.tab3',
+            //         translateX: "0px", // Adjust the translation distance based on your layout
+            //         easing: 'easeInOutQuad',
+            //         duration: 500,
+            //     });
+            // }
         }
       };
     
@@ -157,10 +157,10 @@ const DashboardQuickAccess: FC = () => {
         slideTab(1)
         navigate("/dashboard/airtime");
     }
-    const navigateToAirtime2Cash = () => {
-        slideTab(2)
-        navigate("/dashboard/airtime2cash");
-    }
+    // const navigateToAirtime2Cash = () => {
+    //     slideTab(2)
+    //     navigate("/dashboard/airtime2cash");
+    // }
 
 
  
@@ -178,13 +178,13 @@ const DashboardQuickAccess: FC = () => {
                     <Icon><ChatIcon/> </Icon>
                     <Text> Data</Text>
                 </Tab>
-
+{/* 
                 <Tab className="tab2" active={state.airtime2cash ? "#0F2337" : "#1a1a1a"} onClick={navigateToAirtime2Cash}>
                     <Icon><DonutLargeIcon/> </Icon>
                     <Text> Airtime2Cash</Text>
-                </Tab>
+                </Tab> */}
 
-                <Tab className="tab3"  active={state.airtime ? "#0F2337" : "#1a1a1a"} onClick={navigateToAirtime}>
+                <Tab className="tab2"  active={state.airtime ? "#0F2337" : "#1a1a1a"} onClick={navigateToAirtime}>
                     <Icon><SendIcon/> </Icon>
                     <Text> Airtime</Text>
                 </Tab>

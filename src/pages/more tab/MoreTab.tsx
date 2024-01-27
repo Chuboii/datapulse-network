@@ -56,10 +56,7 @@ const MoreTab: FC = () => {
             theme: "colored",
             });
     }
-  
-    const navigateToWhatsapp = () => {
-        
-    }
+
     return (
         <>
             <ToastContainer/>
@@ -78,7 +75,7 @@ const MoreTab: FC = () => {
                     <Wrap>
                         <Span>Get a website like this in minutes</Span>
                         </Wrap>
-                        <Button onClick={navigateToWhatsapp} style={{fontSize:"11px"}}>Click to get started</Button>
+                        <Button style={{fontSize:"11px"}}><a href=" https://wa.me/qr/WZOSJI2E7RMLJ1">Click to get started</a></Button>
                     </Box>
         
                 </Wrapper>

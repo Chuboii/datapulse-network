@@ -75,7 +75,7 @@ const MoreTab: FC = () => {
                     <Wrap>
                         <Span>Get a website like this in minutes</Span>
                         </Wrap>
-                        <Button style={{fontSize:"11px"}}><a href=" https://wa.me/qr/WZOSJI2E7RMLJ1">Click to get started</a></Button>
+                        <Button style={{fontSize:"11px"}}><a style={{color:'white'}} href=" https://wa.me/qr/WZOSJI2E7RMLJ1">Click to get started</a></Button>
                     </Box>
         
                 </Wrapper>

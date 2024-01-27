@@ -104,14 +104,14 @@ const DashboardQuickAccess: FC = () => {
             else if (index === 1) {
                 anime({
                     targets: '.tab',
-                    translateX: '210px', // Adjust the translation distance based on your layout
+                    translateX: '190px', // Adjust the translation distance based on your layout
                     easing: 'easeInOutQuad',
                     duration: 500,
                 });
             
                 anime({
                     targets: '.tab2',
-                    translateX: "-200px", // Adjust the translation distance based on your layout
+                    translateX: "-190px", // Adjust the translation distance based on your layout
                     easing: 'easeInOutQuad',
                     duration: 500,
                 });

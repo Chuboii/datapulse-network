@@ -33,7 +33,7 @@ const AuthDisplay: FC = () => {
 
                     <Button  onClick={navigateToSignup } >
                         <MailIcon/>
-                        <Span>I {"don't" } have a Gmail account</Span>
+                        <Span>Sign up with Gmail account</Span>
                     </Button>
         </Wrap>
     

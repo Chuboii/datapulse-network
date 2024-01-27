@@ -40,7 +40,9 @@ const DashboardHeader: FC = () => {
                 </Wrap>
                 
                 <NotificationsNoneIcon/>
-        </Header>
+            </Header>
+            
+
         </>
     )
 }

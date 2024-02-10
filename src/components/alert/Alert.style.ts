@@ -12,7 +12,7 @@ export const Container = styled.div<DisplayProp>`
   background-color: #23262F;
   position: absolute;
   left: 50%;
-  top: 80%;
+  top: 50%;
   padding:.5rem 1rem;
   flex-direction: column;
   z-index: 500;

@@ -334,7 +334,39 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                                 navigate("/transaction/status")
                                 setIsDataLoaded(false)
                             }
-                     
+                            else if (err?.response?.data.response === `Transaction  fail ${networkValue} ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.response === `Transaction  fail ${networkValue} COOPERATE GIFTING ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.message === `Transaction  fail ${networkValue} ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.message === `Transaction  fail ${networkValue} COOPERATE GIFTING ${dataPlanData} to ${phoneNumberValue}`) {
+                        
+                        
+                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                    userId: currentUser.user._id,
+                                    photoUrl:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
+                                    amount:amountValue,
+                                    deposit: null,
+                                    plan:"Data",
+                                    history: `${amountValue} to ${phoneNumberValue} failed`,
+                                    declined:true
+                                })
+
+                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+            
+                                dispatch({type:"TRANSACTION_STATUS", payload:`${networkValue} is not available right now`})
+                                 
+                                setPin([])
+                                setCount(0)
+       
+                                const dots = document.querySelectorAll(".dot") as
+                                    NodeListOf<HTMLElement>;
+        
+                                dots.forEach(dot => {
+                                    dot.style.backgroundColor = "#2A2F3A"
+                                    dot.style.width = "10px"
+                                    dot.style.height = "10px"
+                                })
+         
+                                setIsDataLoaded(false)
+                                
+                                navigate("/transaction/status")
+                            }
                             else if (err?.response?.data.message === `Invalid Phone Number ${phoneNumberValue}`) {
                                
                                 dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })

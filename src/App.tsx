@@ -1,9 +1,8 @@
-// import RenderRoutes from "./routes/Routes"
+import RenderRoutes from "./routes/Routes"
 import {FC, useState, useEffect} from "react"
 import {useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { StateProp } from "./utils/store/reducers/user reducer/userInterface";
-import PublicAlert from "./components/alert/PublicAlert";
 type TimeInterval = ReturnType<typeof setInterval>;
 
 
@@ -60,8 +59,7 @@ const App:FC = () => {
   
   return (
     <>
-      <PublicAlert/>
-      {/*<RenderRoutes/>*/}
+   <RenderRoutes/>
     </>
   )
 }

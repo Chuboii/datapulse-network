@@ -7,7 +7,7 @@ const PublicAlert: FC = () => {
     return (
         <>
             <Container display={"flex"}>
-                <H2>PublicAlert!</H2>
+                <H2>Public Alert!</H2>
                 <Text>The site is temporarily down. We are currently working on it to fix it.</Text>
             </Container>
         </>

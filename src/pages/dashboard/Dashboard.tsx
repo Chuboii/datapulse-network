@@ -10,6 +10,7 @@ import { Outlet } from "react-router-dom"
 import DataPlans from "../../components/plans/DataPlans"
 import RecentTransactions from "../../components/recent transactions/RecentTransactions"
 import { useDispatch } from "react-redux"
+import UserAlert from "../../components/alert/UserAlert"
 
 const Dashboard: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,7 +28,7 @@ const Dashboard: FC = () => {
   
   return(
     <>
-     
+    <UserAlert/>
       <Container ref={containerRef}>
         <Navbar />
         <Wrapper>

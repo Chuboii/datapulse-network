@@ -77,9 +77,9 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                             bypass: false,
                             'request-id': String(Date.now())
                     };
-    
+                  
                         const headers = {
-                            'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                            'Authorization': 'Token 8e31e93cbcaf5542923fbe0290246ed32534291382ca901078effb7e7ae4',
                             'Content-Type': 'application/json',
                         };
                 

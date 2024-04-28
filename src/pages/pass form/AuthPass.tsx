@@ -10,7 +10,6 @@ import PageLoader from "../../components/page loader/PageLoader"
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 
 
-
 const AuthPass: FC = () => {
  const {currentUser} = useSelector((state:StateProp)=> state.user)
  const location = useLocation()
@@ -59,7 +58,8 @@ const logoutBtn = async () => {
   // logoutBtn()
     return (
         <>
-        {isDataLoaded && <PageLoader/>}
+        {isDataLoaded && <PageLoader />}
+       
         <ToastContainer/>
              <Logout onClick={logoutBtn}>Logout</Logout>
             <Container>

@@ -1,4 +1,4 @@
-import {FC, useEffect, useRef} from "react"
+import {FC, useEffect, useRef, useState} from "react"
 import DashboardHeader from "../../components/dashboard header/DashboardHeader"
 import {Container, Wrapper } from './Dashboard.style'
 import Navbar from "../../components/navbar/Navbar"
@@ -15,6 +15,7 @@ import UserAlert from "../../components/alert/UserAlert"
 const Dashboard: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch()
+  const [loadOnce, setLoadOnce] = useState(false)
 
   useEffect(() => {
     if (containerRef.current) {
@@ -26,9 +27,12 @@ const Dashboard: FC = () => {
    dispatch({ type: "TOGGLE_CHECKOUT_COMP", payload: false });
   }, [dispatch])
   
+  useEffect(() => {
+    setLoadOnce(true)
+  }, [])
   return(
     <>
-    <UserAlert/>
+      {loadOnce && <UserAlert />}
       <Container ref={containerRef}>
         <Navbar />
         <Wrapper>

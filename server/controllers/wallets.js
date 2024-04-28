@@ -6,7 +6,7 @@ export const addToWallet = async (req, res, next) => {
         const { id, amount} = req.body
         
         const addedAmount = await User.findByIdAndUpdate(id, {
-            $inc: { balance: amount - 30 }
+            $inc: { balance: amount}
         }, { new: true })
         
         res.status(200).json({

@@ -38,9 +38,11 @@ const Paystack: FC<ComponentProp> = ({email, amount, name, phone}) => {
     text: "Pay Now",
     onSuccess: () => {
       async function increWallet() {
+        dispatch({ type: "TOGGLE_PAGE_LOADER", payload: true })
+        
         const data = await axios.put("https://datapulse-network.onrender.com/api/incre/balance", {
           id: currentUser.user._id,
-          amount
+          amount: amount - 30
         })
     
         await axios.post("https://datapulse-network.onrender.com/api/add/history", {

@@ -1,26 +1,29 @@
-import { FC } from "react";
-import {Container,More,Wrap1,Wrap2,Failure, Header, Icon, H2, Main,Wrapper, Section,Success, Wrap, Img, Text, Bold, Tab, BoxWrap } from './TransactionSummary.style'
+import { FC, /*useState  */} from "react";
+import {Container/*More*/,Wrap1,Wrap2,Failure, Header, Icon, H2, Main,Wrapper, Section,Success, /*Wrap,*/ Img, Text, Bold, Tab, BoxWrap } from './TransactionSummary.style'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useDispatch, useSelector } from "react-redux";
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
 import { HistoryStateProp } from "../../utils/store/reducers/history/historyInterface";
 import PreventScroll from "../../components/prevent scroll/PreventScroll"
+import ReportAlert from "../alert/ReportAlert";
 
 
   
 const TransactionSummary: FC = () => {
-    const toggleTransactionSummary = useSelector((state:Toggle) => state.toggle.toggleTransactionSummary)
+    const toggleTransactionSummary = useSelector((state: Toggle) => state.toggle.toggleTransactionSummary)
     const dispatch = useDispatch()
     const childHistory = useSelector((state: HistoryStateProp) => state.history.childHistory)
     const date = new Date(childHistory ? childHistory.createdAt : "")
-
+    const toggleAlertComp = useSelector((state:Toggle) => state.toggle.toggleAlert)
 
     const disableTransactionSummary = () => dispatch({ type: "TOGGLE_TRANSACTION_SUMMARY", payload: false })
-    
+
+    // const enableReportAlert = () =>   dispatch({type:"TOGGLE_ALERT_COMP", payload:true})
 
     return (
         <>
+            {toggleAlertComp && <ReportAlert />}
         {toggleTransactionSummary && <PreventScroll/>}
             <Container display={toggleTransactionSummary ? "0" : "5000px"}>
                 <Header>
@@ -82,9 +85,9 @@ const TransactionSummary: FC = () => {
                                     <Bold>{childHistory ? childHistory.uid : ""}</Bold>
                                 </BoxWrap>
                             </Tab>
-
-                            <More>More Actions</More>
-
+{/* 
+                            <More>More Actions</More> */}
+{/* 
                             <Tab>
                                 <Wrap>
                                 <InfoOutlinedIcon sx={{marginRight:'1rem'}}/>
@@ -96,16 +99,16 @@ const TransactionSummary: FC = () => {
                                 <Icon></Icon>
                             </Tab>
 
-                            <Tab>
+                            <Tab onClick={enableReportAlert}>
                                 <Wrap>
                          <InfoOutlinedIcon sx={{marginRight:'1rem'}}/>
-                                <BoxWrap>
+                                <BoxWrap >
                                     <Bold>Report Transaction</Bold>
                                     <Text>Report an issue with this transaction</Text>
                                     </BoxWrap>
                                 </Wrap>
                                 <Icon></Icon>
-                            </Tab>
+                            </Tab> */}
                             
                         </Wrapper>
         </Section>

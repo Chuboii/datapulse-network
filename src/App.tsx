@@ -60,8 +60,8 @@ const App:FC = () => {
   
   return (
     <>
-      <RenderRoutes/>
-      {/* <PublicAlert/> */}
+      {/* <RenderRoutes/> */}
+      <PublicAlert/>
     </>
   )
 }

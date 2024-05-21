@@ -1,13 +1,13 @@
 import RenderRoutes from "./routes/Routes"
-import {FC, useState, useEffect} from "react"
-import {useLocation, useNavigate } from "react-router-dom"
+import { FC, useState, useEffect } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { StateProp } from "./utils/store/reducers/user reducer/userInterface";
-// import PublicAlert from "./components/alert/PublicAlert";
+import PublicAlert from "./components/alert/PublicAlert";
 type TimeInterval = ReturnType<typeof setInterval>;
 
 
-const App:FC = () => {
+const App: FC = () => {
 
   const location = useLocation();
   const [timer, setTimer] = useState<number>(0);
@@ -17,20 +17,20 @@ const App:FC = () => {
 
 
   useEffect(() => {
-      if (!currentUser) {
-          navigate("/")
+    if (!currentUser) {
+      navigate("/")
+    }
+    else {
+      if (location.pathname === "/auth/createpasscode") {
+        navigate("/auth/createpasscode")
+      }
+      else if (location.pathname === "/auth/resetpasscode") {
+        navigate('/auth/resetpasscode')
       }
       else {
-          if (location.pathname === "/auth/createpasscode") {
-              navigate("/auth/createpasscode")
-          }
-          else if (location.pathname === "/auth/resetpasscode") {
-              navigate('/auth/resetpasscode')   
-          }
-          else {
-              navigate('/auth/passcode')
-          }
+        navigate('/auth/passcode')
       }
+    }
   }, [])
 
 
@@ -54,14 +54,14 @@ const App:FC = () => {
       document.body.removeEventListener('mousemove', isUserActive);
     };
   }, [timer, navigate, location]);
-  
 
-  
-  
+
+
+
   return (
     <>
       {/* <RenderRoutes/> */}
-      <PublicAlert/>
+      <PublicAlert />
     </>
   )
 }

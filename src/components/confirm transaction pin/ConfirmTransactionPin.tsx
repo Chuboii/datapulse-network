@@ -1,12 +1,12 @@
 import { FC, useState, useEffect } from "react";
 import { Container, Delete, Wrap, Text, DotWrapper, Dot, Pad, Grid } from './ConfirmTransactionPin.style';
 import LockIcon from '@mui/icons-material/Lock';
-import axios, {AxiosResponse} from "axios"
+import axios, { AxiosResponse } from "axios"
 import PageLoader from "../page loader/PageLoader"
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-;
+    ;
 import { StateProp } from "../../utils/store/reducers/user reducer/userInterface";
 import { Toggle } from "../../utils/store/reducers/toggle reducer/toggleInterface";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -26,12 +26,12 @@ const ConfirmTransactionPin: FC = () => {
     const [pin, setPin] = useState<number[]>([]);
     const [count, setCount] = useState<number>(0);
     const [isDigitPresent, setIsDigitPresent] = useState<boolean>(false);
-const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
-   const {currentUser} = useSelector((state:StateProp) => state.user)
-    const toggleConfirmTransacPin = useSelector((state: Toggle)=> state.toggle.toggleConfirmationTransactionPinComp)
+    const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
+    const { currentUser } = useSelector((state: StateProp) => state.user)
+    const toggleConfirmTransacPin = useSelector((state: Toggle) => state.toggle.toggleConfirmationTransactionPinComp)
     const location = useLocation()
     const buyAirtimeNetworkId = useSelector((state: TransactionStateProp) => state.transaction.dataPlanId)
-    const buyDataId = useSelector((state:TransactionStateProp)=> state.transaction.dataPlanId)
+    const buyDataId = useSelector((state: TransactionStateProp) => state.transaction.dataPlanId)
     const networkValue = useSelector((state: TransactionStateProp) => state.transaction.networkBearer)
     const phoneNumberValue = useSelector((state: TransactionStateProp) => state.transaction.phoneNumberValue)
     const amountValue = useSelector((state: TransactionStateProp) => state.transaction.airtimeValue)
@@ -43,13 +43,13 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
     const dispatch = useDispatch()
     const dataPlanValue = useSelector((state: TransactionStateProp) => state.transaction.dataPlanValue)
     const dataPlanData = useSelector((state: TransactionStateProp) => state.transaction.dataPlanData)
-    const networkImg = useSelector((state:TransactionStateProp) => state.transaction.networkImg)
-    
+    const networkImg = useSelector((state: TransactionStateProp) => state.transaction.networkImg)
 
 
-   useEffect(()=>{
-    const verifyPin = async() => {
-        if (pin.length === 4) {
+
+    useEffect(() => {
+        const verifyPin = async () => {
+            if (pin.length === 4) {
                 try {
 
                     setIsDataLoaded(true)
@@ -58,185 +58,185 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                         username: currentUser.user.username,
                         pin
                     })
-    
-      const dataPrice =  dataPlanValue && (dataPlanValue as string)?.split("₦")?.[1]?.split(".")?.[0];
 
-   
-             if (location.pathname === "/dashboard") {
-                if (dataPrice && +dataPrice <= currentUser.user.balance) {
-                  
-                        const networkId = networkValue === "MTN SME" || networkValue === "MTN GIFTING" || networkValue === "MTN COOPERATE GIFTING" ? "1" : networkValue === "AIRTEL" ? "2" : networkValue === "GLO COOPERATE GIFTING" || networkValue === "GLO GIFTING" ? '3' : networkValue === "9MOBILE COOPERATE GIFTING" || networkValue === "9MOBILE GIFTING" ? "4" : ''
-                            
-                   
-                        const apiUrl = 'https://n3tdata.com/api/data';
-        
-                        const payload = {
-                            network: networkId,
-                            phone: phoneNumberValue && phoneNumberValue[0],
-                            data_plan: buyDataId,
-                            bypass: false,
-                            'request-id': String(Date.now())
-                    };
-                  
-                        const headers = {
-                            'Authorization': 'Token 8e31e93cbcaf5542923fbe0290246ed32534291382ca901078effb7e7ae4',
-                            'Content-Type': 'application/json',
-                        };
-                
-            
-                        const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
-        
-                    
-                        console.log('API Response:', res.data);
-        
-                        dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
-            
-                        dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${dataPlanData} to ${phoneNumberValue}`})
-                        
-                        await axios.post("https://datapulse-network.onrender.com/api/add/history", {
-                            userId: currentUser.user._id,
-                            photoUrl:networkImg,
-                            amount:dataPrice,
-                            deposit: null,
-                            plan:"Data",
-                            history: `${dataPlanData} to ${phoneNumberValue}`,
-                            declined:false
-                        })
-                        
-                       const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
-                            id: currentUser.user._id,
-                            amount: dataPrice
-                       })
-                        
-                        dispatch({ type: 'GET_USER_DATA', payload: newBalance.data })
-                        setIsDataLoaded(false)
-                        
-                        setPin([])
-                        setCount(0)
+                    const dataPrice = dataPlanValue && (dataPlanValue as string)?.split("₦")?.[1]?.split(".")?.[0];
 
-                        const dots = document.querySelectorAll(".dot") as
-                            NodeListOf<HTMLElement>;
 
-                        dots.forEach(dot => {
-                            dot.style.backgroundColor = "#2A2F3A"
-                            dot.style.width = "10px"
-                            dot.style.height = "10px"
-                        })
-                 
-                      navigate("/transaction/status")
+                    if (location.pathname === "/dashboard") {
+                        if (dataPrice && +dataPrice <= currentUser.user.balance) {
+
+                            const networkId = networkValue === "MTN SME" || networkValue === "MTN GIFTING" || networkValue === "MTN COOPERATE GIFTING" ? "1" : networkValue === "AIRTEL" ? "2" : networkValue === "GLO COOPERATE GIFTING" || networkValue === "GLO GIFTING" ? '3' : networkValue === "9MOBILE COOPERATE GIFTING" || networkValue === "9MOBILE GIFTING" ? "4" : ''
+
+
+                            const apiUrl = 'https://n3tdata.com/api/data';
+
+                            const payload = {
+                                network: networkId,
+                                phone: phoneNumberValue && phoneNumberValue[0],
+                                data_plan: buyDataId,
+                                bypass: false,
+                                'request-id': String(Date.now())
+                            };
+
+                            const headers = {
+                                'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                                'Content-Type': 'application/json',
+                            };
+
+
+                            const res = await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+
+
+                            console.log('API Response:', res.data);
+
+                            dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
+
+                            dispatch({ type: "TRANSACTION_STATUS", payload: `You have successfully purchased ${dataPlanData} to ${phoneNumberValue}` })
+
+                            await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                userId: currentUser.user._id,
+                                photoUrl: networkImg,
+                                amount: dataPrice,
+                                deposit: null,
+                                plan: "Data",
+                                history: `${dataPlanData} to ${phoneNumberValue}`,
+                                declined: false
+                            })
+
+                            const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
+                                id: currentUser.user._id,
+                                amount: dataPrice
+                            })
+
+                            dispatch({ type: 'GET_USER_DATA', payload: newBalance.data })
+                            setIsDataLoaded(false)
+
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            navigate("/transaction/status")
+                        }
+                        else {
+                            setIsDataLoaded(false)
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            toast.error("Insufficient funds!", {
+                                position: "top-right",
+                                autoClose: 500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "colored",
+                            });
+
+                        }
                     }
-                    else {
-                        setIsDataLoaded(false)
-                        setPin([])
-                        setCount(0)
-           
-                        const dots = document.querySelectorAll(".dot") as
-                            NodeListOf<HTMLElement>;
-           
-                        dots.forEach(dot => {
-                            dot.style.backgroundColor = "#2A2F3A"
-                            dot.style.width = "10px"
-                            dot.style.height = "10px"
-                        })
-           
-                        toast.error("Insufficient funds!", {
-                           position: "top-right",
-                           autoClose: 500,
-                           hideProgressBar: false,
-                           closeOnClick: true,
-                           pauseOnHover: true,
-                           draggable: true,
-                           progress: undefined,
-                           theme: "colored",
-                       });
-           
-                       }
-                    }
-     else if (location.pathname === "/dashboard/airtime") {
-                 if (amountValue && +amountValue <= currentUser.user.balance) {
-                    
-                   const apiUrl = 'https://n3tdata.com/api/topup/';
+                    else if (location.pathname === "/dashboard/airtime") {
+                        if (amountValue && +amountValue <= currentUser.user.balance) {
 
-                        const payload = {
-                            network: buyAirtimeNetworkId,
-                            phone: phoneNumberValue && phoneNumberValue[0],
-                            plan_type: 'VTU',
-                            bypass: false,
-                            amount: amountValue,
-                            'request-id': String(Date.now())
-                     };
-                     
-                        const headers = {
-                            'Authorization': 'Token 8e31e93cbcaf5542923fbe0290246ed32534291382ca901078effb7e7ae4',
-                            'Content-Type': 'application/json',
-                        };
-                
-            
-                       await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
-        
-                        dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
-            
-                        dispatch({type:"TRANSACTION_STATUS", payload:`You have successfully purchased ${amountValue} airtime to ${phoneNumberValue}`})
-                        
-                        await axios.post("https://datapulse-network.onrender.com/api/add/history", {
-                            userId: currentUser.user._id,
-                            photoUrl:networkImg,
-                            amount:amountValue,
-                            deposit: null,
-                            plan:"Airtime",
-                            history: `${amountValue} airtime to ${phoneNumberValue}`,
-                            declined:false
-                        })
-                        
-                       const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
-                            id: currentUser.user._id,
-                            amount: amountValue
-                       })
-                        
-                        dispatch({ type: 'GET_USER_DATA', payload: newBalance.data })
+                            const apiUrl = 'https://n3tdata.com/api/topup/';
 
-                        setIsDataLoaded(false)
-                        // console.log('API Response:', res.data);
-                        setPin([])
-                        setCount(0)
+                            const payload = {
+                                network: buyAirtimeNetworkId,
+                                phone: phoneNumberValue && phoneNumberValue[0],
+                                plan_type: 'VTU',
+                                bypass: false,
+                                amount: amountValue,
+                                'request-id': String(Date.now())
+                            };
 
-                        const dots = document.querySelectorAll(".dot") as
-                            NodeListOf<HTMLElement>;
+                            const headers = {
+                                'Authorization': 'Token 75ea7594745bb22aa90022f5f7cbc0d24a61a59f242d763985e6e412b6d1',
+                                'Content-Type': 'application/json',
+                            };
 
-                        dots.forEach(dot => {
-                            dot.style.backgroundColor = "#2A2F3A"
-                            dot.style.width = "10px"
-                            dot.style.height = "10px"
-                        })
-                        navigate("/transaction/status")
 
-                    }
-                    else {
-                        setIsDataLoaded(false)
-                        setPin([])
-                        setCount(0)
-           
-                        const dots = document.querySelectorAll(".dot") as
-                            NodeListOf<HTMLElement>;
-           
-                        dots.forEach(dot => {
-                            dot.style.backgroundColor = "#2A2F3A"
-                            dot.style.width = "10px"
-                            dot.style.height = "10px"
-                        })
-           
-                        toast.error("Insufficient funds!", {
-                           position: "top-right",
-                           autoClose: 500,
-                           hideProgressBar: false,
-                           closeOnClick: true,
-                           pauseOnHover: true,
-                           draggable: true,
-                           progress: undefined,
-                           theme: "colored",
-                       });
-                       
-                       }
+                            await axios.post(apiUrl, payload, { headers }) as AxiosResponse<Prop>;
+
+                            dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: true })
+
+                            dispatch({ type: "TRANSACTION_STATUS", payload: `You have successfully purchased ${amountValue} airtime to ${phoneNumberValue}` })
+
+                            await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                userId: currentUser.user._id,
+                                photoUrl: networkImg,
+                                amount: amountValue,
+                                deposit: null,
+                                plan: "Airtime",
+                                history: `${amountValue} airtime to ${phoneNumberValue}`,
+                                declined: false
+                            })
+
+                            const newBalance = await axios.put("https://datapulse-network.onrender.com/api/decre/balance", {
+                                id: currentUser.user._id,
+                                amount: amountValue
+                            })
+
+                            dispatch({ type: 'GET_USER_DATA', payload: newBalance.data })
+
+                            setIsDataLoaded(false)
+                            // console.log('API Response:', res.data);
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+                            navigate("/transaction/status")
+
+                        }
+                        else {
+                            setIsDataLoaded(false)
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            toast.error("Insufficient funds!", {
+                                position: "top-right",
+                                autoClose: 500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "colored",
+                            });
+
+                        }
                     }
                     else if (location.pathname === "/dashboard/airtime2cash") {
                         setIsDataLoaded(true)
@@ -257,14 +257,14 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                             dot.style.height = "10px"
                         })
 
-             }
-    
+                    }
+
                 }
-            catch (err) {
-                 
+                catch (err) {
+
                     setIsDataLoaded(false)
                     console.log(err)
-                                   
+
                     setPin([])
                     setCount(0)
 
@@ -277,215 +277,215 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
                         dot.style.height = "10px"
                     })
 
-                        if (axios.isAxiosError(err)) {
-                            if (err?.response?.data.message === "Pin incorrect") {
-                                toast.error("Pin incorrect!", {
-                                    position: "top-right",
-                                    autoClose: 500,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                    theme: "colored",
-                                });
-                
-                                setPin([])
-                                setCount(0)
-        
-                                const dots = document.querySelectorAll(".dot") as
-                                    NodeListOf<HTMLElement>;
-         
-                                dots.forEach(dot => {
-                                    dot.style.backgroundColor = "#2A2F3A"
-                                    dot.style.width = "10px"
-                                    dot.style.height = "10px"
-                                })
-          
-                                setIsDataLoaded(false)
-                            }
-                            else if (err?.response?.data.message === `${networkValue} is not available right now`) {
-                                
-                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
-                                    userId: currentUser.user._id,
-                                    photoUrl:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
-                                    amount:amountValue,
-                                    deposit: null,
-                                    plan:"Data",
-                                    history: `${amountValue} to ${phoneNumberValue} failed`,
-                                    declined:true
-                                })
-                                
-                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
-            
-                                dispatch({type:"TRANSACTION_STATUS", payload:`${networkValue} is not available right now`})
-                                setPin([])
-                                setCount(0)
-       
-                                const dots = document.querySelectorAll(".dot") as
-                                    NodeListOf<HTMLElement>;
-        
-                                dots.forEach(dot => {
-                                    dot.style.backgroundColor = "#2A2F3A"
-                                    dot.style.width = "10px"
-                                    dot.style.height = "10px"
-                                })
-         
-                                navigate("/transaction/status")
-                                setIsDataLoaded(false)
-                            }
-                            else if (err?.response?.data.response === `Transaction  fail ${networkValue} ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.response === `Transaction  fail ${networkValue} COOPERATE GIFTING ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.message === `Transaction  fail ${networkValue} ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.message === `Transaction  fail ${networkValue} COOPERATE GIFTING ${dataPlanData} to ${phoneNumberValue}`) {
-                        
-                        
-                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
-                                    userId: currentUser.user._id,
-                                    photoUrl:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
-                                    amount:amountValue,
-                                    deposit: null,
-                                    plan:"Data",
-                                    history: `${amountValue} to ${phoneNumberValue} failed`,
-                                    declined:true
-                                })
+                    if (axios.isAxiosError(err)) {
+                        if (err?.response?.data.message === "Pin incorrect") {
+                            toast.error("Pin incorrect!", {
+                                position: "top-right",
+                                autoClose: 500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "colored",
+                            });
 
-                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
-            
-                                dispatch({type:"TRANSACTION_STATUS", payload:`${networkValue} is not available right now`})
-                                 
-                                setPin([])
-                                setCount(0)
-       
-                                const dots = document.querySelectorAll(".dot") as
-                                    NodeListOf<HTMLElement>;
-        
-                                dots.forEach(dot => {
-                                    dot.style.backgroundColor = "#2A2F3A"
-                                    dot.style.width = "10px"
-                                    dot.style.height = "10px"
-                                })
-         
-                                setIsDataLoaded(false)
-                                
-                                navigate("/transaction/status")
-                            }
-                            else if (err?.response?.data.message === `Invalid Phone Number ${phoneNumberValue}`) {
-                               
-                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
-            
-                                dispatch({type:"TRANSACTION_STATUS", payload:`Invalid phone Number => ${phoneNumberValue}`})
-                                setPin([])
-                                setCount(0)
-       
-                                setPin([])
-                                setCount(0)
-       
-                                const dots = document.querySelectorAll(".dot") as
-                                    NodeListOf<HTMLElement>;
-        
-                                dots.forEach(dot => {
-                                    dot.style.backgroundColor = "#2A2F3A"
-                                    dot.style.width = "10px"
-                                    dot.style.height = "10px"
-                                })
-         
-                                setIsDataLoaded(false)
-                                navigate("/transaction/status")
-                            }
-                            else if (err?.response?.data.message === `This is not a ${networkValue} Number => ${phoneNumberValue}`) {
+                            setPin([])
+                            setCount(0)
 
-                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
-                                    userId: currentUser.user._id,
-                                    photoUrl:"https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
-                                    amount:amountValue,
-                                    deposit: null,
-                                    plan:"Airtime",
-                                    history: `This is not a ${networkValue} Number => ${phoneNumberValue}`,
-                                    declined:true
-                                })
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
 
-                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
-            
-                                dispatch({ type: "TRANSACTION_STATUS", payload: `This is not a ${networkValue} Number => ${phoneNumberValue}` })
-                                
-                                setPin([])
-                                setCount(0)
-       
-                                const dots = document.querySelectorAll(".dot") as
-                                    NodeListOf<HTMLElement>;
-        
-                                dots.forEach(dot => {
-                                    dot.style.backgroundColor = "#2A2F3A"
-                                    dot.style.width = "10px"
-                                    dot.style.height = "10px"
-                                })
-         
-                                setIsDataLoaded(false)
-                                
-                                navigate("/transaction/status")
-                            }
-                                //"Minimum Airtime Purchase for this account is => ₦50.00
-                            else if (err?.response?.data.message === `Minimum Airtime Purchase for this account is => ₦50.00`) {
-                                await axios.post("https://datapulse-network.onrender.com/api/add/history", {
-                                    userId: currentUser.user._id,
-                                    photoUrl:"/src/assets/error-svgrepo-com.svg",
-                                    amount:amountValue,
-                                    deposit: null,
-                                    plan:"Airtime",
-                                    history: `${amountValue} airtime to ${phoneNumberValue} failed`,
-                                    declined:true
-                                })
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
 
-                                dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
-            
-                                dispatch({ type: "TRANSACTION_STATUS", payload: `Minimum Airtime Purchase for this account is => ₦50.00 ` })
-                                
-                                setPin([])
-                                setCount(0)
-                                
-                                const dots = document.querySelectorAll(".dot") as
-                                    NodeListOf<HTMLElement>;
-        
-                                dots.forEach(dot => {
-                                    dot.style.backgroundColor = "#2A2F3A"
-                                    dot.style.width = "10px"
-                                    dot.style.height = "10px"
-                                })
-         
-                                setIsDataLoaded(false)
-        
-                                navigate("/transaction/status")
-                            }
-                            else {
-                                toast.error("Oops! Connection Timeout! Try again!", {
-                                    position: "top-right",
-                                    autoClose: 500,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                    theme: "colored",
-                                });
-                
-                                setPin([])
-                                setCount(0)
-        
-                                const dots = document.querySelectorAll(".dot") as
-                                    NodeListOf<HTMLElement>;
-         
-                                dots.forEach(dot => {
-                                    dot.style.backgroundColor = "#2A2F3A"
-                                    dot.style.width = "10px"
-                                    dot.style.height = "10px"
-                                })
-          
-                                setIsDataLoaded(false)
-                            }
+                            setIsDataLoaded(false)
+                        }
+                        else if (err?.response?.data.message === `${networkValue} is not available right now`) {
+
+                            await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                userId: currentUser.user._id,
+                                photoUrl: "https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
+                                amount: amountValue,
+                                deposit: null,
+                                plan: "Data",
+                                history: `${amountValue} to ${phoneNumberValue} failed`,
+                                declined: true
+                            })
+
+                            dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+
+                            dispatch({ type: "TRANSACTION_STATUS", payload: `${networkValue} is not available right now` })
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            navigate("/transaction/status")
+                            setIsDataLoaded(false)
+                        }
+                        else if (err?.response?.data.response === `Transaction  fail ${networkValue} ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.response === `Transaction  fail ${networkValue} COOPERATE GIFTING ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.message === `Transaction  fail ${networkValue} ${dataPlanData} to ${phoneNumberValue}` || err?.response?.data.message === `Transaction  fail ${networkValue} COOPERATE GIFTING ${dataPlanData} to ${phoneNumberValue}`) {
+
+
+                            await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                userId: currentUser.user._id,
+                                photoUrl: "https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
+                                amount: amountValue,
+                                deposit: null,
+                                plan: "Data",
+                                history: `${amountValue} to ${phoneNumberValue} failed`,
+                                declined: true
+                            })
+
+                            dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+
+                            dispatch({ type: "TRANSACTION_STATUS", payload: `${networkValue} is not available right now` })
+
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            setIsDataLoaded(false)
+
+                            navigate("/transaction/status")
+                        }
+                        else if (err?.response?.data.message === `Invalid Phone Number ${phoneNumberValue}`) {
+
+                            dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+
+                            dispatch({ type: "TRANSACTION_STATUS", payload: `Invalid phone Number => ${phoneNumberValue}` })
+                            setPin([])
+                            setCount(0)
+
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            setIsDataLoaded(false)
+                            navigate("/transaction/status")
+                        }
+                        else if (err?.response?.data.message === `This is not a ${networkValue} Number => ${phoneNumberValue}`) {
+
+                            await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                userId: currentUser.user._id,
+                                photoUrl: "https://firebasestorage.googleapis.com/v0/b/datapulse-network.appspot.com/o/error-svgrepo-com.svg?alt=media&token=9689c936-4338-4494-b209-fe7ab996e17c",
+                                amount: amountValue,
+                                deposit: null,
+                                plan: "Airtime",
+                                history: `This is not a ${networkValue} Number => ${phoneNumberValue}`,
+                                declined: true
+                            })
+
+                            dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+
+                            dispatch({ type: "TRANSACTION_STATUS", payload: `This is not a ${networkValue} Number => ${phoneNumberValue}` })
+
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            setIsDataLoaded(false)
+
+                            navigate("/transaction/status")
+                        }
+                        //"Minimum Airtime Purchase for this account is => ₦50.00
+                        else if (err?.response?.data.message === `Minimum Airtime Purchase for this account is => ₦50.00`) {
+                            await axios.post("https://datapulse-network.onrender.com/api/add/history", {
+                                userId: currentUser.user._id,
+                                photoUrl: "/src/assets/error-svgrepo-com.svg",
+                                amount: amountValue,
+                                deposit: null,
+                                plan: "Airtime",
+                                history: `${amountValue} airtime to ${phoneNumberValue} failed`,
+                                declined: true
+                            })
+
+                            dispatch({ type: "IS_TRANSACTION_SUCCESSFUL", payload: false })
+
+                            dispatch({ type: "TRANSACTION_STATUS", payload: `Minimum Airtime Purchase for this account is => ₦50.00 ` })
+
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            setIsDataLoaded(false)
+
+                            navigate("/transaction/status")
+                        }
+                        else {
+                            toast.error("Oops! Connection Timeout! Try again!", {
+                                position: "top-right",
+                                autoClose: 500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "colored",
+                            });
+
+                            setPin([])
+                            setCount(0)
+
+                            const dots = document.querySelectorAll(".dot") as
+                                NodeListOf<HTMLElement>;
+
+                            dots.forEach(dot => {
+                                dot.style.backgroundColor = "#2A2F3A"
+                                dot.style.width = "10px"
+                                dot.style.height = "10px"
+                            })
+
+                            setIsDataLoaded(false)
                         }
                     }
-     }
-    }
-    verifyPin()
-   },[pin, currentUser.user.username, currentUser.user._id, dispatch])
+                }
+            }
+        }
+        verifyPin()
+    }, [pin, currentUser.user.username, currentUser.user._id, dispatch])
 
 
     const insertPin = (el: number) => {
@@ -542,8 +542,8 @@ const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false)
 
     return (
         <>
-        <ToastContainer/>
-       {isDataLoaded && <PageLoader/> }
+            <ToastContainer />
+            {isDataLoaded && <PageLoader />}
             <Container display={toggleConfirmTransacPin ? "0" : "-5000px"}>
                 <Wrap>
                     <LockIcon sx={{ fontSize: '18px', color: "#359758" }} />
